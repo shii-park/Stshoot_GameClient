@@ -11,7 +11,15 @@ public class BulletModel
 
     public int BulletPower = 1;
 
+    public BulletModel(){
+        SetAvailabl(true);
+    }
+
     public void SetCommentChar(char newCommentChar){
         _commentChar.Value = newCommentChar;
+    }
+
+    public void SetAvailabl(bool isAvailable){
+        _isAvailable.Value = isAvailable;
     }
 }
