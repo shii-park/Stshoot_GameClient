@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using Assets.MyAssets.InGame.Bullets;
 
 public class Test1 : MonoBehaviour
 {
@@ -12,26 +14,39 @@ public class Test1 : MonoBehaviour
     [SerializeField]
     private Transform pos;
     
-    BulletPresenter pre;
+    //BulletPresenter pre;
+
+    //BulletMove move;
 
     void Start()
     {
-        Vector3 vec = pos.position;
-        var prefab = Instantiate(_hoge,vec,Quaternion.identity);
-        pre = prefab.GetComponent<BulletPresenter>();
-        pre.Model.SetAvailabl(false);
-        pre.Model.SetCommentChar(_text);
+        StartCoroutine(Seisei());
+    }
 
-        Invoke(nameof(Keika), 5.0f);
+    IEnumerator Seisei()
+    {
+        // 条件にゲームの状態を増やす
+        while (true)
+        {
+            Vector3 vec = pos.position;
+            var prefab = Instantiate(_hoge,vec,Quaternion.identity);
+            var pre = prefab.GetComponent<BulletPresenter>();
+            var move = prefab.GetComponent<BulletMove>();
+            pre.Model.SetAvailabl(false);
+            pre.Model.SetCommentChar(_text);
+
+            move.MoveBullet();
+            yield return new WaitForSeconds(0.05f);
+        }
     }
 
     void Keika(){
-        pre.Model.SetAvailabl(true);
+        //pre.Model.SetAvailabl(true);
         Invoke(nameof(Sarani), 3.0f);
     }
 
     void Sarani(){
-        pre.Model.SetAvailabl(false);
-        pre.Model.SetCommentChar("あ");
+        //pre.Model.SetAvailabl(false);
+        //pre.Model.SetCommentChar("あ");
     }
 }

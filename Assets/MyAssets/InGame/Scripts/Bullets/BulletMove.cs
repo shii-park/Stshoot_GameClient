@@ -1,19 +1,35 @@
 using UnityEngine;
+using System.Collections;
+
 
 namespace Assets.MyAssets.InGame.Bullets
 {
     public class BulletMove : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
-        {
-            
+        private bool _isMoving;
+
+        [SerializeField]
+        private float _bulletSpeed;
+
+        public void MoveBullet(){
+            _isMoving = true;
+            StartCoroutine(MoveBulletCoroutine());
         }
 
-        // Update is called once per frame
-        void Update()
+        public void StopBullet(){
+            _isMoving = false;
+        }
+
+        IEnumerator MoveBulletCoroutine()
         {
-            
+            // 条件にゲームの状態を増やす
+            while (_isMoving)
+            {
+                var pos = this.gameObject.transform.position;
+                pos.y += 0.1f * _bulletSpeed;
+                this.gameObject.transform.position = pos;
+                yield return new WaitForSeconds(0.01f);
+            }
         }
     }
 }
