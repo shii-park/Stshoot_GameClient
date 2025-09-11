@@ -1,21 +1,24 @@
 using UnityEngine;
 using R3;
 
-public class BulletPresenter : MonoBehaviour
+namespace Assets.MyAssets.InGame.Bullets
 {
-    public BulletModel Model = new BulletModel();
-
-    [SerializeField]
-    private BulletView _view;
-
-    public void  Start()
+    public class BulletPresenter : MonoBehaviour
     {
-        Model.CommentChar.Subscribe(text => 
-            _view.SetText(text)
-        );
+        public BulletModel Model = new BulletModel();
 
-        Model.IsAvailable.Subscribe(isAvailable => 
-            _view.SetActive(isAvailable == false)
-        );
+        [SerializeField]
+        private BulletView _view;
+
+        public void  Start()
+        {
+            Model.CommentChar.Subscribe(text => 
+                _view.SetText(text)
+            );
+
+            Model.IsAvailable.Subscribe(isAvailable => 
+                _view.SetActive(isAvailable == false)
+            );
+        }
     }
 }
