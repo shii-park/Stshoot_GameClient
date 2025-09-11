@@ -9,9 +9,13 @@ public class Test1 : MonoBehaviour
     [SerializeField]
     private string _text;
 
+    [SerializeField]
+    private Transform pos;
+
     void Start()
     {
-        var prefab = Instantiate(_hoge);
+        Vector3 vec = pos.position;
+        var prefab = Instantiate(_hoge,vec,Quaternion.identity);
         TextMeshPro countText = prefab.GetComponentInChildren<TextMeshPro>();
         countText.text = _text;
     }
