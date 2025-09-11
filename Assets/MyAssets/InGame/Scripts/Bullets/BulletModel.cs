@@ -3,11 +3,11 @@ using R3;
 
 public class BulletModel
 {
-    private ReactiveProperty<char> _commentChar = new ReactiveProperty<char>();
-    public ReadOnlyReactiveProperty<char> CommentChar { get { return _commentChar; } }
+    private ReactiveProperty<string> _commentChar = new ReactiveProperty<string>();
+    public ReadOnlyReactiveProperty<string> CommentChar { get { return _commentChar; } }
 
     private ReactiveProperty<bool> _isAvailable = new ReactiveProperty<bool>(true);
-    public ReadOnlyReactiveProperty<bool> IsAvailabl { get { return _isAvailable; } }
+    public ReadOnlyReactiveProperty<bool> IsAvailable { get { return _isAvailable; } }
 
     public int BulletPower = 1;
 
@@ -15,7 +15,7 @@ public class BulletModel
         SetAvailabl(true);
     }
 
-    public void SetCommentChar(char newCommentChar){
+    public void SetCommentChar(string newCommentChar){
         _commentChar.Value = newCommentChar;
     }
 

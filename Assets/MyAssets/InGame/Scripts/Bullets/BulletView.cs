@@ -1,16 +1,15 @@
 using UnityEngine;
+using TMPro;
 
 public class BulletView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    [SerializeField]
+    TextMeshPro countText;
+    public void SetText(string commentChar){
+        countText.text = commentChar;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SetActive(bool isActive){
+        gameObject.SetActive(isActive);
     }
 }

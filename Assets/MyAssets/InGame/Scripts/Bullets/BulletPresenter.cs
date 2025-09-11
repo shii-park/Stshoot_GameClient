@@ -1,16 +1,21 @@
 using UnityEngine;
+using R3;
 
 public class BulletPresenter : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public BulletModel Model = new BulletModel();
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private BulletView _view;
+
+    public void  Start()
     {
-        
+        Model.CommentChar.Subscribe(text => 
+            _view.SetText(text)
+        );
+
+        Model.IsAvailable.Subscribe(isAvailable => 
+            _view.SetActive(isAvailable == false)
+        );
     }
 }
