@@ -78,7 +78,6 @@ namespace StShoot.InGame.Players
 
                 for (int i = 0; i < 5; i++)
                 {
-                    Debug.Log(GetGenerateNumber());
                     if (GetGenerateNumber()[i] == '1')
                     {
                         GenerateBullet(comment[count].ToString(), GetGenerateAngle(i), i);
