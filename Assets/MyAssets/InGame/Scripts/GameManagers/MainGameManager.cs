@@ -24,23 +24,21 @@ namespace StShoot.InGame.GameManagers
         
         void Awake()
         {
-            _currentStageIndex = 0;
-            _currentState.Subscribe(state =>
-            {
-                OnStateChanged(state);
-            });
-        }
-        
-        void OnEnable()
-        {
             if (Instance == null)
             {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
                 Destroy(gameObject);
             }
+            
+            _currentStageIndex = 0;
+            _currentState.Subscribe(state =>
+            {
+                OnStateChanged(state);
+            });
         }
         
         public void SetGameState(GameState nextState)
