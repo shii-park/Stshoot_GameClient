@@ -1,10 +1,11 @@
 using R3;
+using StShoot.InGame.GameManagers.Interfaces;
 using StShoot.InGame.Players.Inputs;
 using UnityEngine;
 
 namespace StShoot.InGame.Players
 {
-    public class PlayerCore : MonoBehaviour
+    public class PlayerCore : MonoBehaviour, IKillable
     {
         static private PlayerCore player;
 
