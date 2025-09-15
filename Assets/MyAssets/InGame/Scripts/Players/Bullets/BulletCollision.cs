@@ -1,7 +1,7 @@
-using MyAssets.InGame.Scripts.Walls.Interfaces;
+using StShoot.InGame.Scripts.Walls.Interfaces;
 using UnityEngine;
 
-namespace MyAssets.InGame.Scripts.Players.Bullets
+namespace StShoot.InGame.Scripts.Players.Bullets
 {
     public class BulletCollision : MonoBehaviour
     {

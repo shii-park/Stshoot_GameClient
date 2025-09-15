@@ -1,7 +1,7 @@
 using UnityEngine;
 using R3;
 
-namespace MyAssets.InGame.Scripts.Players.Bullets
+namespace StShoot.InGame.Scripts.Players.Bullets
 {
     public class BulletPresenter : MonoBehaviour
     {
