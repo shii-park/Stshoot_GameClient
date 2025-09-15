@@ -1,7 +1,6 @@
-using UnityEngine;
 using R3;
 
-namespace Assets.MyAssets.InGame.Bullets
+namespace MyAssets.InGame.Scripts.Players.Bullets
 {
     public class BulletModel
     {

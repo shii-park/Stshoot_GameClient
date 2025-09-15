@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 
-namespace Assets.MyAssets.InGame.Bullets
+namespace MyAssets.InGame.Scripts.Players.Bullets
 {
     public class BulletMove : MonoBehaviour
     {

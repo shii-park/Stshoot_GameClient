@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using Assets.MyAssets.InGame.Bullets;
+using MyAssets.InGame.Scripts.Players.Bullets;
 
 public class Test1 : MonoBehaviour
 {
@@ -49,4 +49,5 @@ public class Test1 : MonoBehaviour
         //pre.Model.SetAvailabl(false);
         //pre.Model.SetCommentChar("あ");
     }
+    
 }

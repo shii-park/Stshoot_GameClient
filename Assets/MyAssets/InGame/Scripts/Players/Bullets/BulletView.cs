@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-namespace Assets.MyAssets.InGame.Bullets
+namespace MyAssets.InGame.Scripts.Players.Bullets
 {
     public class BulletView : MonoBehaviour
     {
