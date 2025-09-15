@@ -13,12 +13,18 @@ namespace StShoot.InGame.Players
         /// プレイヤーの残機
         /// 敵の攻撃を受けると1ずつ減っていく
         /// </summary>
-        public int LifePoint = 2;
+        public int LifePoint;
         
         public readonly int MaxLifePoint = 2;
         
-        public int PlayerPower = 1;
+        public int PlayerPower;
         
         public readonly int MaxPlayerPower = 128;
+        
+        public PlayerParameter(int lifePoint = 2, int playerPower = 1)
+        {
+            LifePoint = lifePoint;
+            PlayerPower = playerPower;
+        }
     }
 }

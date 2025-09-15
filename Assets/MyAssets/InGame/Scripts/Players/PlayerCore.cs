@@ -1,3 +1,4 @@
+using System;
 using R3;
 using StShoot.InGame.GameManagers.Interfaces;
 using StShoot.InGame.Players.Inputs;
@@ -25,13 +26,11 @@ namespace StShoot.InGame.Players
         private ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>(false);
         public ReadOnlyReactiveProperty<bool> IsDead => _isDead;
         
-        private ReactiveProperty<bool> _isInitialize = new ReactiveProperty<bool>(false);
-        public ReadOnlyReactiveProperty<bool> IsInitialize => _isInitialize;
-        
         private PlayerParameter DefaultPLayerParameter = new PlayerParameter();
 
-        private ReactiveProperty<PlayerParameter> _currentPlayerParameter =
-            new ReactiveProperty<PlayerParameter>(new PlayerParameter());
+        private ReactiveProperty<PlayerParameter> _currentPlayerParameter;
+        
+        private Transform _playerDefaultTransform;
         
         private const int DeathPenaltyPower = 10;
         
@@ -90,6 +89,39 @@ namespace StShoot.InGame.Players
             {
                 _currentPlayerParameter.Value.PlayerPower = 1;
             }
+        }
+        
+        private ReactiveProperty<bool> _isInitialize = new ReactiveProperty<bool>(false);
+        public ReadOnlyReactiveProperty<bool> IsInitialize => _isInitialize;
+
+        public void Initialize(PlayerParameter initialParameter, Transform playerDefaultTransform)
+        {
+            _playerDefaultTransform = playerDefaultTransform;
+            
+            DefaultPLayerParameter = initialParameter;
+            
+            _isInitialize.OnNext(true);
+            _isInitialize.OnCompleted();
+            
+            _currentPlayerParameter = new ReactiveProperty<PlayerParameter>(DefaultPLayerParameter);
+            
+            _isDead
+                .Where(_ => _isDead.Value)
+                .Subscribe(_ =>
+                {
+                    if (_currentPlayerParameter.Value.LifePoint <= -1)
+                    {
+                        Debug.Log("Game Over");
+                        return;
+                    }
+                    //1秒後に元の状態に
+                    Observable.Timer(TimeSpan.FromSeconds(1))
+                        .Subscribe(_ =>
+                        {
+                            transform.position = _playerDefaultTransform.position;
+                            _isDead.Value = false;
+                        });
+                });
         }
     }
 }
