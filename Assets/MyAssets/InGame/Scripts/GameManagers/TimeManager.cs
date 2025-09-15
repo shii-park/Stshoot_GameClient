@@ -4,6 +4,9 @@ using R3;
 
 namespace StShoot.InGame.GameManagers
 {
+    /// <summary>
+    /// ゲームの時間管理を行うクラス
+    /// </summary>
     public class TimeManager : MonoBehaviour
     {
         public static TimeManager Instance { get; private set; }
@@ -28,6 +31,9 @@ namespace StShoot.InGame.GameManagers
         
         private MainGameManager _mainGameManager;
         
+        /// <summary>
+        /// 初期化メソッド
+        /// </summary>
         public void Init()
         {
             _progressSecond.Value = 0;

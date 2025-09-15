@@ -15,6 +15,9 @@ namespace StShoot.InGame.GameManagers
         Result
     }
     
+    /// <summary>
+    /// ゲームの状態を管理するReactiveProperty
+    /// </summary>
     [Serializable]
     public class GameStateReactiveProperty : ReactiveProperty<GameState>
     {

@@ -2,12 +2,18 @@ using UnityEngine;
 
 namespace StShoot.InGame.GameManagers
 {
+    /// <summary>
+    /// ゲームの進行を管理するクラス
+    /// </summary>
     public class GameProgressManager : MonoBehaviour
     {
         public static GameProgressManager Instance { get; private set; }
 
         private MainGameManager _mainGameManager;
         
+        /// <summary>
+        /// 初期化メソッド
+        /// </summary>
         public void Init()
         {
             _mainGameManager = MainGameManager.Instance;

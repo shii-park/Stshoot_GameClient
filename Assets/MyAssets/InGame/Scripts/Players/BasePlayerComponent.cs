@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Players
 {
+    /// <summary>
+    /// プレイヤーにアタッチするコンポーネントの基底クラス
+    /// </summary>
     public abstract class BasePlayerComponent : MonoBehaviour
     {
         private IInGameInputEventProvider _inGameInputEventProvider;
@@ -21,7 +24,7 @@ namespace StShoot.InGame.Players
         /// <summary>
         /// 現在のプレイヤーのパラメータ
         /// </summary>
-        protected ReadOnlyReactiveProperty<PlayerParameter> CurrentSlimeParameter
+        protected ReadOnlyReactiveProperty<PlayerParameter> CurrentPlayerParameter
         {
             get
             {
