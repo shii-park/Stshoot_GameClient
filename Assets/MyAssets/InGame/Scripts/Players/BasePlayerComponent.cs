@@ -21,13 +21,13 @@ namespace StShoot.InGame.Players
         /// <summary>
         /// 現在のプレイヤーのパラメータ
         /// </summary>
-        /*protected ReadOnlyReactiveProperty<PlayerParameters> CurrentSlimeParameter
+        protected ReadOnlyReactiveProperty<PlayerParameter> CurrentSlimeParameter
         {
             get
             {
-                //return PlayerCore.CurrentPlayerParameter;
+                return PlayerCore.CurrentPlayerParameter;
             }
-        }*/
+        }
         
         private void Start()
         {
