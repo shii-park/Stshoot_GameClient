@@ -10,11 +10,13 @@ namespace StShoot.InGame.Players.Inputs
     {
         private ReactiveProperty<Vector2> _moveDirection = new ReactiveProperty<Vector2>();
         private ReactiveProperty<bool> _onSpecialButtonPushed = new ReactiveProperty<bool>();
-        private ReactiveProperty<bool> _pauseButton = new ReactiveProperty<bool>();
+        private ReactiveProperty<bool> _onPauseButton = new ReactiveProperty<bool>();
+        private ReactiveProperty<bool> _onSlowPushed = new ReactiveProperty<bool>();
 
         public ReadOnlyReactiveProperty<Vector2> MoveDirection { get { return _moveDirection; } }
         public ReadOnlyReactiveProperty<bool> OnSpecialButtonPushed { get { return _onSpecialButtonPushed; } }
-        public ReadOnlyReactiveProperty<bool> PauseButton { get { return _pauseButton; } }
+        public ReadOnlyReactiveProperty<bool> OnPauseButton { get { return _onPauseButton; } }
+        public ReadOnlyReactiveProperty<bool> OnSlowPushed { get { return _onSlowPushed; } }
         
         void Start()
         {
@@ -32,7 +34,12 @@ namespace StShoot.InGame.Players.Inputs
             this.UpdateAsObservable()
                 .Select(_ => Keyboard.current.escapeKey.isPressed)
                 .DistinctUntilChanged()
-                .Subscribe(x => _pauseButton.Value = x);
+                .Subscribe(x => _onPauseButton.Value = x);
+            
+            this.UpdateAsObservable()
+                .Select(_ => Keyboard.current.leftShiftKey.isPressed)
+                .DistinctUntilChanged()
+                .Subscribe(x => _onSlowPushed.Value = x);
         }
     }
 }

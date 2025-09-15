@@ -18,13 +18,13 @@ namespace StShoot.InGame.Players
 
         protected override void OnStart()
         {
-
             InGameInputEventProvider.MoveDirection
                 .Where(_ => !(InGameInputEventProvider.MoveDirection.CurrentValue.normalized == new Vector2(0f, 0f)))
                 .Subscribe(_ =>
                 {
+                    var speed = (InGameInputEventProvider.OnSlowPushed.CurrentValue) ? _moveLowerSpeed : _moveSpeed;
                     var direction = InGameInputEventProvider.MoveDirection.CurrentValue.normalized;
-                    var newPosition = transform.position + new Vector3(direction.x, direction.y, 0f) * _moveSpeed * Time.deltaTime;
+                    var newPosition = transform.position + new Vector3(direction.x, direction.y, 0f) * speed * Time.deltaTime;
 
                     var mainCamera = Camera.main;
                     if (mainCamera == null) return;

@@ -10,6 +10,7 @@ namespace StShoot.InGame.Players.Inputs
     {
         ReadOnlyReactiveProperty<Vector2> MoveDirection { get; }
         ReadOnlyReactiveProperty<bool> OnSpecialButtonPushed { get; }
-        ReadOnlyReactiveProperty<bool> PauseButton { get; }
+        ReadOnlyReactiveProperty<bool> OnPauseButton { get; }
+        ReadOnlyReactiveProperty<bool> OnSlowPushed { get; }
     }
 }
