@@ -2,6 +2,7 @@ using System;
 using R3;
 using R3.Triggers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace StShoot.InGame.Players.Inputs
 {
@@ -19,17 +20,17 @@ namespace StShoot.InGame.Players.Inputs
         {
             this.UpdateAsObservable()
                 .Subscribe(_ => _moveDirection.OnNext(new Vector2(
-                    Convert.ToInt32(Input.GetKey(KeyCode.RightArrow)) - Convert.ToInt32(Input.GetKey(KeyCode.LeftArrow)), 
-                    Convert.ToInt32(Input.GetKey(KeyCode.UpArrow)) - Convert.ToInt32(Input.GetKey(KeyCode.DownArrow))
+                    Convert.ToInt32(Keyboard.current.rightArrowKey.isPressed) - Convert.ToInt32(Keyboard.current.leftArrowKey.isPressed),
+                    Convert.ToInt32(Keyboard.current.upArrowKey.isPressed) - Convert.ToInt32(Keyboard.current.downArrowKey.isPressed)
                 )));
 
             this.UpdateAsObservable()
-                .Select(_ => Input.GetKey(KeyCode.Space))
+                .Select(_ => Keyboard.current.spaceKey.isPressed)
                 .DistinctUntilChanged()
                 .Subscribe(x => _onSpecialButtonPushed.Value = x);
-            
+
             this.UpdateAsObservable()
-                .Select(_ => Input.GetKey(KeyCode.Escape))
+                .Select(_ => Keyboard.current.escapeKey.isPressed)
                 .DistinctUntilChanged()
                 .Subscribe(x => _pauseButton.Value = x);
         }
