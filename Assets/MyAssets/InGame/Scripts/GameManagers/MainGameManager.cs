@@ -5,12 +5,18 @@ using UnityEngine;
 
 namespace StShoot.InGame.GameManagers
 {
+    /// <summary>
+    /// ゲーム全体の進行を管理するクラス
+    /// </summary>
     public class MainGameManager : MonoBehaviour
     {
         public static MainGameManager Instance { get; private set; }
         
         private GameStateReactiveProperty _currentState = new GameStateReactiveProperty(GameState.Init);
 
+        /// <summary>
+        /// 現在のゲームの状態
+        /// </summary>
         public ReadOnlyReactiveProperty<GameState> CurrentGameState => _currentState;
         
         [SerializeField]
@@ -53,11 +59,19 @@ namespace StShoot.InGame.GameManagers
             });
         }
         
+        /// <summary>
+        /// ゲームの状態を設定するメソッド
+        /// </summary>
+        /// <param name="nextState">次の状態</param>
         public void SetGameState(GameState nextState)
         {
             _currentState.Value = nextState;
         }
         
+        /// <summary>
+        /// ゲームの状態が変化したときに呼ばれるメソッド
+        /// </summary>
+        /// <param name="nextState">次の状態</param>
         void OnStateChanged(GameState nextState)
         {
             switch (nextState)
@@ -81,6 +95,10 @@ namespace StShoot.InGame.GameManagers
                     break;
             }
         }
+        
+        /// <summary>
+        /// 初期化パートの時に呼ばれるコルーチン
+        /// </summary>
         IEnumerator InitCoroutine()
         {
             _scoreManager.Init();
@@ -94,24 +112,38 @@ namespace StShoot.InGame.GameManagers
             
             _currentState.Value = GameState.Ready;
         }
+        
+        /// <summary>
+        /// 準備パートの時に呼ばれるメソッド
+        /// </summary>
         void Ready()
         {
             _timeManager.StartGameReadyCountDown();
             _currentState.Value = GameState.Game;
         }
 
+        /// <summary>
+        /// ゲームパートの処理
+        /// </summary>
         void Game()
         {
             // ゲームパートの処理
         }
+        
+        /// <summary>
+        /// アドベンチャーパートの処理
+        /// </summary>
         void Adventure()
         {
             // アドベンチャーパートの処理
         }
 
+        /// <summary>
+        /// リザルトパートの処理
+        /// </summary>
         void Result()
         {
-            // リザルトの処理    
+            // リザルトパートの処理    
         }
     }
 }

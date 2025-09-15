@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Players
 {
+    /// <summary>
+    /// プレイヤーの弾を制御するクラス
+    /// </summary>
     public class PlayerBullet : BasePlayerComponent
     {
         private readonly List<string> _readyComments = new List<string>();

@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Players
 {
+    /// <summary>
+    /// プレイヤーのコアクラス
+    /// </summary>
     public class PlayerCore : MonoBehaviour, IKillable
     {
         static private PlayerCore _player;
@@ -24,6 +27,9 @@ namespace StShoot.InGame.Players
         }
         
         private ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>(false);
+        /// <summary>
+        /// プレイヤーが死亡しているか
+        /// </summary>
         public ReadOnlyReactiveProperty<bool> IsDead => _isDead;
         
         private PlayerParameter DefaultPLayerParameter = new PlayerParameter();
@@ -40,7 +46,7 @@ namespace StShoot.InGame.Players
         public ReadOnlyReactiveProperty<PlayerParameter> CurrentPlayerParameter => _currentPlayerParameter;
         
         /// <summary>
-        /// プレイヤーのパラメータを規定値に戻す
+        /// プレイヤーのパラメータを規定値に戻すメソッド
         /// </summary>
         public void ResetSlimeParameter()
         {
@@ -48,7 +54,7 @@ namespace StShoot.InGame.Players
         }
 
         /// <summary>
-        /// プレイヤーのパラメータを変更する
+        /// プレイヤーのパラメータを変更するメソッド
         /// </summary>
         public void SetSlimeParameter(PlayerParameter parameters)
         {
@@ -56,7 +62,7 @@ namespace StShoot.InGame.Players
         }
         
         /// <summary>
-        /// プレイヤーを即死させる
+        /// プレイヤーを即死させるメソッド
         /// </summary>
         public void Kill()
         {
@@ -69,6 +75,10 @@ namespace StShoot.InGame.Players
             _isDead.Value = true;
         }
         
+        /// <summary>
+        /// プレイヤーのパワーを増加させるメソッド
+        /// </summary>
+        /// <param name="amount">増加量</param>
         public void IncreasePower(int amount)
         {
             _currentPlayerParameter.Value.PlayerPower += amount;
@@ -78,6 +88,10 @@ namespace StShoot.InGame.Players
             }
         }
         
+        /// <summary>
+        /// プレイヤーのパワーを減少させるメソッド
+        /// </summary>
+        /// <param name="amount">減少量</param>
         public void DecreasePower(int amount)
         {
             _currentPlayerParameter.Value.PlayerPower -= amount;
@@ -88,8 +102,16 @@ namespace StShoot.InGame.Players
         }
         
         private ReactiveProperty<bool> _isInitialize = new ReactiveProperty<bool>(false);
+        /// <summary>
+        /// プレイヤーの初期化が完了したか
+        /// </summary>
         public ReadOnlyReactiveProperty<bool> IsInitialize => _isInitialize;
 
+        /// <summary>
+        /// プレイヤーの初期化を行うメソッド
+        /// </summary>
+        /// <param name="initialParameter">初期パラメータ</param>
+        /// <param name="playerDefaultTransform">初期位置</param>
         public void Initialize(PlayerParameter initialParameter, Transform playerDefaultTransform)
         {
             _playerDefaultTransform = playerDefaultTransform;

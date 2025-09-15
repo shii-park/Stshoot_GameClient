@@ -11,8 +11,6 @@ namespace StShoot.InGame.Players.Bullets
         [SerializeField]
         TextMeshPro _countText;
         
-
-        
         /// <summary>
         /// 弾のテキストを設定するメソッド
         /// </summary>

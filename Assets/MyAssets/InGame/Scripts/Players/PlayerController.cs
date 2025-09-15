@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Players
 {
+    /// <summary>
+    /// プレイヤーの移動を制御するコンポーネント
+    /// </summary>
     public class PlayerController : BasePlayerComponent
     {
         private float _moveSpeed;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Players
 {
+    /// <summary>
+    /// プレイヤーにアタッチするコンポーネントの基底クラス
+    /// </summary>
     public abstract class BasePlayerComponent : MonoBehaviour
     {
         private IInGameInputEventProvider _inGameInputEventProvider;

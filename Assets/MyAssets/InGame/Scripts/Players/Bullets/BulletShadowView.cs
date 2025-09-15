@@ -1,10 +1,12 @@
-using System;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
 
 namespace StShoot.InGame.Players.Bullets
 {
+    /// <summary>
+    /// 弾の影を表示するクラス
+    /// </summary>
     public class BulletShadowView : MonoBehaviour
     {
         private void Start()
