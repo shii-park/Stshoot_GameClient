@@ -32,7 +32,7 @@ public class Test1 : MonoBehaviour
             var prefab = Instantiate(_hoge,vec,Quaternion.identity);
             var pre = prefab.GetComponent<BulletPresenter>();
             var move = prefab.GetComponent<BulletMove>();
-            pre.Model.SetAvailabl(false);
+            pre.Model.SetAvailable(false);
             pre.Model.SetCommentChar(_text);
 
             move.MoveBullet();
