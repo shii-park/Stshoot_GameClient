@@ -16,11 +16,12 @@ namespace StShoot
         
         IEnumerator StartCoroutine()
         {
-            Debug.Log("Start");
             while (true)
             {
                 _bullet.AddReadyComments("あいうえお");
-                yield return new WaitForSeconds(0.01f);
+                _bullet.AddReadyComments("かきくけこ");
+                _bullet.AddReadyComments("さしすせそ");
+                yield return new WaitForSeconds(0.05f);
             }
         }
     }
