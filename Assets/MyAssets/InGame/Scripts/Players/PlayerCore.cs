@@ -63,10 +63,6 @@ namespace StShoot.InGame.Players
             if(_isDead.Value) return;
 
             _currentPlayerParameter.Value.LifePoint--;
-            if (_currentPlayerParameter.Value.LifePoint <= 0)
-            {
-                _currentPlayerParameter.Value.LifePoint = 0;
-            }
             
             DecreasePower(DeathPenaltyPower);
             

@@ -1,5 +1,6 @@
 using System.Collections;
 using R3;
+using StShoot.InGame.Players;
 using UnityEngine;
 
 namespace StShoot.InGame.GameManagers
@@ -20,6 +21,12 @@ namespace StShoot.InGame.GameManagers
         
         [SerializeField]
         private GameProgressManager _gameProgressManager;
+        
+        [SerializeField]
+        private PlayerCore _playerCore;
+        
+        [SerializeField]
+        private Transform _playerDefaultTransform;
         
         private int _currentStageIndex = 0;
         /// <summary>
@@ -79,6 +86,8 @@ namespace StShoot.InGame.GameManagers
             _scoreManager.Init();
             _timeManager.Init();
             _gameProgressManager.Init();
+            
+            _playerCore.Initialize(new PlayerParameter(), _playerDefaultTransform);
             
             // 初期化処理が完了するまで待機
             yield return null;

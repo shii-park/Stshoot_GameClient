@@ -12,14 +12,16 @@ namespace StShoot.InGame.Players
         
         protected override void OnInitialize()
         {
-            _moveSpeed =6.5f;
-            _moveLowerSpeed = 3f;
+
         }
 
         protected override void OnStart()
         {
+            _moveSpeed = 6.5f;
+            _moveLowerSpeed = 3f;
+            
             InGameInputEventProvider.MoveDirection
-                .Where(_ => !(InGameInputEventProvider.MoveDirection.CurrentValue.normalized == new Vector2(0f, 0f)))
+                .Where(_ => !(InGameInputEventProvider.MoveDirection.CurrentValue.normalized == new Vector2(0f, 0f)) && PlayerCore.IsDead.CurrentValue == false)
                 .Subscribe(_ =>
                 {
                     var speed = (InGameInputEventProvider.OnSlowPushed.CurrentValue) ? _moveLowerSpeed : _moveSpeed;

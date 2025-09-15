@@ -30,9 +30,6 @@ namespace StShoot.InGame.Players
 
         protected override void OnStart()
         {
-            _readyComments.Clear();
-            _commentCount.Value = 0;
-            
             CommentCount
                 .Where(count => count >= 0)
                 .Subscribe(_ =>

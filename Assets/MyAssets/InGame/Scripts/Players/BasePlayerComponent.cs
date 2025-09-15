@@ -36,6 +36,7 @@ namespace StShoot.InGame.Players
 
             //Coreの情報が確定したら初期化を呼び出す
             PlayerCore.IsInitialize
+                .Skip(1)
                 .Subscribe(_ => OnInitialize());
 
             OnStart();
