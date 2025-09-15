@@ -14,12 +14,12 @@ namespace StShoot.InGame.Players
         protected IInGameInputEventProvider InGameInputEventProvider { get { return _inGameInputEventProvider; } }
 
         /// <summary>
-        /// Slimeの基本的な情報
+        /// プレイヤーの基本的な情報
         /// </summary>
         protected PlayerCore PlayerCore;
         
         /// <summary>
-        /// 現在のSlimeのパラメータ
+        /// 現在のプレイヤーのパラメータ
         /// </summary>
         /*protected ReadOnlyReactiveProperty<PlayerParameters> CurrentSlimeParameter
         {
