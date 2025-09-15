@@ -7,19 +7,19 @@ namespace StShoot.InGame.Players
 {
     public class PlayerCore : MonoBehaviour, IKillable
     {
-        static private PlayerCore player;
+        static private PlayerCore _player;
 
         static public PlayerCore Player
         {
             get
             {
-                return player;
+                return _player;
             }
         }
         
         private PlayerCore()
         {
-            player = this;
+            _player = this;
         }
         
         private ReactiveProperty<bool> _isDead = new ReactiveProperty<bool>(false);
@@ -69,10 +69,27 @@ namespace StShoot.InGame.Players
                 _currentPlayerParameter.Value.LifePoint = 0;
             }
             
-            _currentPlayerParameter.Value.PlayerPower -= DeathPenaltyPower;
-            if (_currentPlayerParameter.Value.PlayerPower <= 0) _currentPlayerParameter.Value.PlayerPower = 1;
+            DecreasePower(DeathPenaltyPower);
             
             _isDead.Value = true;
+        }
+        
+        public void IncreasePower(int amount)
+        {
+            _currentPlayerParameter.Value.PlayerPower += amount;
+            if (_currentPlayerParameter.Value.PlayerPower >= _currentPlayerParameter.Value.MaxPlayerPower)
+            {
+                _currentPlayerParameter.Value.PlayerPower = _currentPlayerParameter.Value.MaxPlayerPower;
+            }
+        }
+        
+        public void DecreasePower(int amount)
+        {
+            _currentPlayerParameter.Value.PlayerPower -= amount;
+            if (_currentPlayerParameter.Value.PlayerPower <= 0)
+            {
+                _currentPlayerParameter.Value.PlayerPower = 1;
+            }
         }
     }
 }
