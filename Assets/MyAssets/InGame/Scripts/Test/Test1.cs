@@ -36,7 +36,7 @@ public class Test1 : MonoBehaviour
             pre.Model.SetAvailable(false);
             pre.Model.SetCommentChar(_commentText);
 
-            move.MoveBullet();
+            //move.MoveBullet();
             yield return new WaitForSeconds(0.05f);
         }
     }
