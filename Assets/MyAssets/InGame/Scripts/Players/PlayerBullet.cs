@@ -17,6 +17,9 @@ namespace StShoot.InGame.Players
         
         private List<GameObject> _bulletGameObjects = new List<GameObject>();
 
+        /// <summary>
+        /// 準備中のコメント数
+        /// </summary>
         public ReadOnlyReactiveProperty<int> CommentCount => _commentCount;
         
         private Coroutine _shotCharacterCoroutine;
@@ -47,6 +50,9 @@ namespace StShoot.InGame.Players
 
         }
 
+        /// <summary>
+        /// コメントの文字を撃つメソッド
+        /// </summary>
         private void ShotComment()
         {
             if (_shotCharacterCoroutine != null || _readyComments.Count <= 0) return;
@@ -55,6 +61,10 @@ namespace StShoot.InGame.Players
             
         }
         
+        /// <summary>
+        /// コメントの文字を撃つコルーチン
+        /// </summary>
+        /// <param name="comment">コメントの文字</param>
         private IEnumerator ShotCharacterCoroutine(string comment)
         {
             int count = 0;
@@ -82,6 +92,12 @@ namespace StShoot.InGame.Players
             _shotCharacterCoroutine = null;
         }
         
+        /// <summary>
+        /// 弾を生成するメソッド
+        /// </summary>
+        /// <param name="commentChar">弾の文字</param>
+        /// <param name="angleDeg">角度</param>
+        /// <param name="index">生成する位置</param>
         private void GenerateBullet(string commentChar, float angleDeg, int index)
         {
             Vector3 vec = _generatePositions[index].position;
@@ -114,12 +130,19 @@ namespace StShoot.InGame.Players
             move.MoveBullet(angleDeg);
         }
         
+        /// <summary>
+        /// 準備中のコメントを追加するメソッド
+        /// </summary>
+        /// <param name="item">追加するコメント</param>
         public void AddReadyComments(string item)
         {
             _readyComments.Add(item);
             _commentCount.Value = _readyComments.Count;
         }
 
+        /// <summary>
+        /// 準備中のコメントの先頭を削除するメソッド
+        /// </summary>
         public void RemoveReadyCommentsFirst()
         {
             if (_readyComments.Count == 0) return;
@@ -128,12 +151,18 @@ namespace StShoot.InGame.Players
             _commentCount.Value = _readyComments.Count;
         }
         
+        /// <summary>
+        /// 準備中のコメントを全て削除するメソッド
+        /// </summary>
         public void ClearReadyComments()
         {
             _readyComments.Clear();
             _commentCount.Value = 0;
         }
         
+        /// <summary>
+        /// 全ての弾を削除するメソッド
+        /// </summary>
         public void ClearAllBullets()
         {
             foreach (var bullet in _bulletGameObjects)
@@ -143,6 +172,9 @@ namespace StShoot.InGame.Players
             _bulletGameObjects.Clear();
         }
         
+        /// <summary>
+        /// プレイヤーのパワーに応じて生成する弾の位地を決定するメソッド
+        /// </summary>
         private string GetGenerateNumber()
         {
             switch (PlayerCore.CurrentPlayerParameter.CurrentValue.PlayerPower)
@@ -160,6 +192,10 @@ namespace StShoot.InGame.Players
             }
         }
         
+        /// <summary>
+        /// 生成する弾の角度を決定するメソッド
+        /// </summary>
+        /// <param name="index">生成位置</param>
         private float GetGenerateAngle(int index)
         {
             switch (index)
