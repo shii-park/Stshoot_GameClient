@@ -14,7 +14,7 @@ namespace StShoot.InGame.GameManagers
         private const int ExtraBonusIntervalPoint = 1000000;
         private int _curentExtraBonusPoint;
 
-        private void Awake()
+        public void Init()
         {
             _curentExtraBonusPoint = ExtraBonusIntervalPoint;
             

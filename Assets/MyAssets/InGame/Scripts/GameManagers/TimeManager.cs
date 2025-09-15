@@ -25,8 +25,9 @@ namespace StShoot.InGame.GameManagers
 
         private bool _countProqressTimer;
         
-        private void Awake()
+        public void Init()
         {
+            _progressSecond.Value = 0;
             _countProqressTimer = false;
         }
         
@@ -64,6 +65,8 @@ namespace StShoot.InGame.GameManagers
         /// </summary>
         IEnumerator GameCountUpCoroutine()
         {
+            _readySecond.Value = 3.0f;
+            
             while (_countProqressTimer)
             {
                 yield return new WaitForSeconds(0.1f);

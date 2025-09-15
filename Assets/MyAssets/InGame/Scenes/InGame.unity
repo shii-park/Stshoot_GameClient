@@ -1745,6 +1745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2122770388}
+  - component: {fileID: 2122770391}
   - component: {fileID: 2122770390}
   - component: {fileID: 2122770389}
   m_Layer: 0
@@ -1790,10 +1791,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2122770387}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f89a47ffb52e4e4986ff288f6fb2845, type: 3}
+  m_Script: {fileID: 11500000, guid: e156277bec404446d8685732a5224f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 2122770389}
+--- !u!114 &2122770391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122770387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c36bb489ea0d4c6496fe9c379b1f673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeManager: {fileID: 2122770390}
+  _scoreManager: {fileID: 2122770389}
 --- !u!1001 &7015630936710622558
 PrefabInstance:
   m_ObjectHideFlags: 0
