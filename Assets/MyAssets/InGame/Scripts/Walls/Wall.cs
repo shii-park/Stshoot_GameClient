@@ -1,10 +1,10 @@
+using MyAssets.InGame.Scripts.Walls.Interfaces;
 using UnityEngine;
 
-namespace MyAssets. InGame. Scripts. Walls
+namespace MyAssets.InGame.Scripts. Walls
 {
-    public class Wall
+    public class Wall : MonoBehaviour, IWall
     {
     
     }
-
 }

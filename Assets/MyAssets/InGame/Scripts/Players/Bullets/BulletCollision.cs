@@ -3,14 +3,19 @@ using UnityEngine;
 
 namespace MyAssets.InGame.Scripts.Players.Bullets
 {
-
     public class BulletCollision : MonoBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D collision)
+        [SerializeField]
+        private BulletPresenter _presenter;
+        
+        private BulletModel _model => _presenter.Model;
+        
+        
+        private void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.gameObject.GetComponent<IWall>() != null)
             {
-                Debug.Log("hogehoge");
+                _model.SetAvailabl(true);
             }
         }
     }
