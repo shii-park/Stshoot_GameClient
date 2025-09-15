@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using R3;
+using StShoot.InGame.GameManagers;
 using StShoot.InGame.Players.Bullets;
 using UnityEngine;
 
@@ -55,6 +56,11 @@ namespace StShoot.InGame.Players
             
             while (count < comment.Length)
             {
+                if (PlayerCore.IsDead.CurrentValue || MainGameManager.Instance.CurrentGameState.CurrentValue != GameState.Game)
+                {
+                    yield return new WaitUntil(() => PlayerCore.IsDead.CurrentValue == false && MainGameManager.Instance.CurrentGameState.CurrentValue == GameState.Game);
+                }
+                
                 Vector3 vec = PlayerCore.Player.gameObject.transform.position;
                 
                 GameObject instance = null;

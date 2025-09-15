@@ -24,7 +24,7 @@ namespace StShoot.InGame.Players
         /// <summary>
         /// 現在のプレイヤーのパラメータ
         /// </summary>
-        protected ReadOnlyReactiveProperty<PlayerParameter> CurrentSlimeParameter
+        protected ReadOnlyReactiveProperty<PlayerParameter> CurrentPlayerParameter
         {
             get
             {
