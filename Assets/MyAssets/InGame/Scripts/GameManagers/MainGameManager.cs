@@ -19,6 +19,9 @@ namespace StShoot.InGame.GameManagers
         [SerializeField]
         private ScoreManager _scoreManager;
         
+        [SerializeField]
+        private GameProgressManager _gameProgressManager;
+        
         private int _currentStageIndex = 0;
         /// <summary>
         /// 現在のステージのインデックス
@@ -76,6 +79,7 @@ namespace StShoot.InGame.GameManagers
         {
             _scoreManager.Init();
             _timeManager.Init();
+            _gameProgressManager.Init();
             
             // 初期化処理が完了するまで待機
             yield return null;

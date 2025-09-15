@@ -1748,6 +1748,7 @@ GameObject:
   - component: {fileID: 2122770391}
   - component: {fileID: 2122770390}
   - component: {fileID: 2122770389}
+  - component: {fileID: 2122770392}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1808,6 +1809,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeManager: {fileID: 2122770390}
   _scoreManager: {fileID: 2122770389}
+  _gameProgressManager: {fileID: 2122770392}
+--- !u!114 &2122770392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122770387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71cb8c15cbc74e8a981ffe50d6f8549, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7015630936710622558
 PrefabInstance:
   m_ObjectHideFlags: 0

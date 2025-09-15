@@ -13,20 +13,13 @@ namespace StShoot.InGame.GameManagers
 
         private const int ExtraBonusIntervalPoint = 1000000;
         private int _curentExtraBonusPoint;
+        
+        private MainGameManager _mainGameManager;
 
         public void Init()
         {
             _curentExtraBonusPoint = ExtraBonusIntervalPoint;
-            
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            _mainGameManager = MainGameManager.Instance;
             
             Score.Subscribe(score =>
             {
@@ -36,6 +29,19 @@ namespace StShoot.InGame.GameManagers
                     _curentExtraBonusPoint += ExtraBonusIntervalPoint;
                 }
             });
+        }
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void AddScore(int amount)

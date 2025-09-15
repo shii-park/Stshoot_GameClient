@@ -7,6 +7,8 @@ namespace StShoot.InGame.GameManagers
 {
     public class TimeManager : MonoBehaviour
     {
+        public static TimeManager Instance { get; private set; }
+        
         [SerializeField]
         private ReactiveProperty<float> _readySecond = new ReactiveProperty<float>(3.0f);
 
@@ -25,10 +27,27 @@ namespace StShoot.InGame.GameManagers
 
         private bool _countProqressTimer;
         
+        private MainGameManager _mainGameManager;
+        
         public void Init()
         {
             _progressSecond.Value = 0;
             _countProqressTimer = false;
+            
+            _mainGameManager = MainGameManager.Instance;
+        }
+        
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
         
         /// <summary>
