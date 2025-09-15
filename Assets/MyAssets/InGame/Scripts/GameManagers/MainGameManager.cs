@@ -1,7 +1,6 @@
 using System.Collections;
 using R3;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace StShoot.InGame.GameManagers
 {

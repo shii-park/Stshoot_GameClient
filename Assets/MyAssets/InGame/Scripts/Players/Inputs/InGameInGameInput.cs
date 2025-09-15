@@ -3,7 +3,7 @@ using R3;
 using R3.Triggers;
 using UnityEngine;
 
-namespace MyAssets.InGame.Players.Inputs
+namespace StShoot.InGame.Players.Inputs
 {
     public class InGameDebugInput : MonoBehaviour, IInGameInputEventProvider
     {

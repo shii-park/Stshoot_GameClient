@@ -1,7 +1,7 @@
 using R3;
 using UnityEngine;
 
-namespace MyAssets.InGame.Players.Inputs
+namespace StShoot.InGame.Players.Inputs
 {
     /// <summary>
     /// インゲームの入力に対するイベント
