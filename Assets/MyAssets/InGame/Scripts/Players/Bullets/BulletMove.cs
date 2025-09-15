@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using StShoot.InGame.GameManagers;
 
 namespace StShoot.InGame.Players.Bullets
 {
@@ -16,9 +17,9 @@ namespace StShoot.InGame.Players.Bullets
         /// <summary>
         /// 弾を移動させるメソッド
         /// </summary>
-        public void MoveBullet(){
+        public void MoveBullet(float angleDeg){
             _isMoving = true;
-            StartCoroutine(MoveBulletCoroutine());
+            StartCoroutine(MoveBulletCoroutine(angleDeg));
         }
 
         /// <summary>
@@ -31,14 +32,20 @@ namespace StShoot.InGame.Players.Bullets
         /// <summary>
         /// 弾の移動を制御するコルーチン
         /// </summary>
-        IEnumerator MoveBulletCoroutine()
+        IEnumerator MoveBulletCoroutine(float angleDeg)
         {
-            // 条件にゲームの状態を増やす
-            while (_isMoving)
+            // 角度をラジアンに変換
+            float angleRad = angleDeg * Mathf.Deg2Rad;
+
+            // 進行方向ベクトル
+            Vector3 direction = new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0);
+
+            while (_isMoving && MainGameManager.Instance.CurrentGameState.CurrentValue == GameState.Game)
             {
                 var pos = this.gameObject.transform.position;
-                pos.y += 0.1f * _bulletSpeed;
+                pos += direction * _bulletSpeed * 0.1f;
                 this.gameObject.transform.position = pos;
+
                 yield return new WaitForSeconds(0.01f);
             }
         }

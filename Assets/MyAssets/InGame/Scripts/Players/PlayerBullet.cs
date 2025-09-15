@@ -24,22 +24,27 @@ namespace StShoot.InGame.Players
         [SerializeField]
         private GameObject _bulletGameObject;
         
-        private float _shotInterval = 0.05f;
+        private const float ShotInterval = 0.05f;
+        
+        [SerializeField]
+        private List<Transform> _generatePositions = new List<Transform>();
         
         protected override void OnInitialize()
         {
             ClearReadyComments();
             _shotCharacterCoroutine = null;
-        }
-
-        protected override void OnStart()
-        {
+            
             CommentCount
                 .Where(count => count >= 0)
                 .Subscribe(_ =>
                 {
                     ShotComment();
                 });
+        }
+
+        protected override void OnStart()
+        {
+
         }
 
         private void ShotComment()
@@ -60,41 +65,53 @@ namespace StShoot.InGame.Players
                 {
                     yield return new WaitUntil(() => PlayerCore.IsDead.CurrentValue == false && MainGameManager.Instance.CurrentGameState.CurrentValue == GameState.Game);
                 }
-                
-                Vector3 vec = PlayerCore.Player.gameObject.transform.position;
-                
-                GameObject instance = null;
 
-
-                foreach (var _bullet in _bulletGameObjects)
+                for (int i = 0; i < 5; i++)
                 {
-                    if (_bullet == null) continue;
-                    var pre = _bullet.GetComponent<BulletPresenter>();
-                    if (pre.Model.IsAvailable.CurrentValue)
+                    Debug.Log(GetGenerateNumber());
+                    if (GetGenerateNumber()[i] == '1')
                     {
-                        instance = _bullet;
-                        instance.transform.position = vec;
-                        pre.Model.SetAvailable(false);
-                        break;
+                        GenerateBullet(comment[count].ToString(), GetGenerateAngle(i), i);
                     }
                 }
-                if(instance == null)
-                {
-                    instance = Instantiate(_bulletGameObject, vec, Quaternion.identity);
-                    _bulletGameObjects.Add(instance);
-                }
-                
-                var instansPre = instance.GetComponent<BulletPresenter>();
-                var move = instance.GetComponent<BulletMove>();
-                instansPre.Model.SetAvailable(false);
-                instansPre.Model.SetCommentChar(comment[count].ToString());
 
-                move.MoveBullet();
                 count++;
-                yield return new WaitForSeconds(_shotInterval);
+                yield return new WaitForSeconds(ShotInterval);
             } ;
             RemoveReadyCommentsFirst();
             _shotCharacterCoroutine = null;
+        }
+        
+        private void GenerateBullet(string commentChar, float angleDeg, int index)
+        {
+            Vector3 vec = _generatePositions[index].position;
+                
+            GameObject instance = null;
+            
+            foreach (var _bullet in _bulletGameObjects)
+            {
+                if (_bullet == null) continue;
+                var pre = _bullet.GetComponent<BulletPresenter>();
+                if (pre.Model.IsAvailable.CurrentValue)
+                {
+                    instance = _bullet;
+                    instance.transform.position = vec;
+                    pre.Model.SetAvailable(false);
+                    break;
+                }
+            }
+            if(instance == null)
+            {
+                instance = Instantiate(_bulletGameObject, vec, Quaternion.identity);
+                _bulletGameObjects.Add(instance);
+            }
+                
+            var instansPre = instance.GetComponent<BulletPresenter>();
+            var move = instance.GetComponent<BulletMove>();
+            instansPre.Model.SetAvailable(false);
+            instansPre.Model.SetCommentChar(commentChar);
+
+            move.MoveBullet(angleDeg);
         }
         
         public void AddReadyComments(string item)
@@ -124,6 +141,40 @@ namespace StShoot.InGame.Players
                 Destroy(bullet);
             }
             _bulletGameObjects.Clear();
+        }
+        
+        private string GetGenerateNumber()
+        {
+            switch (PlayerCore.CurrentPlayerParameter.CurrentValue.PlayerPower)
+            {
+                case int n when (n >= 1 && n <= 8): 
+                    return "10000"; 
+                case int n when (n >= 9 && n <= 32): 
+                    return "11100";
+                case int n when (n >= 33 && n <= 64): 
+                    return "10011";
+                case int n when (n >= 65 && n <= 128):
+                    return "11111";
+                default:
+                    return "00000";
+            }
+        }
+        
+        private float GetGenerateAngle(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                case 3:    
+                case 4:
+                    return 90;
+                case 1:
+                    return 50f;
+                case 2:
+                    return 130f;
+                default:
+                    return 0;
+            }
         }
     }
 }

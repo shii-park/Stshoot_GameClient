@@ -118,7 +118,7 @@ namespace StShoot.InGame.Players
             
             DefaultPLayerParameter = initialParameter;
             
-            _isInitialize.OnNext(true);
+            _isInitialize.Value = true;
             _isInitialize.OnCompleted();
             
             _currentPlayerParameter = new ReactiveProperty<PlayerParameter>(DefaultPLayerParameter);
