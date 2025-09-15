@@ -2,17 +2,18 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using StShoot.InGame.Scripts.Players.Bullets;
+using UnityEngine.Serialization;
 
 public class Test1 : MonoBehaviour
 {
     [SerializeField]
-    GameObject _hoge;
+    GameObject _bulletGameObject;
 
     [SerializeField]
-    private string _text;
+    private string _commentText;
 
     [SerializeField]
-    private Transform pos;
+    private Transform _playerPos;
     
     //BulletPresenter pre;
 
@@ -28,12 +29,12 @@ public class Test1 : MonoBehaviour
         // 条件にゲームの状態を増やす
         while (true)
         {
-            Vector3 vec = pos.position;
-            var prefab = Instantiate(_hoge,vec,Quaternion.identity);
+            Vector3 vec = _playerPos.position;
+            var prefab = Instantiate(_bulletGameObject,vec,Quaternion.identity);
             var pre = prefab.GetComponent<BulletPresenter>();
             var move = prefab.GetComponent<BulletMove>();
             pre.Model.SetAvailable(false);
-            pre.Model.SetCommentChar(_text);
+            pre.Model.SetCommentChar(_commentText);
 
             move.MoveBullet();
             yield return new WaitForSeconds(0.05f);
@@ -41,12 +42,12 @@ public class Test1 : MonoBehaviour
     }
 
     void Keika(){
-        //pre.Model.SetAvailabl(true);
+        //pre.Model.SetAvailable(true);
         Invoke(nameof(Sarani), 3.0f);
     }
 
     void Sarani(){
-        //pre.Model.SetAvailabl(false);
+        //pre.Model.SetAvailable(false);
         //pre.Model.SetCommentChar("あ");
     }
     

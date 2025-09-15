@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 348633058}
   - component: {fileID: 348633057}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: DemoPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1217,9 +1217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b046ccebebb0f43c4aa478f1bb9dd6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hoge: {fileID: 8205950019190112751, guid: 5f09f242fa1ce4983b9fcdf4b7369498, type: 3}
-  _text: "\u3081"
-  pos: {fileID: 348633058}
+  _bulletGameObject: {fileID: 8205950019190112751, guid: 5f09f242fa1ce4983b9fcdf4b7369498, type: 3}
+  _commentText: "\u3044"
+  _playerPos: {fileID: 348633058}
 --- !u!1 &1084503005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,7 +1421,7 @@ GameObject:
   - component: {fileID: 1561665095}
   - component: {fileID: 1561665094}
   m_Layer: 0
-  m_Name: Square (1)_1
+  m_Name: DemoEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
