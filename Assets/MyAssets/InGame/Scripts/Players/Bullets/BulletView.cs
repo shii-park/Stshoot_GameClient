@@ -9,14 +9,16 @@ namespace StShoot.InGame.Players.Bullets
     public class BulletView : MonoBehaviour
     {
         [SerializeField]
-        TextMeshPro countText;
+        TextMeshPro _countText;
+        
+
         
         /// <summary>
         /// 弾のテキストを設定するメソッド
         /// </summary>
         /// <param name="commentChar">文字を入れる、一文字のみ</param>
         public void SetText(string commentChar){
-            countText.text = commentChar;
+            _countText.text = commentChar;
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 using StShoot.InGame.Common.Interfaces;
 using StShoot.InGame.Enemys.Interfaces;
 using StShoot.InGame.Scripts.Walls.Interfaces;
+using TMPro;
 using UnityEngine;
 
 namespace StShoot.InGame.Players.Bullets
@@ -14,6 +15,9 @@ namespace StShoot.InGame.Players.Bullets
         private BulletPresenter _presenter;
         
         private BulletModel _model => _presenter.Model;
+        
+        [SerializeField]
+        GameObject _textShadow;
         
         /// <summary>
         /// 弾の当たり判定
@@ -29,6 +33,13 @@ namespace StShoot.InGame.Players.Bullets
             else if (collisionObject.GetComponent<IEnemy>() != null )
             {
                 collisionObject.GetComponent<IDamageable>()?.TakeDamage(_model.BulletPower);
+                
+                if (_textShadow != null)
+                {
+                    var shadowPos = this.gameObject.transform.position;
+                    Instantiate(_textShadow,shadowPos,default).GetComponent<TextMeshPro>().text = _model.CommentChar.CurrentValue;
+                }
+                
                 _model.SetAvailable(true);
             }
         }
