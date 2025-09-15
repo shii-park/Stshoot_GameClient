@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-namespace StShoot.InGame.Scripts.Players.Bullets
+namespace StShoot.InGame.Players.Bullets
 {
     /// <summary>
     /// プレイヤーの弾のビュー

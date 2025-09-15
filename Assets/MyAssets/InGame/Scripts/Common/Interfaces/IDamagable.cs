@@ -1,4 +1,4 @@
-namespace StShoot.InGame.Scripts.Common.Interfaces
+namespace StShoot.InGame.Common.Interfaces
 {
     /// <summary>
     /// ダメージを受けることができるオブジェクトのインターフェース

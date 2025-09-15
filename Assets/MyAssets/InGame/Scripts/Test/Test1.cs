@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using StShoot.InGame.Scripts.Players.Bullets;
+using StShoot.InGame.Players.Bullets;
 using UnityEngine.Serialization;
 
 public class Test1 : MonoBehaviour
