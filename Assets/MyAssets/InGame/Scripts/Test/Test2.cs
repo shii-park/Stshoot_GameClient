@@ -1,5 +1,5 @@
-using StShoot.InGame.Scripts.Common.Interfaces;
-using StShoot.InGame.Scripts.Enemys.Interfaces;
+using StShoot.InGame.Common.Interfaces;
+using StShoot.InGame.Enemys.Interfaces;
 using UnityEngine;
 
 namespace StShoot

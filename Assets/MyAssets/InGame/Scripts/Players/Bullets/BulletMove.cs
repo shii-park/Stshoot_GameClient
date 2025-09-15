@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace StShoot.InGame.Scripts.Players.Bullets
+namespace StShoot.InGame.Players.Bullets
 {
     /// <summary>
     /// プレイヤーの弾の移動を制御するクラス

@@ -1,6 +1,6 @@
 using R3;
 
-namespace StShoot.InGame.Scripts.Players.Bullets
+namespace StShoot.InGame.Players.Bullets
 {
     /// <summary>
     /// プレイヤーの弾のモデル

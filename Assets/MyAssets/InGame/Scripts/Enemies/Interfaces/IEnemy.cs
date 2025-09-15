@@ -1,4 +1,4 @@
-namespace StShoot.InGame.Scripts.Enemys.Interfaces
+namespace StShoot.InGame.Enemys.Interfaces
 {
     /// <summary>
     /// エネミーであることを示すインターフェース

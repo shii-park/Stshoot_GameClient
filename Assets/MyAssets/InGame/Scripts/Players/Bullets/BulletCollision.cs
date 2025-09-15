@@ -1,9 +1,9 @@
-using StShoot.InGame.Scripts.Common.Interfaces;
-using StShoot.InGame.Scripts.Enemys.Interfaces;
+using StShoot.InGame.Common.Interfaces;
+using StShoot.InGame.Enemys.Interfaces;
 using StShoot.InGame.Scripts.Walls.Interfaces;
 using UnityEngine;
 
-namespace StShoot.InGame.Scripts.Players.Bullets
+namespace StShoot.InGame.Players.Bullets
 {
     /// <summary>
     /// プレイヤーの弾の当たり判定を管理するクラス
