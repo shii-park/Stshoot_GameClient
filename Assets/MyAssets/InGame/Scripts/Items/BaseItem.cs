@@ -11,9 +11,13 @@ namespace StShoot.InGame.Items
         /// </summary>
         public ReadOnlyReactiveProperty<bool> IsAvailable => _isAvailable;
         
+        [SerializeField]
+        protected ItemMove _itemMove;
+        
         public virtual void Init()
         {
-            _isAvailable.Value = true;
+            _isAvailable.Value = false;
+            _itemMove.Init();
         }
         
         /// <summary>
