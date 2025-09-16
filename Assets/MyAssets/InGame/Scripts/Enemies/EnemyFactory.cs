@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using R3;
+using StShoot.InGame.GameManagers;
 using UnityEngine;
 
 namespace StShoot.InGame.Enemies
@@ -37,6 +39,15 @@ namespace StShoot.InGame.Enemies
             }
         }
 
+        private void Start()
+        {
+            MainGameManager.Instance.CurrentGameState
+                .Where(state => state != GameState.Game)
+                .Subscribe(_ =>
+                {
+                    RemoveAllEnemies();
+                });
+        }
         /// <summary>
         /// 敵を生成するメソッド
         /// </summary>
@@ -45,6 +56,8 @@ namespace StShoot.InGame.Enemies
         /// <param name="waypoints">移動する位置に関する情報</param>
         public GameObject Create(string enemyName, Vector3 spawnPosition, List<Waypoint> waypoints)
         {
+            if(MainGameManager.Instance.CurrentGameState.CurrentValue != GameState.Game){ return null;}
+            
             if (!_enemyPools.ContainsKey(enemyName))
             {
                 Debug.LogError($"EnemyFactory: 指定された敵の名前が存在しません。{enemyName}");
@@ -89,6 +102,17 @@ namespace StShoot.InGame.Enemies
             }
 
             return enemy;
+        }
+        
+        public void RemoveAllEnemies()
+        {
+            foreach (var enemyPools in _enemyPools.Values)
+            {
+                foreach (var enemy in enemyPools)
+                {
+                    enemy.GetComponent<BaseEnemy>().Die();
+                }
+            }
         }
     }
 }

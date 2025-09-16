@@ -51,6 +51,14 @@ namespace StShoot.InGame.Players
                 {
                     ShotComment();
                 });
+            
+            PlayerCore.IsGameOver
+                .Where(isGameOver => isGameOver)
+                .Subscribe(_ =>
+                {
+                    ClearAllBullets();
+                    ClearReadyComments();
+                });
         }
 
         protected override void OnStart()
@@ -174,9 +182,8 @@ namespace StShoot.InGame.Players
         {
             foreach (var bullet in _bulletGameObjects)
             {
-                Destroy(bullet);
+                bullet.GetComponent<BulletPresenter>().Model.SetAvailable(true);
             }
-            _bulletGameObjects.Clear();
         }
         
         /// <summary>

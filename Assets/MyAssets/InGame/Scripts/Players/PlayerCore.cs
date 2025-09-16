@@ -32,6 +32,12 @@ namespace StShoot.InGame.Players
         /// </summary>
         public ReadOnlyReactiveProperty<bool> IsDead => _isDead;
         
+        private ReactiveProperty<bool> _isGameOver = new ReactiveProperty<bool>(false);
+        /// <summary>
+        /// ゲームオーバーか
+        /// </summary>
+        public ReadOnlyReactiveProperty<bool> IsGameOver => _isGameOver;
+        
         private PlayerParameter DefaultPLayerParameter = new PlayerParameter();
 
         private ReactiveProperty<PlayerParameter> _currentPlayerParameter;
@@ -129,7 +135,7 @@ namespace StShoot.InGame.Players
                 {
                     if (_currentPlayerParameter.Value.LifePoint <= -1)
                     {
-                        Debug.Log("Game Over");
+                        _isGameOver.Value = true;
                         return;
                     }
                     //1秒後に元の状態に

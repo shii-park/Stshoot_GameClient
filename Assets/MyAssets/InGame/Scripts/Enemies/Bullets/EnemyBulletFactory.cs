@@ -111,7 +111,7 @@ namespace StShoot.InGame.Enemies.Bullets
             {
                 foreach (var bullet in bulletList)
                 {
-                    bullet.SetActive(false);
+                    bullet.GetComponent<BaseEnemyBullet>().SetAvailable(true);
                 }
             }
         }
