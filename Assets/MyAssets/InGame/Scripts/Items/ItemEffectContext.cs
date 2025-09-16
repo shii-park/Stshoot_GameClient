@@ -7,11 +7,5 @@ namespace StShoot.InGame.Items
     {
         public PlayerCore Player { get; set; }
         public ScoreManager ScoreManager { get; set; }
-        
-        public ItemEffectContext(PlayerCore player, ScoreManager scoreManager)
-        {
-            Player = player;
-            ScoreManager = scoreManager;
-        }
     }
 }
