@@ -15,5 +15,13 @@ namespace StShoot.InGame.Items
         {
             _isAvailable.Value = true;
         }
+        
+        /// <summary>
+        /// アイテムの利用可能状態を設定するメソッド
+        /// </summary>
+        /// <param name="isAvailable">Trueだったら利用可能、Falseだったら利用不可</param>
+        public virtual void SetAvailable(bool isAvailable){
+            _isAvailable.Value = isAvailable;
+        }
     }
 }
