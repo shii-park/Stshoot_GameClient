@@ -24,6 +24,6 @@ namespace StShoot.InGame.Items
             _isAvailable.Value = isAvailable;
         }
         
-        public virtual void EffectItem(){ }
+        public virtual void ApplyEffect(){ }
     }
 }
