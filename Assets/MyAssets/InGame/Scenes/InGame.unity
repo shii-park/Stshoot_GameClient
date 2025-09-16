@@ -1686,7 +1686,6 @@ GameObject:
   - component: {fileID: 1561665101}
   - component: {fileID: 1561665100}
   - component: {fileID: 1561665099}
-  - component: {fileID: 1561665103}
   - component: {fileID: 1561665096}
   - component: {fileID: 1561665095}
   m_Layer: 0
@@ -1888,18 +1887,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyBullet: {fileID: 0}
---- !u!114 &1561665103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561665093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed79b0107df284fe9afad6c93ac6db3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1608470992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,6 +2385,7 @@ GameObject:
   - component: {fileID: 2122770392}
   - component: {fileID: 2122770393}
   - component: {fileID: 2122770394}
+  - component: {fileID: 2122770395}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2499,6 +2487,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCore: {fileID: 348633060}
+--- !u!114 &2122770395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122770387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f340ae35ebbc40b99bfdbb275f99588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletPrefabs:
+  - {fileID: 2815051522880309294, guid: 991144011fff04b84be5fc9731a5745d, type: 3}
 --- !u!1001 &7015630936710622558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2571,6 +2573,6 @@ SceneRoots:
   - {fileID: 731492561}
   - {fileID: 348633058}
   - {fileID: 1561665098}
-  - {fileID: 2122770388}
   - {fileID: 1115148632}
   - {fileID: 1955002635}
+  - {fileID: 2122770388}

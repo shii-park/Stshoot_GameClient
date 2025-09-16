@@ -13,11 +13,8 @@ namespace StShoot.InGame.Enemies.Bullets
         /// 利用可能状態のプロパティ
         /// </summary>
         public ReadOnlyReactiveProperty<bool> IsAvailable => _isAvailable;
-        
-        [SerializeField]
-        protected GameObject _enemyBullet;
 
-        public virtual void Move(Vector2 direction)
+        public virtual void Move(Vector3 direction)
         {
             transform.Translate(direction * Speed * Time.deltaTime);
         }
