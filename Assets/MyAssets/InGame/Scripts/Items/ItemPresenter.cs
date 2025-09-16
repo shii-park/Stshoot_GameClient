@@ -11,9 +11,9 @@ namespace StShoot.InGame.Items
 
         private void Start()
         {
-            _model.IsAvailable.Subscribe(isAlive =>
+            _model.IsAvailable.Subscribe(isAvailable =>
             {
-                _view.SetActive(isAlive);
+                _view.SetActive(isAvailable == false);
             });
         }
     }

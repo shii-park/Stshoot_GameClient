@@ -8,12 +8,13 @@ namespace StShoot.InGame.Items.Instances
         
         public override void Init()
         {
-            _isAvailable.Value = true;
+            _isAvailable.Value = false;
         }
 
         public override void ApplyEffect(ItemEffectContext context)
         {
             context.Player.IncreasePower(_powerUpPoint);
+            SetAvailable(true);
         }
     }
 }
