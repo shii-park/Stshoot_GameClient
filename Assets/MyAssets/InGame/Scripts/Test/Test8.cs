@@ -4,7 +4,7 @@ using WebSocketSharp;
 
 public class WaitForServer : MonoBehaviour
 {
-    private string url = "ws://192.0.0.2:8080/ws";
+    private string url = "wss://stshoot-backend.onrender.com/ws";
     private WebSocket ws;
     private int maxRetry = 10;
 
@@ -22,8 +22,7 @@ public class WaitForServer : MonoBehaviour
 
             ws.OnOpen += (sender, e) =>
             {
-                Debug.Log("WebSocket Open");
-                ws.Send("Hello!");
+                Debug.Log("WebSocket Connected");
             };
 
             ws.OnError += (sender, e) =>
@@ -34,6 +33,11 @@ public class WaitForServer : MonoBehaviour
             ws.OnClose += (sender, e) =>
             {
                 Debug.Log("WebSocket Closed: " + e.Reason);
+            };
+            
+            ws.OnMessage += (sender, e) =>
+            {
+                Debug.Log("受信メッセージ: " + e.Data);
             };
 
             ws.Connect();
