@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies.EnemyInstance
 {
+    /// <summary>
+    /// 追尾弾を撃つエネミーのクラス
+    /// </summary>
     public class TrackingEnemy : BaseEnemy
     {
         public override void Init()

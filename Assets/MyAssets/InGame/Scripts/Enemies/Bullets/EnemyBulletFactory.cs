@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies.Bullets
 {
+    /// <summary>
+    /// エネミーの弾のファクトリークラス
+    /// </summary>
     public class EnemyBulletFactory : MonoBehaviour
     {
         public static EnemyBulletFactory Instance { get; private set; }
@@ -38,6 +41,11 @@ namespace StShoot.InGame.Enemies.Bullets
             }
         }
 
+        /// <summary>
+        /// 弾を生成するメソッド
+        /// </summary>
+        /// <param name="bulletName">生成したい弾の名前</param>
+        ///  <param name="genePosition">生成したい位置</param>
         public GameObject Create(string bulletName, Vector3 genePosition)
         {
             if (!_canGenerate) return null;
@@ -74,11 +82,19 @@ namespace StShoot.InGame.Enemies.Bullets
             return newBullet;
         }
         
+        /// <summary>
+        /// 弾の生成を一時的に停止するメソッド
+        /// </summary>
+        /// <param name="seconds">停止時間</param>
         public void StopBulletGeneration(float seconds)
         {
             StartCoroutine(StopBulletGenerationCoroutine(seconds));
         }
 
+        /// <summary>
+        /// 弾の生成を一時的に停止するコルーチン
+        /// </summary>
+        /// <param name="seconds">停止時間</param>
         private IEnumerator StopBulletGenerationCoroutine(float seconds)
         {
             _canGenerate = false;
@@ -86,6 +102,9 @@ namespace StShoot.InGame.Enemies.Bullets
             _canGenerate = true;
         }
         
+        /// <summary>
+        /// 全ての弾を非アクティブにするメソッド
+        /// </summary>
         public void RemoveAllBullets()
         {
             foreach (var bulletList in _bulletFactories.Values)

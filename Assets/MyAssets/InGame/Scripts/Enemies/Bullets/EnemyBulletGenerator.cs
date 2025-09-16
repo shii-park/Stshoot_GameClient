@@ -10,6 +10,11 @@ namespace StShoot.InGame.Enemies.Bullets
         [SerializeField]
         GameObject _enemyBullet;
         
+        /// <summary>
+        /// エネミーの弾を発射するメソッド
+        /// </summary>
+        /// <param name="position">発射位置</param>
+        /// <param name="direction">発射方向</param>
         public void ShotEnemyBullet(Vector2 position, Vector2 direction)
         {
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(position);

@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies
 {
+    /// <summary>
+    /// 移動タイプ
+    /// </summary>
     public enum MoveType
     {
         Straight,
@@ -9,6 +12,9 @@ namespace StShoot.InGame.Enemies
         Wave
     }
 
+    /// <summary>
+    /// ウェイポイントのデータクラス
+    /// </summary>
     [System.Serializable]
     public class Waypoint
     {
@@ -16,6 +22,9 @@ namespace StShoot.InGame.Enemies
         public float Duration;
         public MoveType MoveType;
         
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public Waypoint(Vector3 position, float duration, MoveType moveType)
         {
             Position = position;

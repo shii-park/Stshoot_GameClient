@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies.Bullets
 {
+    /// <summary>
+    /// エネミーの弾の当たり判定クラス
+    /// </summary>
     public class EnemyBulletCollision : MonoBehaviour
     {
         [SerializeField]

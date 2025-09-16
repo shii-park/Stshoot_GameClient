@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies.Bullets.BulletInstance
 {
+    /// <summary>
+    /// デフォルトの弾のクラス
+    /// </summary>
     public class DefaultBullet : BaseEnemyBullet
     {
         private bool _isMoving;
@@ -24,6 +27,10 @@ namespace StShoot.InGame.Enemies.Bullets.BulletInstance
             _isMoving = false;
         }
         
+        /// <summary>
+        /// 弾を動かすコルーチン
+        /// </summary>
+        /// <param name="direction">方向</param>
         IEnumerator MoveBulletCoroutine(Vector3 direction)
         {
             Vector3 prePosition = this.gameObject.transform.position;
