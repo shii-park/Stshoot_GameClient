@@ -11,8 +11,7 @@ namespace StShoot.InGame.Enemies
         private List<GameObject> _enemyPrefabs;
 
         private Dictionary<string, List<GameObject>> _enemyPools = new Dictionary<string, List<GameObject>>();
-
-        private GameObject _enemiesParent; // 管理用の親
+        private Dictionary<string, GameObject> _enemiesParents = new Dictionary<string, GameObject>();
 
         private void Awake()
         {
@@ -27,12 +26,11 @@ namespace StShoot.InGame.Enemies
                 return;
             }
 
-            // 管理用の親オブジェクトを生成
-            _enemiesParent = new GameObject("EnemiesParent");
-
             foreach (var prefab in _enemyPrefabs)
             {
                 _enemyPools.Add(prefab.name, new List<GameObject>());
+                var parent = new GameObject($"{prefab.name}_EnemiesParent");
+                _enemiesParents.Add(prefab.name, parent);
             }
         }
 
@@ -44,6 +42,7 @@ namespace StShoot.InGame.Enemies
                 return null;
             }
 
+            var parentObj = _enemiesParents[enemyName];
             GameObject enemy = null;
             foreach (var e in _enemyPools[enemyName])
             {
@@ -62,17 +61,16 @@ namespace StShoot.InGame.Enemies
                     Debug.LogError($"EnemyFactory: 指定された敵の名前が存在しません。{enemyName}");
                     return null;
                 }
-                enemy = Instantiate(prefab, spawnPosition, Quaternion.identity, _enemiesParent.transform);
+                enemy = Instantiate(prefab, spawnPosition, Quaternion.identity, parentObj.transform);
                 _enemyPools[enemyName].Add(enemy);
             }
             else
             {
-                enemy.transform.SetParent(_enemiesParent.transform, false);
+                enemy.transform.SetParent(parentObj.transform, false);
                 enemy.transform.position = spawnPosition;
                 enemy.SetActive(true);
             }
 
-            // ここで動きの設定を渡す
             var movement = enemy.GetComponent<EnemyMovementController>();
             if (movement != null)
             {
