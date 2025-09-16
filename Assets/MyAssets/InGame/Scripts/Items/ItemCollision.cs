@@ -12,7 +12,7 @@ namespace StShoot.InGame.Items
         {
             if (collision.gameObject.GetComponent<IWall>() != null)
             {
-                _presenter.Model.SetAvailable(true);
+                _presenter.Model.SetAvailable(false);
             }
         }
     }
