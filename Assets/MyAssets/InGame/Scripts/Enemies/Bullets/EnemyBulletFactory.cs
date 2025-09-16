@@ -11,8 +11,9 @@ namespace StShoot.InGame.Enemies.Bullets
         [SerializeField]
         private List<GameObject> _bulletPrefabs;
         
-        Dictionary<string, List<GameObject>> _bulletFactories = new Dictionary<string, List<GameObject>>();
-        
+        private Dictionary<string, List<GameObject>> _bulletFactories = new Dictionary<string, List<GameObject>>();
+        private GameObject _bulletsParent; // 管理用の親
+
         private void Awake()
         {
             if (Instance == null)
@@ -23,8 +24,12 @@ namespace StShoot.InGame.Enemies.Bullets
             else
             {
                 Destroy(gameObject);
+                return;
             }
-            
+
+            // 管理用の親オブジェクトを生成
+            _bulletsParent = new GameObject("BulletsParent");
+
             foreach (var prefab in _bulletPrefabs)
             {
                 _bulletFactories.Add(prefab.name, new List<GameObject>());
@@ -34,24 +39,23 @@ namespace StShoot.InGame.Enemies.Bullets
         public GameObject Create(string bulletName, Vector3 genePosition)
         {
             if(MainGameManager.Instance.CurrentGameState.CurrentValue != GameState.Game) return null;
-            if (_bulletFactories.ContainsKey(bulletName) == false)
+            if (!_bulletFactories.ContainsKey(bulletName))
             {
                 Debug.LogError($"BulletFactory: 指定された弾の名前が存在しません。{bulletName}");
                 return null;
             }
 
-            // 使われていない弾を探す
             foreach (var bullet in _bulletFactories[bulletName])
             {
                 if (bullet.GetComponent<BaseEnemyBullet>().IsAvailable.CurrentValue)
                 {
+                    bullet.transform.SetParent(_bulletsParent.transform, false);
                     bullet.transform.position = genePosition;
                     bullet.SetActive(true);
                     return bullet;
                 }
             }
 
-            // 使われていない弾がなかった場合、新しく生成する
             var prefab = _bulletPrefabs.Find(p => p.name == bulletName);
             if (prefab == null)
             {
@@ -59,7 +63,7 @@ namespace StShoot.InGame.Enemies.Bullets
                 return null;
             }
 
-            var newBullet = Instantiate(prefab, genePosition, Quaternion.identity);
+            var newBullet = Instantiate(prefab, genePosition, Quaternion.identity, _bulletsParent.transform);
             _bulletFactories[bulletName].Add(newBullet);
             return newBullet;
         }
