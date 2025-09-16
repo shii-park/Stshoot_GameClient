@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Items
 {
+    /// <summary>
+    /// アイテムの当たり判定を管理するクラス
+    /// </summary>
     public class ItemCollision : MonoBehaviour
     {
         [SerializeField] 

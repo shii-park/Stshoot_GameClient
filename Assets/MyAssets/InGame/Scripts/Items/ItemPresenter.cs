@@ -3,6 +3,9 @@ using R3;
 
 namespace StShoot.InGame.Items
 {
+    /// <summary>
+    /// アイテムのプレゼンタークラス
+    /// </summary>
     public class ItemPresenter : MonoBehaviour
     {
         [SerializeField] private ItemView _view;

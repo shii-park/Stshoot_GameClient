@@ -165,6 +165,10 @@ namespace StShoot.InGame.GameManagers
             Debug.Log("Result Start");  
         }
         
+        /// <summary>
+        /// アイテム効果のコンテキストを生成するメソッド
+        /// </summary>
+        /// <returns>アイテム効果のコンテキスト</returns>
         public ItemEffectContext CreateItemEffectContext()
         {
             return new ItemEffectContext

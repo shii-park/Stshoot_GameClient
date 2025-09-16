@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Items
 {
+    /// <summary>
+    /// アイテムの動きを管理するクラス
+    /// </summary>
     public class ItemMove : MonoBehaviour
     {
         private float initialUpTime = 0.2f;
@@ -15,6 +18,9 @@ namespace StShoot.InGame.Items
         [SerializeField]
         private ItemPresenter _itemPresenter;
 
+        /// <summary>
+        /// 初期化メソッド
+        /// </summary>
         public void Init()
         {
             StartCoroutine(FloatAndFallCoroutine());
@@ -27,6 +33,9 @@ namespace StShoot.InGame.Items
             _isMoving = false;
         }
 
+        /// <summary>
+        /// 弾を動かすコルーチン
+        /// </summary>
         private IEnumerator FloatAndFallCoroutine()
         {
             // 一瞬上昇

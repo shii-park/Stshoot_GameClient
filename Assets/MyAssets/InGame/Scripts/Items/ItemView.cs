@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Items
 {
+    /// <summary>
+    /// アイテムのビュークラス
+    /// </summary>
     public class ItemView : MonoBehaviour
     {
         /// <summary>
