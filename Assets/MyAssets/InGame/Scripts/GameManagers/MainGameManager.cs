@@ -1,6 +1,7 @@
 using System.Collections;
 using R3;
 using StShoot.InGame.Enemies.Bullets;
+using StShoot.InGame.Items;
 using StShoot.InGame.Players;
 using UnityEngine;
 
@@ -162,6 +163,19 @@ namespace StShoot.InGame.GameManagers
         void Result()
         {
             Debug.Log("Result Start");  
+        }
+        
+        /// <summary>
+        /// アイテム効果のコンテキストを生成するメソッド
+        /// </summary>
+        /// <returns>アイテム効果のコンテキスト</returns>
+        public ItemEffectContext CreateItemEffectContext()
+        {
+            return new ItemEffectContext
+            {
+                Player = _playerCore,
+                ScoreManager = _scoreManager
+            };
         }
     }
 }

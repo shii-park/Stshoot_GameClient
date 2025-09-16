@@ -48,6 +48,7 @@ namespace StShoot.InGame.Enemies
                     RemoveAllEnemies();
                 });
         }
+        
         /// <summary>
         /// 敵を生成するメソッド
         /// </summary>

@@ -1127,7 +1127,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.21557474, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2084,6 +2084,7 @@ GameObject:
   - component: {fileID: 2122770395}
   - component: {fileID: 2122770396}
   - component: {fileID: 2122770397}
+  - component: {fileID: 2122770398}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2216,6 +2217,21 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: 7438780216169929781, guid: 89efa762eebba41069956c8c724c2f00, type: 3}
   - {fileID: 3683526539361054744, guid: ae7fae95303d7468fb7074ffc140dff8, type: 3}
+--- !u!114 &2122770398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122770387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1790bd26a8a41407a9608f43ea8b3623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemPrefabs:
+  - {fileID: 8918900609913027989, guid: 3dc17efe4e75d4852b11c201e5ca3ceb, type: 3}
+  - {fileID: 3118650461447186118, guid: f187df311e50e4367a6af475ed3f9fb2, type: 3}
 --- !u!1001 &7015630936710622558
 PrefabInstance:
   m_ObjectHideFlags: 0
