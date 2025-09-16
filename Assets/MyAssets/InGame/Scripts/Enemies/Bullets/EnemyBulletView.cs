@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies.Bullets
 {
+    /// <summary>
+    /// エネミーの弾のビュークラス
+    /// </summary>
     public class EnemyBulletView : MonoBehaviour
     {
         /// <summary>

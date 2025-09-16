@@ -3,6 +3,9 @@ using R3;
 
 namespace StShoot.InGame.Enemies.Bullets
 {
+    /// <summary>
+    /// エネミーの弾のプレゼンタークラス
+    /// </summary>
     public class EnemyBulletPresenter : MonoBehaviour
     {
         [SerializeField]

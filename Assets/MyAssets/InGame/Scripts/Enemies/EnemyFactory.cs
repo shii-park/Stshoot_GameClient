@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies
 {
+    /// <summary>
+    /// 敵のファクトリークラス
+    /// </summary>
     public class EnemyFactory : MonoBehaviour
     {
         public static EnemyFactory Instance { get; private set; }
@@ -34,6 +37,12 @@ namespace StShoot.InGame.Enemies
             }
         }
 
+        /// <summary>
+        /// 敵を生成するメソッド
+        /// </summary>
+        /// <param name="enemyName">生成する敵の名前</param>
+        /// <param name="spawnPosition">生成位置</param>
+        /// <param name="waypoints">移動する位置に関する情報</param>
         public GameObject Create(string enemyName, Vector3 spawnPosition, List<Waypoint> waypoints)
         {
             if (!_enemyPools.ContainsKey(enemyName))

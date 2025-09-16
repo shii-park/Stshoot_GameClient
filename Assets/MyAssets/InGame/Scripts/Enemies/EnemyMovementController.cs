@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies
 {
+    /// <summary>
+    /// 敵の移動を制御するクラス
+    /// </summary>
     public class EnemyMovementController : MonoBehaviour
     {
         [SerializeField]
@@ -25,6 +28,9 @@ namespace StShoot.InGame.Enemies
             }
         }
         
+        /// <summary>
+        /// ウェイポイントを設定するメソッド
+        /// </summary>
         public void SetWaypoints(List<Waypoint> waypoints)
         {
             _waypoints = waypoints;
@@ -36,6 +42,9 @@ namespace StShoot.InGame.Enemies
             }
         }
 
+        /// <summary>
+        /// 敵の移動を制御するコルーチン
+        /// </summary>
         private IEnumerator MoveRoutine()
         {
             while (_currentIndex < _waypoints.Count)
