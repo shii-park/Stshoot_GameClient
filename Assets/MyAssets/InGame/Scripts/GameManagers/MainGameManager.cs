@@ -68,6 +68,13 @@ namespace StShoot.InGame.GameManagers
                     EnemyBulletFactory.Instance?.StopBulletGeneration(1.0f);
                     EnemyBulletFactory.Instance?.RemoveAllBullets();
                 });
+            
+            _playerCore.IsGameOver
+                .Where(isGameOver => isGameOver)
+                .Subscribe(_ =>
+                {
+                    SetGameState(GameState.Result);
+                });
         }
         
         /// <summary>
@@ -138,7 +145,7 @@ namespace StShoot.InGame.GameManagers
         /// </summary>
         void Game()
         {
-            // ゲームパートの処理
+            Debug.Log("Game Start");
         }
         
         /// <summary>
@@ -146,7 +153,7 @@ namespace StShoot.InGame.GameManagers
         /// </summary>
         void Adventure()
         {
-            // アドベンチャーパートの処理
+            Debug.Log("ADV Start");
         }
 
         /// <summary>
@@ -154,7 +161,7 @@ namespace StShoot.InGame.GameManagers
         /// </summary>
         void Result()
         {
-            // リザルトパートの処理    
+            Debug.Log("Result Start");  
         }
     }
 }
