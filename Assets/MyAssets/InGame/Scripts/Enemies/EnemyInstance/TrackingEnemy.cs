@@ -1,6 +1,7 @@
 using System.Collections;
 using R3;
 using StShoot.InGame.GameManagers;
+using StShoot.InGame.Items;
 using UnityEngine;
 
 namespace StShoot.InGame.Enemies.EnemyInstance
@@ -53,6 +54,7 @@ namespace StShoot.InGame.Enemies.EnemyInstance
 
         public override void Die()
         {
+            ItemFactory.Instance.CreateRandom(this.transform.position);
             _isAlive.Value = false;
         }
     }
