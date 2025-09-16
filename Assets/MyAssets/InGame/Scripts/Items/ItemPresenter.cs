@@ -13,7 +13,7 @@ namespace StShoot.InGame.Items
         {
             _model.IsAvailable.Subscribe(isAlive =>
             {
-                //_view.SetActive(isAlive);
+                _view.SetActive(isAlive);
             });
         }
     }

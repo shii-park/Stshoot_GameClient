@@ -23,5 +23,7 @@ namespace StShoot.InGame.Items
         public virtual void SetAvailable(bool isAvailable){
             _isAvailable.Value = isAvailable;
         }
+        
+        public virtual void EffectItem(){ }
     }
 }
