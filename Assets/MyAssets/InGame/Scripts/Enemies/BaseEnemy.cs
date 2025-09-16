@@ -1,6 +1,7 @@
 using R3;
 using StShoot.InGame.Common.Interfaces;
 using StShoot.InGame.Enemys.Interfaces;
+using StShoot.InGame.Enemies.Bullets;
 using UnityEngine;
 
 namespace StShoot.InGame.Enemies
@@ -10,17 +11,26 @@ namespace StShoot.InGame.Enemies
     /// </summary>
     public abstract class BaseEnemy : MonoBehaviour, IDamageable, IEnemy
     {
-        protected ReactiveProperty<int> _hitPoint;
-        public virtual ReactiveProperty<int> HitPoint => _hitPoint;
+        protected ReactiveProperty<int> _hitPoint = new ReactiveProperty<int>();
+        public ReactiveProperty<int> HitPoint => _hitPoint;
         
         protected ReactiveProperty<bool> _isAlive = new ReactiveProperty<bool>();
-        public virtual ReactiveProperty<bool> IsAlive => _isAlive;
+        public ReactiveProperty<bool> IsAlive => _isAlive;
+        
+        [SerializeField]
+        protected EnemyBulletGenerator _enemyBulletGenerator;
+        
+        public virtual void Init()
+        {
+            _hitPoint.Value = 1;
+            _isAlive.Value = true;
+        }
         
         /// <summary>
         /// ダメージを受け取るメソッド
         /// </summary>
         /// <param name="damage">受けるダメージ</param>
-        public void TakeDamage(int damage)
+        public virtual void TakeDamage(int damage)
         {
             _hitPoint.Value -= damage;
             
@@ -33,6 +43,6 @@ namespace StShoot.InGame.Enemies
         /// <summary>
         /// 死ぬ処理
         /// </summary>
-        protected abstract void Die();
+        public abstract void Die();
     }
 }

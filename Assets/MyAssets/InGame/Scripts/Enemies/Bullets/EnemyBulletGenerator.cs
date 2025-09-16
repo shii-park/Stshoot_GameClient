@@ -14,7 +14,7 @@ namespace StShoot.InGame.Enemies.Bullets
         {
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(position);
             if (viewportPos.x < 0f || viewportPos.x > 1f || viewportPos.y < 0f || viewportPos.y > 1f)return;
-            GameObject bullet = Instantiate(_enemyBullet, position, Quaternion.identity);
+            GameObject bullet = EnemyBulletFactory.Instance.Create(_enemyBullet.name, position);
             
             bullet?.GetComponent<BaseEnemyBullet>().Move(direction.normalized);
         }

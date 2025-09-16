@@ -27,15 +27,23 @@ namespace StShoot.InGame.Players
         [SerializeField]
         private GameObject _bulletGameObject;
         
-        private const float ShotInterval = 0.05f;
+        private const float ShotInterval = 0.07f;
         
         [SerializeField]
         private List<Transform> _generatePositions = new List<Transform>();
+        
+        private GameObject _bulletsParent;
         
         protected override void OnInitialize()
         {
             ClearReadyComments();
             _shotCharacterCoroutine = null;
+            
+            // 管理用の親オブジェクトを生成（なければ）
+            if (_bulletsParent == null)
+            {
+                _bulletsParent = new GameObject("PlayerBulletsParent");
+            }
             
             CommentCount
                 .Where(count => count >= 0)
@@ -100,9 +108,8 @@ namespace StShoot.InGame.Players
         private void GenerateBullet(string commentChar, float angleDeg, int index)
         {
             Vector3 vec = _generatePositions[index].position;
-                
             GameObject instance = null;
-            
+
             foreach (var _bullet in _bulletGameObjects)
             {
                 if (_bullet == null) continue;
@@ -110,17 +117,18 @@ namespace StShoot.InGame.Players
                 if (pre.Model.IsAvailable.CurrentValue)
                 {
                     instance = _bullet;
+                    instance.transform.SetParent(_bulletsParent.transform, false);
                     instance.transform.position = vec;
                     pre.Model.SetAvailable(false);
                     break;
                 }
             }
-            if(instance == null)
+            if (instance == null)
             {
-                instance = Instantiate(_bulletGameObject, vec, Quaternion.identity);
+                instance = Instantiate(_bulletGameObject, vec, Quaternion.identity, _bulletsParent.transform);
                 _bulletGameObjects.Add(instance);
             }
-                
+
             var instansPre = instance.GetComponent<BulletPresenter>();
             var move = instance.GetComponent<BulletMove>();
             instansPre.Model.SetAvailable(false);

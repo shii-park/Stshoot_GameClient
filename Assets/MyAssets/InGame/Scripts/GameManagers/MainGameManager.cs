@@ -1,5 +1,6 @@
 using System.Collections;
 using R3;
+using StShoot.InGame.Enemies.Bullets;
 using StShoot.InGame.Players;
 using UnityEngine;
 
@@ -59,6 +60,14 @@ namespace StShoot.InGame.GameManagers
             {
                 OnStateChanged(state);
             });
+            
+            _playerCore.IsDead
+                .Where(isDead => isDead)
+                .Subscribe(_ =>
+                {
+                    EnemyBulletFactory.Instance?.StopBulletGeneration(1.0f);
+                    EnemyBulletFactory.Instance?.RemoveAllBullets();
+                });
         }
         
         /// <summary>
