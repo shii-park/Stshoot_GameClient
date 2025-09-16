@@ -8,7 +8,6 @@ namespace StShoot.InGame.Items.Instances
         
         public override void Init()
         {
-            Debug.Log("hoge");
             _isAvailable.Value = false;
             _itemMove.Init();
         }
