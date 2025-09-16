@@ -1,13 +1,18 @@
+using StShoot.InGame.Scripts.Walls.Interfaces;
 using UnityEngine;
 
 namespace StShoot.InGame.Items
 {
     public class ItemCollision : MonoBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D col)
+        [SerializeField] 
+        private ItemPresenter _presenter;
+        
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (col.CompareTag("Player"))
+            if (collision.gameObject.GetComponent<IWall>() != null)
             {
+                //_presenter.Model.SetAvailable(true);
             }
         }
     }
