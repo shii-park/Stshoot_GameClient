@@ -8,7 +8,7 @@ namespace StShoot.InGame.Enemies.Bullets.BulletInstance
     {
         private bool _isMoving;
         
-        protected override float Speed => 1f;
+        protected override float Speed => 0.7f;
         
         public override void Move(Vector3 direction)
         {

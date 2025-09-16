@@ -71,6 +71,8 @@ namespace StShoot.InGame.Enemies
                 enemy.SetActive(true);
             }
 
+            enemy.GetComponent<BaseEnemy>().Init();
+
             var movement = enemy.GetComponent<EnemyMovementController>();
             if (movement != null)
             {

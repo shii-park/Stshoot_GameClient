@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7351744055249072704}
   - component: {fileID: 6075887989481799943}
   - component: {fileID: 1105539442518752795}
+  - component: {fileID: 8643674062509916288}
   - component: {fileID: 2852666425521385779}
   - component: {fileID: 5284158044555560233}
   m_Layer: 0
@@ -158,6 +159,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyBulletGenerator: {fileID: 2066128401937296151}
+--- !u!114 &8643674062509916288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438780216169929781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f76a008379aa46e8a2d6f2288d903ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waypoints: []
+  _enemyPresenter: {fileID: 7351744055249072704}
 --- !u!50 &2852666425521385779
 Rigidbody2D:
   serializedVersion: 5

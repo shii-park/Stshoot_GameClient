@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4022070236542014329}
   - component: {fileID: 3576457199723715802}
   - component: {fileID: 8258338917228220300}
+  - component: {fileID: 1855083420434970738}
   - component: {fileID: 4370849052400956941}
   - component: {fileID: 79051576726320957}
   m_Layer: 0
@@ -158,6 +159,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyBulletGenerator: {fileID: 3576457199723715802}
+--- !u!114 &1855083420434970738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3683526539361054744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f76a008379aa46e8a2d6f2288d903ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waypoints: []
+  _enemyPresenter: {fileID: 3513333311243975838}
 --- !u!61 &4370849052400956941
 BoxCollider2D:
   m_ObjectHideFlags: 0
