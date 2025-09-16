@@ -1682,13 +1682,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1561665098}
   - component: {fileID: 1561665097}
-  - component: {fileID: 1561665096}
-  - component: {fileID: 1561665095}
   - component: {fileID: 1561665102}
   - component: {fileID: 1561665101}
   - component: {fileID: 1561665100}
   - component: {fileID: 1561665099}
   - component: {fileID: 1561665103}
+  - component: {fileID: 1561665096}
+  - component: {fileID: 1561665095}
   m_Layer: 0
   m_Name: DemoEnemy
   m_TagString: Untagged
@@ -1887,6 +1887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9bf4f326e1424fc2958e6f14f63b53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyBullet: {fileID: 0}
 --- !u!114 &1561665103
 MonoBehaviour:
   m_ObjectHideFlags: 0
