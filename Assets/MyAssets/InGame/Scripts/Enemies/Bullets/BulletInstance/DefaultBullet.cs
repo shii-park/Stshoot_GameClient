@@ -8,11 +8,12 @@ namespace StShoot.InGame.Enemies.Bullets.BulletInstance
     {
         private bool _isMoving;
         
-        protected override float Speed => 5f;
+        protected override float Speed => 1f;
         
         public override void Move(Vector3 direction)
         {
             _isMoving = true;
+            SetAvailable(false);
             StartCoroutine(MoveBulletCoroutine(direction));
         }
         
@@ -25,14 +26,21 @@ namespace StShoot.InGame.Enemies.Bullets.BulletInstance
         
         IEnumerator MoveBulletCoroutine(Vector3 direction)
         {
+            Vector3 prePosition = this.gameObject.transform.position;
             while (_isMoving && MainGameManager.Instance.CurrentGameState.CurrentValue == GameState.Game)
             {
                 var pos = this.gameObject.transform.position;
-                pos += direction * Speed * 0.1f;
-                this.gameObject.transform.position = pos;
+                pos += direction.normalized * Speed * 0.1f;
 
+                if (prePosition == pos) Destroy(this.gameObject);
+                prePosition = pos;
+                
+                this.gameObject.transform.position = pos;
+                
                 yield return new WaitForSeconds(0.01f);
             }
+
+            SetAvailable(true);
         }
         
         /// <summary>
@@ -40,6 +48,10 @@ namespace StShoot.InGame.Enemies.Bullets.BulletInstance
         /// </summary>
         /// <param name="isAvailable">Trueだったら利用可能、Falseだったら利用不可</param>
         public override void SetAvailable(bool isAvailable){
+            if (isAvailable)
+            {
+                StopBullet();
+            }
             _isAvailable.Value = isAvailable;
         }
     }

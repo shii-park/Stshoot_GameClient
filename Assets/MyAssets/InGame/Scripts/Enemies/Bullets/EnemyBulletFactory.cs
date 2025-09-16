@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using StShoot.InGame.GameManagers;
 using UnityEngine;
 
 namespace StShoot.InGame.Enemies.Bullets
@@ -32,6 +33,7 @@ namespace StShoot.InGame.Enemies.Bullets
         
         public GameObject Create(string bulletName, Vector3 genePosition)
         {
+            if(MainGameManager.Instance.CurrentGameState.CurrentValue != GameState.Game) return null;
             if (_bulletFactories.ContainsKey(bulletName) == false)
             {
                 Debug.LogError($"BulletFactory: 指定された弾の名前が存在しません。{bulletName}");

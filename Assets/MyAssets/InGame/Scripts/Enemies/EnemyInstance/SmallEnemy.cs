@@ -1,16 +1,15 @@
+using System.Collections;
 using R3;
-using StShoot.InGame.Enemies;
 using UnityEngine;
 
-namespace StShoot.InGame.Enemies.EnemyBulletInstance
+namespace StShoot.InGame.Enemies.EnemyInstance
 {
     public class SmallEnemy : BaseEnemy
     {
-        protected override void Start()
+        public override void Init()
         {
             _hitPoint.Value = 1;
             _isAlive.Value = true;
-            Debug.Log(_isAlive.Value);
             
             HitPoint.Subscribe(hp =>
             {
@@ -19,6 +18,17 @@ namespace StShoot.InGame.Enemies.EnemyBulletInstance
                     Die();
                 }
             });
+
+            StartCoroutine(ShotCoroutine());
+        }
+        
+        private IEnumerator ShotCoroutine()
+        {
+            while (true)
+            {
+                _enemyBulletGenerator.ShotEnemyBullet(this.transform.position, Vector3.down);
+                yield return new WaitForSeconds(0.3f);
+            }
         }
         
         /// <summary>
@@ -32,7 +42,6 @@ namespace StShoot.InGame.Enemies.EnemyBulletInstance
 
         protected override void Die()
         {
-            Debug.Log("hoge");
             _isAlive.Value = false;
         }
     }

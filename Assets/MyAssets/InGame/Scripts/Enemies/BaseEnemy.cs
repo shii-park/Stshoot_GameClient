@@ -1,6 +1,7 @@
 using R3;
 using StShoot.InGame.Common.Interfaces;
 using StShoot.InGame.Enemys.Interfaces;
+using StShoot.InGame.Enemies.Bullets;
 using UnityEngine;
 
 namespace StShoot.InGame.Enemies
@@ -16,7 +17,10 @@ namespace StShoot.InGame.Enemies
         protected ReactiveProperty<bool> _isAlive = new ReactiveProperty<bool>();
         public ReactiveProperty<bool> IsAlive => _isAlive;
         
-        protected virtual void Start()
+        [SerializeField]
+        protected EnemyBulletGenerator _enemyBulletGenerator;
+        
+        public virtual void Init()
         {
             _hitPoint.Value = 1;
             _isAlive.Value = true;
