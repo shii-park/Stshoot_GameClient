@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies.Bullets
 {
+    /// <summary>
+    /// エネミーの弾の基底クラス
+    /// </summary>
     public abstract class BaseEnemyBullet : MonoBehaviour
     {
         protected abstract float Speed { get; }

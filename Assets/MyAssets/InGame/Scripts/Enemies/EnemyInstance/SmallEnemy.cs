@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace StShoot.InGame.Enemies.EnemyInstance
 {
+    /// <summary>
+    /// 小型エネミーのクラス
+    /// </summary>
     public class SmallEnemy : BaseEnemy
     {
         public override void Init()
