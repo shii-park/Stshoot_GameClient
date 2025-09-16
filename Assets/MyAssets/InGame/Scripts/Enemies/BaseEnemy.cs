@@ -43,6 +43,6 @@ namespace StShoot.InGame.Enemies
         /// <summary>
         /// 死ぬ処理
         /// </summary>
-        protected abstract void Die();
+        public abstract void Die();
     }
 }

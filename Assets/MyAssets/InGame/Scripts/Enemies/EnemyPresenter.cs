@@ -14,6 +14,8 @@ namespace StShoot.InGame.Enemies
         [SerializeField]
         private BaseEnemy _model;
         
+        public BaseEnemy Model => _model;
+        
         private void Start()
         {
             _model.IsAlive.Subscribe(isAlive =>

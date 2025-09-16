@@ -11,10 +11,13 @@ namespace StShoot.InGame.Enemies.EnemyInstance
             _hitPoint.Value = 1;
             _isAlive.Value = true;
             
-            HitPoint.Subscribe(hp =>
+            var disposable = new SingleAssignmentDisposable();
+            
+            disposable.Disposable = HitPoint.Subscribe(hp =>
             {
                 if (hp <= 0)
                 {
+                    disposable.Dispose();
                     Die();
                 }
             });
@@ -40,7 +43,7 @@ namespace StShoot.InGame.Enemies.EnemyInstance
             _hitPoint.Value -= damage;
         }
 
-        protected override void Die()
+        public override void Die()
         {
             _isAlive.Value = false;
         }
