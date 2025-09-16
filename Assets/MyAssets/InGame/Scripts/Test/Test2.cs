@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace StShoot
 {
-    public class Test2 : MonoBehaviour,IEnemy
+    public class Test2 : MonoBehaviour,IEnemy,IDamageable
     {
         public void TakeDamage(int damage)
         {
