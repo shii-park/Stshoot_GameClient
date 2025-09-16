@@ -1,9 +1,5 @@
-using StShoot.InGame.Common.Interfaces;
-using StShoot.InGame.Enemys.Interfaces;
 using StShoot.InGame.GameManagers.Interfaces;
 using StShoot.InGame.Scripts.Walls.Interfaces;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace StShoot.InGame.Enemies.Bullets
