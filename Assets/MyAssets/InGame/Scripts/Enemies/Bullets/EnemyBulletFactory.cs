@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using StShoot.InGame.GameManagers;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace StShoot.InGame.Enemies.Bullets
 
         private Dictionary<string, List<GameObject>> _bulletFactories = new Dictionary<string, List<GameObject>>();
         private Dictionary<string, GameObject> _bulletsParents = new Dictionary<string, GameObject>();
+        
+        private bool _canGenerate = true;
 
         private void Awake()
         {
@@ -37,6 +40,8 @@ namespace StShoot.InGame.Enemies.Bullets
 
         public GameObject Create(string bulletName, Vector3 genePosition)
         {
+            if (!_canGenerate) return null;
+            
             if(MainGameManager.Instance.CurrentGameState.CurrentValue != GameState.Game) return null;
             if (!_bulletFactories.ContainsKey(bulletName))
             {
@@ -67,6 +72,29 @@ namespace StShoot.InGame.Enemies.Bullets
             var newBullet = Instantiate(prefab, genePosition, Quaternion.identity, parentObj.transform);
             _bulletFactories[bulletName].Add(newBullet);
             return newBullet;
+        }
+        
+        public void StopBulletGeneration(float seconds)
+        {
+            StartCoroutine(StopBulletGenerationCoroutine(seconds));
+        }
+
+        private IEnumerator StopBulletGenerationCoroutine(float seconds)
+        {
+            _canGenerate = false;
+            yield return new WaitForSeconds(seconds);
+            _canGenerate = true;
+        }
+        
+        public void RemoveAllBullets()
+        {
+            foreach (var bulletList in _bulletFactories.Values)
+            {
+                foreach (var bullet in bulletList)
+                {
+                    bullet.SetActive(false);
+                }
+            }
         }
     }
 }
