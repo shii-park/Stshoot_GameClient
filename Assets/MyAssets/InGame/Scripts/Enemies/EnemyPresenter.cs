@@ -16,9 +16,9 @@ namespace StShoot.InGame.Enemies
         
         private void Start()
         {
-            _model.IsAlive.Subscribe(isAvailable =>
+            _model.IsAlive.Subscribe(isAlive =>
             {
-                _view.SetActive(isAvailable == false);
+                _view.SetActive(isAlive);
             });
         }
     }

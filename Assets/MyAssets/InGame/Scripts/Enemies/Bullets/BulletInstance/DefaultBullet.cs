@@ -2,7 +2,7 @@ using System.Collections;
 using StShoot.InGame.GameManagers;
 using UnityEngine;
 
-namespace StShoot.InGame.Enemies.Bullets.BulletInstans
+namespace StShoot.InGame.Enemies.Bullets.BulletInstance
 {
     public class DefaultBullet : BaseEnemyBullet
     {

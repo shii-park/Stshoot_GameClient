@@ -549,7 +549,7 @@ Transform:
   m_GameObject: {fileID: 348633056}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.8, z: -1}
+  m_LocalPosition: {x: -1.8, y: -2.8, z: -1}
   m_LocalScale: {x: 0.4, y: 0.8, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1686,10 +1686,11 @@ GameObject:
   - component: {fileID: 1561665101}
   - component: {fileID: 1561665100}
   - component: {fileID: 1561665099}
+  - component: {fileID: 1561665103}
   - component: {fileID: 1561665096}
   - component: {fileID: 1561665095}
   m_Layer: 0
-  m_Name: DemoEnemy
+  m_Name: SmallEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1833,7 +1834,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.8, z: -1}
-  m_LocalScale: {x: 0.8273193, y: 1.6025801, z: -1}
+  m_LocalScale: {x: 0.5, y: 0.9, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1862,6 +1863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c8db5b6627f4161bd17ed25cb65f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _view: {fileID: 1561665099}
+  _model: {fileID: 1561665103}
 --- !u!114 &1561665101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1886,7 +1889,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9bf4f326e1424fc2958e6f14f63b53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyBullet: {fileID: 0}
+  _enemyBullet: {fileID: 8205950019190112751, guid: 5f09f242fa1ce4983b9fcdf4b7369498, type: 3}
+--- !u!114 &1561665103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561665093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 666a5de075b8f4aeeaa1481ad4bd7de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1608470992
 GameObject:
   m_ObjectHideFlags: 0
