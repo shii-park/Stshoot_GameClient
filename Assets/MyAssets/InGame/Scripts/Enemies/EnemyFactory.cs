@@ -30,7 +30,7 @@ namespace StShoot.InGame.Enemies
             }
         }
 
-        public GameObject Create(string enemyName, Vector3 spawnPosition)
+        public GameObject Create(string enemyName, Vector3 spawnPosition, List<Waypoint> waypoints)
         {
             if (!_enemyPools.ContainsKey(enemyName))
             {
@@ -38,26 +38,41 @@ namespace StShoot.InGame.Enemies
                 return null;
             }
 
-            foreach (var enemy in _enemyPools[enemyName])
+            GameObject enemy = null;
+            foreach (var e in _enemyPools[enemyName])
             {
-                if (!enemy.activeInHierarchy)
+                if (!e.activeInHierarchy)
                 {
-                    enemy.transform.position = spawnPosition;
-                    enemy.SetActive(true);
-                    return enemy;
+                    enemy = e;
+                    break;
                 }
             }
 
-            var prefab = _enemyPrefabs.Find(p => p.name == enemyName);
-            if (prefab == null)
+            if (enemy == null)
             {
-                Debug.LogError($"EnemyFactory: 指定された敵の名前が存在しません。{enemyName}");
-                return null;
+                var prefab = _enemyPrefabs.Find(p => p.name == enemyName);
+                if (prefab == null)
+                {
+                    Debug.LogError($"EnemyFactory: 指定された敵の名前が存在しません。{enemyName}");
+                    return null;
+                }
+                enemy = Instantiate(prefab, spawnPosition, Quaternion.identity);
+                _enemyPools[enemyName].Add(enemy);
+            }
+            else
+            {
+                enemy.transform.position = spawnPosition;
+                enemy.SetActive(true);
             }
 
-            var newEnemy = Instantiate(prefab, spawnPosition, Quaternion.identity);
-            _enemyPools[enemyName].Add(newEnemy);
-            return newEnemy;
+            // ここで動きの設定を渡す
+            var movement = enemy.GetComponent<EnemyMovementController>();
+            if (movement != null)
+            {
+                movement.SetWaypoints(waypoints);
+            }
+
+            return enemy;
         }
     }
 }

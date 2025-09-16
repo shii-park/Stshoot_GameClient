@@ -24,6 +24,17 @@ namespace StShoot.InGame.Enemies
                 StartCoroutine(MoveRoutine());
             }
         }
+        
+        public void SetWaypoints(List<Waypoint> waypoints)
+        {
+            _waypoints = waypoints;
+            _currentIndex = 0;
+            StopAllCoroutines();
+            if (_waypoints.Count > 0)
+            {
+                StartCoroutine(MoveRoutine());
+            }
+        }
 
         private IEnumerator MoveRoutine()
         {
