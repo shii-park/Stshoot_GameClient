@@ -19,11 +19,12 @@ namespace StShoot
         {
             while (true)
             {
+                // TODO Waypointをいっぱい増やすと挙動がバグる
                 EnemyFactory.Instance.Create(
                     _enemies[0].name, 
                     new Vector3(-4.5f, 3.6f, 0f), new List<Waypoint>
                 {
-                    new Waypoint(new Vector3(4.5f, 3.6f, 0f), 7f, MoveType.Wave),
+                    new Waypoint(new Vector3(4.5f, 3.6f, 0f), 3.5f, MoveType.Wave),
                 });
                 
                 EnemyFactory.Instance.Create(

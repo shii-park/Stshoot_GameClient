@@ -81,8 +81,6 @@ namespace StShoot.InGame.Enemies
                 transform.position = to;
                 _currentIndex++;
             }
-            
-            _enemyPresenter.Model.Die();
         }
     }
 }
