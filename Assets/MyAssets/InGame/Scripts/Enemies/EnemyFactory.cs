@@ -12,6 +12,8 @@ namespace StShoot.InGame.Enemies
 
         private Dictionary<string, List<GameObject>> _enemyPools = new Dictionary<string, List<GameObject>>();
 
+        private GameObject _enemiesParent; // 管理用の親
+
         private void Awake()
         {
             if (Instance == null)
@@ -22,7 +24,11 @@ namespace StShoot.InGame.Enemies
             else
             {
                 Destroy(gameObject);
+                return;
             }
+
+            // 管理用の親オブジェクトを生成
+            _enemiesParent = new GameObject("EnemiesParent");
 
             foreach (var prefab in _enemyPrefabs)
             {
@@ -56,11 +62,12 @@ namespace StShoot.InGame.Enemies
                     Debug.LogError($"EnemyFactory: 指定された敵の名前が存在しません。{enemyName}");
                     return null;
                 }
-                enemy = Instantiate(prefab, spawnPosition, Quaternion.identity);
+                enemy = Instantiate(prefab, spawnPosition, Quaternion.identity, _enemiesParent.transform);
                 _enemyPools[enemyName].Add(enemy);
             }
             else
             {
+                enemy.transform.SetParent(_enemiesParent.transform, false);
                 enemy.transform.position = spawnPosition;
                 enemy.SetActive(true);
             }
