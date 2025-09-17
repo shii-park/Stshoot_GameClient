@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace StShoot.OutGame.Inputs
 {
-    public class OutGameInput : MonoBehaviour
+    public class OutGameInput : MonoBehaviour,IOutGameInputEventProvider
     {
         private ReactiveProperty<bool> _onUpButtonPushed = new ReactiveProperty<bool>();
         private ReactiveProperty<bool> _onDownButtonPushed = new ReactiveProperty<bool>();

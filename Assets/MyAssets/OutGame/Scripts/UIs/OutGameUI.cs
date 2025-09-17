@@ -20,17 +20,6 @@ namespace StShoot.OutGame.UIs
         [SerializeField]
         private RectTransform _titleSecondHalfRectTransform;
 
-        private void Start()
-        {
-            StartCoroutine(TitleCoroutine());
-        }
-        
-        private IEnumerator TitleCoroutine()
-        {
-            yield return new WaitForSeconds(1f);
-            StartTitleAnimation();
-        }
-
         public void StartTitleAnimation()
         {
             _titleFirstHalfText.rectTransform.DOAnchorPos(_titleFirstHalfRectTransform.anchoredPosition, 1f).SetEase(Ease.OutBack);
