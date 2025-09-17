@@ -3,6 +3,7 @@ using R3;
 using StShoot.InGame.Enemies.Bullets;
 using StShoot.InGame.Items;
 using StShoot.InGame.Players;
+using StShoot.InGame.Players.Inputs;
 using StShoot.InGame.UIs;
 using UnityEngine;
 
@@ -47,6 +48,9 @@ namespace StShoot.InGame.GameManagers
         
         [SerializeField]
         private ResultView _resultView;
+
+        [SerializeField]
+        private InGameInput _inGameInput;
         
         void Awake()
         {
@@ -108,9 +112,6 @@ namespace StShoot.InGame.GameManagers
                 case GameState.Game:
                     Game();
                     break;
-                case GameState.Adventure:
-                    Adventure();
-                    break;
                 case GameState.Result:
                     Result(_playerCore.IsGameOver.CurrentValue == false);
                     break;
@@ -152,14 +153,6 @@ namespace StShoot.InGame.GameManagers
         {
             Debug.Log("Game Start");
         }
-        
-        /// <summary>
-        /// アドベンチャーパートの処理
-        /// </summary>
-        void Adventure()
-        {
-            Debug.Log("ADV Start");
-        }
 
         /// <summary>
         /// リザルトパートの処理
@@ -168,6 +161,13 @@ namespace StShoot.InGame.GameManagers
         {
             _resultView.SetResultUI(isClear, _playerCore.CurrentPlayerParameter.CurrentValue.LifePoint,0,_scoreManager.CurrentScore.Value,GetTotalScore());
             _resultView.ShowUI();
+            
+            _inGameInput.OnSpecialButtonPushed
+                .Skip(1)
+                .Subscribe(_ =>
+                {
+                    _resultView.HideUI();
+                });
         }
         
         /// <summary>

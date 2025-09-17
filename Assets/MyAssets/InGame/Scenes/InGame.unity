@@ -4332,6 +4332,7 @@ MonoBehaviour:
   _playerCore: {fileID: 348633060}
   _playerDefaultTransform: {fileID: 1115148632}
   _resultView: {fileID: 261833219}
+  _inGameInput: {fileID: 348633059}
 --- !u!114 &2122770392
 MonoBehaviour:
   m_ObjectHideFlags: 0
