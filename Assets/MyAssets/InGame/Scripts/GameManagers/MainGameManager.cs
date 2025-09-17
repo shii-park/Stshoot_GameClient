@@ -1,5 +1,6 @@
 using System.Collections;
 using R3;
+using StShoot.Common.Scripts;
 using StShoot.InGame.Enemies.Bullets;
 using StShoot.InGame.Items;
 using StShoot.InGame.Players;
@@ -166,7 +167,7 @@ namespace StShoot.InGame.GameManagers
                 .Skip(1)
                 .Subscribe(_ =>
                 {
-                    _resultView.HideUI();
+                    SceneTransitionManager.Instance.LoadScene("OutGame",null,null);
                 });
         }
         
