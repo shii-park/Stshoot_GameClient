@@ -38,7 +38,7 @@ namespace StShoot.InGame.Players
             _inGameInputEventProvider = GetComponent<IInGameInputEventProvider>();
 
             //Coreの情報が確定したら初期化を呼び出す
-            PlayerCore.IsInitialize
+            PlayerCore?.IsInitialize
                 .Subscribe(_ => OnInitialize());
 
             OnStart();

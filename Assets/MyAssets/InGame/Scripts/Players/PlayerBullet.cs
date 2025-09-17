@@ -47,10 +47,12 @@ namespace StShoot.InGame.Players
             
             CommentCount
                 .Where(count => count >= 0)
+                .ObserveOnMainThread()
                 .Subscribe(_ =>
                 {
                     ShotComment();
                 });
+
             
             PlayerCore.IsGameOver
                 .Where(isGameOver => isGameOver)
@@ -74,7 +76,6 @@ namespace StShoot.InGame.Players
             if (_shotCharacterCoroutine != null || _readyComments.Count <= 0) return;
             
             _shotCharacterCoroutine = StartCoroutine(ShotCharacterCoroutine(_readyComments[0]));
-            
         }
         
         /// <summary>
