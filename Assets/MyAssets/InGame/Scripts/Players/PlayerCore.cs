@@ -42,6 +42,12 @@ namespace StShoot.InGame.Players
 
         private ReactiveProperty<PlayerParameter> _currentPlayerParameter;
         
+        private ReactiveProperty<int> _currentLifePoint = new ReactiveProperty<int>();
+        public ReactiveProperty<int> CurrentLifePoint => _currentLifePoint;
+        
+        private ReactiveProperty<int> _currentPower = new ReactiveProperty<int>();
+        public ReactiveProperty<int> CurrentPower => _currentPower;
+        
         private Transform _playerDefaultTransform;
         
         private const int DeathPenaltyPower = 10;
@@ -57,6 +63,8 @@ namespace StShoot.InGame.Players
         public void ResetSlimeParameter()
         {
             _currentPlayerParameter.Value = DefaultPLayerParameter;
+            _currentPower.Value = DefaultPLayerParameter.PlayerPower;
+            _currentLifePoint.Value = DefaultPLayerParameter.LifePoint;
         }
 
         /// <summary>
@@ -65,6 +73,8 @@ namespace StShoot.InGame.Players
         public void SetSlimeParameter(PlayerParameter parameters)
         {
             _currentPlayerParameter.Value = parameters;
+            _currentPower.Value = parameters.PlayerPower;
+            _currentLifePoint.Value = parameters.LifePoint;
         }
         
         /// <summary>
@@ -75,6 +85,7 @@ namespace StShoot.InGame.Players
             if(_isDead.Value) return;
 
             _currentPlayerParameter.Value.LifePoint--;
+            _currentLifePoint.Value = _currentPlayerParameter.Value.LifePoint;
             
             DecreasePower(DeathPenaltyPower);
             
@@ -88,9 +99,12 @@ namespace StShoot.InGame.Players
         public void IncreasePower(int amount)
         {
             _currentPlayerParameter.Value.PlayerPower += amount;
+            _currentPower.Value = _currentPlayerParameter.Value.PlayerPower;
+            
             if (_currentPlayerParameter.Value.PlayerPower >= _currentPlayerParameter.Value.MaxPlayerPower)
             {
                 _currentPlayerParameter.Value.PlayerPower = _currentPlayerParameter.Value.MaxPlayerPower;
+                _currentPower.Value = _currentPlayerParameter.Value.MaxPlayerPower;
             }
         }
         
@@ -101,9 +115,12 @@ namespace StShoot.InGame.Players
         public void DecreasePower(int amount)
         {
             _currentPlayerParameter.Value.PlayerPower -= amount;
+            _currentPower.Value = _currentPlayerParameter.Value.PlayerPower;
+            
             if (_currentPlayerParameter.Value.PlayerPower <= 0)
             {
                 _currentPlayerParameter.Value.PlayerPower = 1;
+                _currentPower.Value = 1;
             }
         }
         
@@ -128,6 +145,9 @@ namespace StShoot.InGame.Players
             _isInitialize.OnCompleted();
             
             _currentPlayerParameter = new ReactiveProperty<PlayerParameter>(DefaultPLayerParameter);
+            
+            _currentLifePoint.Value = _currentPlayerParameter.Value.LifePoint;
+            _currentPower.Value = _currentPlayerParameter.Value.PlayerPower;
             
             _isDead
                 .Where(_ => _isDead.Value)

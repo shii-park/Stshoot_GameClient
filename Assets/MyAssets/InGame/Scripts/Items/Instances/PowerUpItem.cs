@@ -7,7 +7,7 @@ namespace StShoot.InGame.Items.Instances
     /// </summary>
     public class PowerUpItem : BaseItem
     {
-        private int _powerUpPoint = 1;
+        private int _powerUpPoint = 10;
         
         /// <summary>
         /// アイテムの初期化メソッド
