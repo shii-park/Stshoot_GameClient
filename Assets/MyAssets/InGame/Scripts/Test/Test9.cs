@@ -28,7 +28,7 @@ namespace StShoot
                 });
                 
                 /*EnemyFactory.Instance.Create(
-                    _enemies[1].name, 
+                    _enemies[0].name, 
                     new Vector3(4.5f, 1.8f, 0f), new List<Waypoint>
                     {
                         new Waypoint(new Vector3(-4.5f, 1.8f, 0f), 7f, MoveType.Straight),
