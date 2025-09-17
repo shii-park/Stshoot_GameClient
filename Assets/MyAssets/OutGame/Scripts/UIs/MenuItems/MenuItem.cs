@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace StShoot.OutGame.UIs.MenuItems
@@ -9,6 +10,8 @@ namespace StShoot.OutGame.UIs.MenuItems
         [SerializeField] private Image _textBackGorund;
         [SerializeField] private MenuItem _left;
         [SerializeField] private MenuItem _right;
+        
+        [SerializeField] private UnityEvent onDecide; 
 
         private bool _selected;
 
@@ -30,7 +33,7 @@ namespace StShoot.OutGame.UIs.MenuItems
 
         public void DecideItem()
         {
-            Debug.Log(this.name);
+            onDecide?.Invoke();
         }
     }
 }

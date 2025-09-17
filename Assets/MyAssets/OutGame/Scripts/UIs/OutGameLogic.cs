@@ -75,6 +75,8 @@ namespace StShoot.OutGame.UIs
                 .Subscribe(_ =>
                 {
                     _menuManager.CurrentItem.DecideItem();
+                    _canDecide = false;
+                    StartCoroutine(WaitForNextAction());
                 });
         }
         
