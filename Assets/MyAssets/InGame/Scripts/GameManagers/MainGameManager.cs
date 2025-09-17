@@ -3,6 +3,7 @@ using R3;
 using StShoot.InGame.Enemies.Bullets;
 using StShoot.InGame.Items;
 using StShoot.InGame.Players;
+using StShoot.InGame.UIs;
 using UnityEngine;
 
 namespace StShoot.InGame.GameManagers
@@ -43,6 +44,9 @@ namespace StShoot.InGame.GameManagers
         /// 現在のステージのインデックス
         /// </summary>
         public int CurrentStageIndex => _currentStageIndex;
+        
+        [SerializeField]
+        private ResultView _resultView;
         
         void Awake()
         {
@@ -108,7 +112,7 @@ namespace StShoot.InGame.GameManagers
                     Adventure();
                     break;
                 case GameState.Result:
-                    Result();
+                    Result(_playerCore.IsGameOver.CurrentValue == false);
                     break;
                 default:
                     break;
@@ -160,9 +164,10 @@ namespace StShoot.InGame.GameManagers
         /// <summary>
         /// リザルトパートの処理
         /// </summary>
-        void Result()
+        void Result(bool isClear)
         {
-            Debug.Log("Result Start");  
+            _resultView.SetResultUI(isClear, _playerCore.CurrentPlayerParameter.CurrentValue.LifePoint,0,_scoreManager.CurrentScore.Value,GetTotalScore());
+            _resultView.ShowUI();
         }
         
         /// <summary>
@@ -176,6 +181,12 @@ namespace StShoot.InGame.GameManagers
                 Player = _playerCore,
                 ScoreManager = _scoreManager
             };
+        }
+        
+        public int GetTotalScore()
+        {
+            var totalScore = _playerCore.CurrentPlayerParameter.CurrentValue.LifePoint * 30000 + 0/* スパちゃ */ +_scoreManager.CurrentScore.Value;
+            return (totalScore < 0) ? 0 : totalScore;
         }
     }
 }

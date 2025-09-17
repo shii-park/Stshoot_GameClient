@@ -614,7 +614,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 25
   m_TargetDisplay: 0
 --- !u!224 &261833218
 RectTransform:
@@ -655,6 +655,7 @@ MonoBehaviour:
   _priceText: {fileID: 920643312}
   _currentScoreText: {fileID: 1261557415}
   _totalScoreText: {fileID: 1903988576}
+  _pressSpaceKeyImage: {fileID: 905344855}
 --- !u!1 &283857184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2654,7 +2655,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 125, y: 77}
-  m_SizeDelta: {x: 411.94, y: 62}
+  m_SizeDelta: {x: 450, y: 62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001687829
 MonoBehaviour:
@@ -3399,7 +3400,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353779198}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -4330,6 +4331,7 @@ MonoBehaviour:
   _gameProgressManager: {fileID: 2122770392}
   _playerCore: {fileID: 348633060}
   _playerDefaultTransform: {fileID: 1115148632}
+  _resultView: {fileID: 261833219}
 --- !u!114 &2122770392
 MonoBehaviour:
   m_ObjectHideFlags: 0

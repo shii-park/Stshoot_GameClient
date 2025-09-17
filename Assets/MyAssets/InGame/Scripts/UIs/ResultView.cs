@@ -27,7 +27,7 @@ namespace StShoot.InGame.UIs
         private Text _totalScoreText;
         
         [SerializeField]
-        private Image _pressSpaceKeyImage;
+        private Text _pressSpaceKeyImage;
         
         public void SetResultUI(bool isClear, int lifePoint, int price, int currentScore, int totalScore)
         {
@@ -52,22 +52,28 @@ namespace StShoot.InGame.UIs
         
         private void SetCurrentScore(int currentScore)
         {
-            _currentScoreText.text = currentScore.ToString();
+            _currentScoreText.text = currentScore.ToString("D9");
         }
         
         private void SetTotalScore(int totalScore)
         {
-            _totalScoreText.text = totalScore.ToString();
+            _totalScoreText.text = totalScore.ToString("D9");
         }
 
         public void ShowUI()
         {
+            ShowPressSpaceKey();
             this._canvasGroup.DOFade(1.0f, 0.5f);
         }
         
         public void HideUI()
         {
             this._canvasGroup.DOFade(0.0f, 0.5f);
+        }
+        
+        public void ShowPressSpaceKey()
+        {
+            _pressSpaceKeyImage.DOFade(0.0f, 1f).SetLoops(-1, LoopType.Yoyo);
         }
     }
 }
