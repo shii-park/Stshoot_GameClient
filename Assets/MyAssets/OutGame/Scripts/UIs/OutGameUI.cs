@@ -22,6 +22,12 @@ namespace StShoot.OutGame.UIs
         
         [SerializeField]
         private RectTransform _menuItemsRectTransform;
+        
+        [SerializeField]
+        private RectTransform _roomIDRectTransform;
+        
+        [SerializeField]
+        private Text _roomIDText;
 
         public void StartTitleAnimation()
         {
@@ -34,6 +40,12 @@ namespace StShoot.OutGame.UIs
         public void ShowMenuItems()
         {
             _menuItemsRectTransform.DOAnchorPosX(0, 1f).SetEase(Ease.OutBack);
+        }
+
+        public void ShowRoomID(string roomID)
+        {
+            _roomIDText.text = roomID;
+            _roomIDRectTransform.DOAnchorPosY(0, 1f).SetEase(Ease.OutBounce);
         }
     }
 }

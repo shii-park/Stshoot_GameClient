@@ -45,7 +45,7 @@ namespace StShoot.OutGame.UIs
                     _outGameUI.StartTitleAnimation();
                     _canDecide = false;
                     ActivateMenu();
-                    StartCoroutine(WaitForNextAction());
+                    StartCoroutine(WaitForDecide());
                 });
         }
         
@@ -61,7 +61,7 @@ namespace StShoot.OutGame.UIs
                 {
                     _menuManager.MoveLeft();
                     _canSelectMenu = false;
-                    StartCoroutine(WaitForDecide());
+                    StartCoroutine(WaitForNextAction());
                 });
             
             OutGameInputEventProvider.RightButtonPushed
@@ -82,7 +82,8 @@ namespace StShoot.OutGame.UIs
                 {
                     _menuManager.CurrentItem.DecideItem();
                     _canDecide = false;
-                    StartCoroutine(WaitForNextAction());
+                    _outGameUI.ShowRoomID(_gameRoom.RoomId);
+                    StartCoroutine(WaitForDecide());
                 });
         }
         
@@ -98,7 +99,7 @@ namespace StShoot.OutGame.UIs
                 {
                     Debug.Log("ゲームスタート");
                     _canDecide = false;
-                    StartCoroutine(WaitForNextAction());
+                    StartCoroutine(WaitForDecide());
                 });
         }
         
@@ -110,7 +111,7 @@ namespace StShoot.OutGame.UIs
         
         private IEnumerator WaitForDecide()
         {
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(1f);
             _canDecide = true;
         }
     }
