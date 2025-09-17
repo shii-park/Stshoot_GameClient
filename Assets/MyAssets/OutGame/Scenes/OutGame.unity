@@ -1456,6 +1456,7 @@ MonoBehaviour:
   _menuItemsRectTransform: {fileID: 428812885}
   _roomIDRectTransform: {fileID: 1723250133}
   _roomIDText: {fileID: 2022046425}
+  _readyText: {fileID: 421217929}
 --- !u!114 &1723194640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,7 +1483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outGameUI: {fileID: 1723194639}
   _menuManager: {fileID: 1723194642}
-  _gameRoom: {fileID: 0}
+  _gameRoom: {fileID: 1021681561}
 --- !u!114 &1723194642
 MonoBehaviour:
   m_ObjectHideFlags: 0

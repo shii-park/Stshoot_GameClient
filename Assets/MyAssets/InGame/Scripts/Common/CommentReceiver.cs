@@ -27,6 +27,8 @@ namespace StShoot.InGame.Common
         private int maxRetry = 10;
         
         private ConcurrentQueue<UserData> _uiQueue = new ConcurrentQueue<UserData>();
+        
+        private string _wsUrl = "wss://stshoot-backend.onrender.com/ws/receiver/";
 
         private void Awake()
         {
@@ -41,8 +43,9 @@ namespace StShoot.InGame.Common
             }
         }
 
-        public void StartWebsocket(string url)
+        public void StartWebsocket(string roomID)
         {
+            var url = _wsUrl + roomID;
             StartCoroutine(ConnectWhenServerReady(url));
         }
 

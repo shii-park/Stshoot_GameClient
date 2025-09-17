@@ -3,6 +3,7 @@ using StShoot.OutGame.Inputs;
 using UnityEngine;
 using R3;
 using StShoot.Common;
+using StShoot.Common.Scripts;
 using StShoot.OutGame.UIs.MenuItems;
 
 namespace StShoot.OutGame.UIs
@@ -23,6 +24,9 @@ namespace StShoot.OutGame.UIs
         private bool _canDecide = false;
         
         private GameSetting _gameSetting;
+        
+        [SerializeField]
+        private GameRoom _gameRoom;
         
         void Start()
         {
@@ -79,14 +83,14 @@ namespace StShoot.OutGame.UIs
                 {
                     _menuManager.CurrentItem.DecideItem();
                     _canDecide = false;
-                    _outGameUI.ShowRoomID(GameRoom.Instance.RoomId);
+                    _outGameUI.ShowRoomID(_gameRoom.RoomId);
                     StartCoroutine(WaitForDecide());
                 });
         }
         
         public void SetGameSetting()
         {
-            _gameSetting = new GameSetting(_menuManager.CurrentItem.Level, GameRoom.Instance.RoomId);
+            _gameSetting = new GameSetting(_menuManager.CurrentItem.Level, _gameRoom.RoomId);
             
             OutGameInputEventProvider.OnDecideButtonPushed
                 .Where(_ => _canDecide)
@@ -94,7 +98,7 @@ namespace StShoot.OutGame.UIs
                 .Take(1)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("ゲームスタート");
+                    SceneTransitionManager.Instance.LoadScene("InGame", _gameSetting, null);
                     _canDecide = false;
                     StartCoroutine(WaitForDecide());
                 });
