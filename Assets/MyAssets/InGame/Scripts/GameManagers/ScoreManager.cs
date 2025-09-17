@@ -60,7 +60,6 @@ namespace StShoot.InGame.GameManagers
         public void AddScore(int amount)
         {
             _currentScore.Value += amount;
-            Debug.Log($"Score added: {amount}, Total Score: {CurrentScore}");
         }
 
         /// <summary>
@@ -69,7 +68,6 @@ namespace StShoot.InGame.GameManagers
         public void ResetScore()
         {
             _currentScore.Value = 0;
-            Debug.Log("Score reset to 0");
         }
     }
 }
