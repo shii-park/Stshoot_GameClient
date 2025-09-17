@@ -28,6 +28,9 @@ namespace StShoot.OutGame.UIs
         
         [SerializeField]
         private Text _roomIDText;
+        
+        [SerializeField]
+        private Text _readyText;
 
         public void StartTitleAnimation()
         {
@@ -46,6 +49,7 @@ namespace StShoot.OutGame.UIs
         {
             _roomIDText.text = roomID;
             _roomIDRectTransform.DOAnchorPosY(0, 1f).SetEase(Ease.OutBounce);
+            _readyText.DOFade(0.0f, 1f).SetLoops(-1, LoopType.Yoyo);
         }
     }
 }
