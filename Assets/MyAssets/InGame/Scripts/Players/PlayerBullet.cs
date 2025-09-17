@@ -197,10 +197,12 @@ namespace StShoot.InGame.Players
                 case int n when (n >= 1 && n <= 8): 
                     return "10000"; 
                 case int n when (n >= 9 && n <= 32): 
-                    return "11100";
+                    return "00011";
                 case int n when (n >= 33 && n <= 64): 
                     return "10011";
-                case int n when (n >= 65 && n <= 128):
+                case int n when (n >= 65 && n <= 127): 
+                    return "11100";
+                case 128:
                     return "11111";
                 default:
                     return "00000";
