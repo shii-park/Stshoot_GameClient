@@ -2,7 +2,7 @@ namespace StShoot.Common
 {
     public class GameSetting
     {
-        public GameLevel Level { get; set; } = GameLevel.Normal;
+        public GameLevel Level;
         public string RoomID;
     }
 }
