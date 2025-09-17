@@ -2,6 +2,7 @@ using System.Collections;
 using StShoot.OutGame.Inputs;
 using UnityEngine;
 using R3;
+using StShoot.Common;
 using StShoot.OutGame.UIs.MenuItems;
 
 namespace StShoot.OutGame.UIs
@@ -20,6 +21,8 @@ namespace StShoot.OutGame.UIs
         private bool _canSelectMenu = false;
         
         private bool _canDecide = false;
+        
+        private GameSetting _gameSetting;
         
         void Start()
         {
@@ -78,6 +81,11 @@ namespace StShoot.OutGame.UIs
                     _canDecide = false;
                     StartCoroutine(WaitForNextAction());
                 });
+        }
+        
+        public void SetGameSetting()
+        {
+            
         }
         
         private IEnumerator WaitForNextAction()
