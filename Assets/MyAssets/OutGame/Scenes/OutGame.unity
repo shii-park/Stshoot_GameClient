@@ -1483,6 +1483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outGameUI: {fileID: 1723194639}
   _menuManager: {fileID: 1723194642}
+  _gameRoom: {fileID: 1021681561}
 --- !u!114 &1723194642
 MonoBehaviour:
   m_ObjectHideFlags: 0

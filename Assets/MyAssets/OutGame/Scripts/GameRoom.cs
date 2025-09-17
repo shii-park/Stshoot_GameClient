@@ -5,8 +5,6 @@ namespace StShoot.OutGame
 {
     public class GameRoom : MonoBehaviour
     {
-        public static GameRoom Instance { get; private set; }
-        
         string _roomID;
         public string RoomId => _roomID;
         
@@ -18,16 +16,6 @@ namespace StShoot.OutGame
         
         private void Awake()
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            
             StartCoroutine(GetRequest("https://stshoot-backend.onrender.com/create"));
         }
 
