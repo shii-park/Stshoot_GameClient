@@ -2314,7 +2314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9.9, y: -0}
+  m_AnchoredPosition: {x: 9.899994, y: 0}
   m_SizeDelta: {x: -9.9, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &801795887
@@ -4473,6 +4473,7 @@ GameObject:
   - component: {fileID: 2122770393}
   - component: {fileID: 2122770396}
   - component: {fileID: 2122770399}
+  - component: {fileID: 2122770400}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4538,6 +4539,7 @@ MonoBehaviour:
   _playerDefaultTransform: {fileID: 1115148632}
   _resultView: {fileID: 261833219}
   _inGameInput: {fileID: 348633059}
+  _sceneReceiver: {fileID: 2122770400}
 --- !u!114 &2122770392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4557,7 +4559,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122770387}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab4b2b4fb88264b01aea5dfcce2a5dd6, type: 3}
   m_Name: 
@@ -4637,6 +4639,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _commentReceiver: {fileID: 348633065}
   _roomIDView: {fileID: 1084503014}
+--- !u!114 &2122770400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122770387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa11c2500aa74911b855cf0dbb13b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _commentReceiver: {fileID: 348633065}
+  _roomIdText: {fileID: 216240715}
 --- !u!1 &2123401609
 GameObject:
   m_ObjectHideFlags: 0

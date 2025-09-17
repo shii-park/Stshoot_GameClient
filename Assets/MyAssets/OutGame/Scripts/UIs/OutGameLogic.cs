@@ -3,6 +3,7 @@ using StShoot.OutGame.Inputs;
 using UnityEngine;
 using R3;
 using StShoot.Common;
+using StShoot.Common.Scripts;
 using StShoot.OutGame.UIs.MenuItems;
 
 namespace StShoot.OutGame.UIs
@@ -94,7 +95,7 @@ namespace StShoot.OutGame.UIs
                 .Take(1)
                 .Subscribe(_ =>
                 {
-                    Debug.Log("ゲームスタート");
+                    SceneTransitionManager.Instance.LoadScene("InGame", _gameSetting, null);
                     _canDecide = false;
                     StartCoroutine(WaitForDecide());
                 });

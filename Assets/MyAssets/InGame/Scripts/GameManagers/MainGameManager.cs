@@ -1,6 +1,8 @@
 using System.Collections;
 using R3;
+using StShoot.Common;
 using StShoot.Common.Scripts;
+using StShoot.InGame.Common;
 using StShoot.InGame.Enemies.Bullets;
 using StShoot.InGame.Items;
 using StShoot.InGame.Players;
@@ -52,6 +54,9 @@ namespace StShoot.InGame.GameManagers
 
         [SerializeField]
         private InGameInput _inGameInput;
+        
+        [SerializeField]
+        private SceneReceiver _sceneReceiver;
         
         void Awake()
         {
@@ -129,6 +134,7 @@ namespace StShoot.InGame.GameManagers
             _scoreManager.Init();
             _timeManager.Init();
             _gameProgressManager.Init();
+            _sceneReceiver.Init();
             
             _playerCore.Initialize(new PlayerParameter(), _playerDefaultTransform);
             
