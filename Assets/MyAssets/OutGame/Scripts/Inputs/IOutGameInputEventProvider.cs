@@ -4,8 +4,8 @@ namespace StShoot.OutGame.Inputs
 {
     public interface IOutGameInputEventProvider
     {
-        ReadOnlyReactiveProperty<bool> UpButtonPushed { get; }
-        ReadOnlyReactiveProperty<bool> DownButtonPushed { get; }
+        ReadOnlyReactiveProperty<bool> LeftButtonPushed { get; }
+        ReadOnlyReactiveProperty<bool> RightButtonPushed { get; }
         ReadOnlyReactiveProperty<bool> OnDecideButtonPushed { get; }
     }
 }

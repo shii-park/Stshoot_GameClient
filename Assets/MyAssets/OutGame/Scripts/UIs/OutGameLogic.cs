@@ -2,6 +2,7 @@ using System.Collections;
 using StShoot.OutGame.Inputs;
 using UnityEngine;
 using R3;
+using StShoot.OutGame.UIs.MenuItems;
 
 namespace StShoot.OutGame.UIs
 {
@@ -12,6 +13,13 @@ namespace StShoot.OutGame.UIs
         
         [SerializeField]
         private OutGameUI _outGameUI;
+        
+        [SerializeField]
+        private MenuManager _menuManager;
+        
+        private bool _canSelectMenu = false;
+        
+        private bool _canDecide = false;
         
         void Start()
         {
@@ -29,8 +37,57 @@ namespace StShoot.OutGame.UIs
                 .Subscribe(_ =>
                 {
                     _outGameUI.StartTitleAnimation();
+                    _canDecide = false;
+                    ActivateMenu();
+                    StartCoroutine(WaitForNextAction());
+                });
+        }
+        
+        private void ActivateMenu()
+        {
+            _outGameUI.ShowMenuItems();
+            _canSelectMenu = true;
+            
+            OutGameInputEventProvider.LeftButtonPushed
+                .Skip(1)
+                .Where(_ => _canSelectMenu)
+                .Subscribe(_ =>
+                {
+                    _menuManager.MoveLeft();
+                    _canSelectMenu = false;
+                    StartCoroutine(WaitForDecide());
                 });
             
+            OutGameInputEventProvider.RightButtonPushed
+                .Skip(1)
+                .Where(_ => _canSelectMenu)
+                .Subscribe(_ =>
+                {
+                    _menuManager.MoveRight();
+                    _canSelectMenu = false;
+                    StartCoroutine(WaitForNextAction());
+                });
+            
+            OutGameInputEventProvider.OnDecideButtonPushed
+                .Where(_ => _canDecide)
+                .Skip(1)
+                .Take(1)
+                .Subscribe(_ =>
+                {
+                    _menuManager.CurrentItem.DecideItem();
+                });
+        }
+        
+        private IEnumerator WaitForNextAction()
+        {
+            yield return new WaitForSeconds(0.2f);
+            _canSelectMenu = true;
+        }
+        
+        private IEnumerator WaitForDecide()
+        {
+            yield return new WaitForSeconds(0.3f);
+            _canDecide = true;
         }
     }
 }

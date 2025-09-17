@@ -19,12 +19,21 @@ namespace StShoot.OutGame.UIs
         private RectTransform _titleFirstHalfRectTransform;
         [SerializeField]
         private RectTransform _titleSecondHalfRectTransform;
+        
+        [SerializeField]
+        private RectTransform _menuItemsRectTransform;
 
         public void StartTitleAnimation()
         {
             _titleFirstHalfText.rectTransform.DOAnchorPos(_titleFirstHalfRectTransform.anchoredPosition, 1f).SetEase(Ease.OutBack);
             _titleSecondHalfText.rectTransform.DOAnchorPos(_titleSecondHalfRectTransform.anchoredPosition, 1f).SetEase(Ease.OutBack);
             _startButtonText.DOFade(0, 1f);
+            
+        }
+        
+        public void ShowMenuItems()
+        {
+            _menuItemsRectTransform.DOAnchorPosX(0, 1f).SetEase(Ease.OutBack);
         }
     }
 }

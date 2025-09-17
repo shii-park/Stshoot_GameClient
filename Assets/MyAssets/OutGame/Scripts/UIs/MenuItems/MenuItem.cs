@@ -16,6 +16,11 @@ namespace StShoot.OutGame.UIs.MenuItems
         public MenuItem Right => _right;
         public bool Selected => _selected;
 
+        private void Awake()
+        {
+            SetSelected(false);
+        }
+
         public void SetSelected(bool selected)
         {
             _selected = selected;
@@ -25,7 +30,7 @@ namespace StShoot.OutGame.UIs.MenuItems
 
         public void DecideItem()
         {
-            
+            Debug.Log(this.name);
         }
     }
 }

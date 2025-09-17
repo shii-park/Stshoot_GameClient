@@ -8,25 +8,25 @@ namespace StShoot.OutGame.Inputs
 {
     public class OutGameInput : MonoBehaviour,IOutGameInputEventProvider
     {
-        private ReactiveProperty<bool> _onUpButtonPushed = new ReactiveProperty<bool>();
-        private ReactiveProperty<bool> _onDownButtonPushed = new ReactiveProperty<bool>();
+        private ReactiveProperty<bool> _onLeftButtonPushed = new ReactiveProperty<bool>();
+        private ReactiveProperty<bool> _onRightButtonPushed = new ReactiveProperty<bool>();
         private ReactiveProperty<bool> _onDecideButtonPushed = new ReactiveProperty<bool>();
         
-        public ReadOnlyReactiveProperty<bool> UpButtonPushed => _onUpButtonPushed;
-        public ReadOnlyReactiveProperty<bool> DownButtonPushed => _onDownButtonPushed;
+        public ReadOnlyReactiveProperty<bool> LeftButtonPushed => _onLeftButtonPushed;
+        public ReadOnlyReactiveProperty<bool> RightButtonPushed => _onRightButtonPushed;
         public ReadOnlyReactiveProperty<bool> OnDecideButtonPushed => _onDecideButtonPushed;    
         
         void Start()
         {
             this.UpdateAsObservable()
-                .Select(_ => Keyboard.current.upArrowKey.isPressed)
+                .Select(_ => Keyboard.current.leftArrowKey.isPressed)
                 .DistinctUntilChanged()
-                .Subscribe(x => _onUpButtonPushed.Value = x);
+                .Subscribe(x => _onLeftButtonPushed.Value = x);
 
             this.UpdateAsObservable()
-                .Select(_ => Keyboard.current.downArrowKey.isPressed)
+                .Select(_ => Keyboard.current.rightArrowKey.isPressed)
                 .DistinctUntilChanged()
-                .Subscribe(x => _onDownButtonPushed.Value = x);
+                .Subscribe(x => _onRightButtonPushed.Value = x);
             
             this.UpdateAsObservable()
                 .Select(_ => Keyboard.current.spaceKey.isPressed)
