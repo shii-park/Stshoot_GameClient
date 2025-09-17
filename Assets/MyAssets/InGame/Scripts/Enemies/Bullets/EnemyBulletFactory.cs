@@ -57,6 +57,8 @@ namespace StShoot.InGame.Enemies.Bullets
                 return null;
             }
 
+            genePosition.z = -1f;
+
             var parentObj = _bulletsParents[bulletName];
 
             foreach (var bullet in _bulletFactories[bulletName])
