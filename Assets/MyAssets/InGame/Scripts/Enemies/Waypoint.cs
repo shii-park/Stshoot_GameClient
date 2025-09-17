@@ -9,6 +9,8 @@ namespace StShoot.InGame.Enemies
     {
         Straight,
         Curve,
+        CurveInner,
+        CurveOuter,
         Wave
     }
 

@@ -81,12 +81,12 @@ namespace StShoot.InGame.GameManagers
                         _enemies[1].name, 
                         new Vector3(-3f, 6f, -1f), new List<Waypoint>
                         {
-                            new Waypoint(new Vector3(5f, 0f, -1f), 4f, MoveType.Curve),
+                            new Waypoint(new Vector3(5f, 0f, -1f), 4f, MoveType.CurveOuter),
                         });
                     yield return new WaitForSeconds(1f);
                 }
                 
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(2f);
                 
                 for (int i = 0; i < 5; i++)
                 {
@@ -94,7 +94,7 @@ namespace StShoot.InGame.GameManagers
                         _enemies[1].name, 
                         new Vector3(3f, 6f, -1f), new List<Waypoint>
                         {
-                            new Waypoint(new Vector3(-5f, 0f, -1f), 4f, MoveType.Curve),
+                            new Waypoint(new Vector3(-5f, 0f, -1f), 4f, MoveType.CurveInner),
                         });
                     yield return new WaitForSeconds(1f);
                 }
