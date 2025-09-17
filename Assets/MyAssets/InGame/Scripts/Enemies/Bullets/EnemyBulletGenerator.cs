@@ -15,7 +15,7 @@ namespace StShoot.InGame.Enemies.Bullets
         /// </summary>
         /// <param name="position">発射位置</param>
         /// <param name="direction">発射方向</param>
-        public void ShotEnemyBullet(Vector2 position, Vector2 direction)
+        public void ShotEnemyBullet(Vector3 position, Vector2 direction)
         {
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(position);
             if (viewportPos.x < 0f || viewportPos.x > 1f || viewportPos.y < 0f || viewportPos.y > 1f)return;

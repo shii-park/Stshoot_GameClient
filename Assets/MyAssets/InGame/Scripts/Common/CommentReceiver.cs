@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Concurrent;
 using StShoot.InGame.Players;
+using StShoot.InGame.UIs;
 using UnityEngine;
 using WebSocketSharp;
 
@@ -18,8 +20,26 @@ namespace StShoot.InGame.Common
         [SerializeField]
         private PlayerBullet _bullet;
         
+        [SerializeField]
+        private CommentUIView _commentUIView;
+        
         private WebSocket ws;
         private int maxRetry = 10;
+        
+        private ConcurrentQueue<UserData> _uiQueue = new ConcurrentQueue<UserData>();
+
+        private void Awake()
+        {
+            _uiQueue = new ConcurrentQueue<UserData>();
+        }
+
+        private void Update()
+        {
+            while (_uiQueue.TryDequeue(out var data))
+            {
+                _commentUIView.AddComment(data.username, data.text);
+            }
+        }
 
         public void StartWebsocket(string url)
         {
@@ -51,8 +71,16 @@ namespace StShoot.InGame.Common
                 ws.OnMessage += (sender, e) =>
                 {
                     UserData data = JsonUtility.FromJson<UserData>(e.Data);
-                    Debug.Log($"受信メッセージ: {e.Data}");
                     _bullet.AddReadyComments(data.text);
+
+                    if (data != null && !string.IsNullOrEmpty(data.username) && !string.IsNullOrEmpty(data.text))
+                    {
+                        _uiQueue.Enqueue(data);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("受信データが不正です: " + e.Data);
+                    }
                 };
 
                 ws.Connect();
@@ -64,7 +92,6 @@ namespace StShoot.InGame.Common
                 ws = null;
 
                 retryCount++;
-                Debug.Log($"リトライ {retryCount}/{maxRetry}");
                 yield return new WaitForSeconds(1.0f);
             }
 

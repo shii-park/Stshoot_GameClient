@@ -11,7 +11,6 @@ namespace StShoot.InGame.GameManagers
         Init,
         Ready,
         Game,
-        Adventure,
         Result
     }
     

@@ -1,4 +1,5 @@
 using System.Collections;
+using StShoot;
 using StShoot.InGame.Common;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -6,6 +7,8 @@ using UnityEngine.Networking;
 public class Test10 : MonoBehaviour
 {
     [SerializeField] private CommentReceiver _commentReceiver;
+    
+    [SerializeField] RoomIDView _roomIDView;
     
     [System.Serializable]
     public class RoomID
@@ -34,7 +37,7 @@ public class Test10 : MonoBehaviour
 
                 // JSONをC#クラスに変換
                 RoomID data = JsonUtility.FromJson<RoomID>(json);
-                Debug.Log("Received: " + data.roomID);
+                _roomIDView.SetRoomID(data.roomID);
                 _commentReceiver.StartWebsocket($"wss://stshoot-backend.onrender.com/ws/receiver/{data.roomID}");
             }
         }

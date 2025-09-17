@@ -1,8 +1,11 @@
 using System.Collections;
 using R3;
+using StShoot.Common.Scripts;
 using StShoot.InGame.Enemies.Bullets;
 using StShoot.InGame.Items;
 using StShoot.InGame.Players;
+using StShoot.InGame.Players.Inputs;
+using StShoot.InGame.UIs;
 using UnityEngine;
 
 namespace StShoot.InGame.GameManagers
@@ -43,6 +46,12 @@ namespace StShoot.InGame.GameManagers
         /// 現在のステージのインデックス
         /// </summary>
         public int CurrentStageIndex => _currentStageIndex;
+        
+        [SerializeField]
+        private ResultView _resultView;
+
+        [SerializeField]
+        private InGameInput _inGameInput;
         
         void Awake()
         {
@@ -104,11 +113,8 @@ namespace StShoot.InGame.GameManagers
                 case GameState.Game:
                     Game();
                     break;
-                case GameState.Adventure:
-                    Adventure();
-                    break;
                 case GameState.Result:
-                    Result();
+                    Result(_playerCore.IsGameOver.CurrentValue == false);
                     break;
                 default:
                     break;
@@ -148,21 +154,21 @@ namespace StShoot.InGame.GameManagers
         {
             Debug.Log("Game Start");
         }
-        
-        /// <summary>
-        /// アドベンチャーパートの処理
-        /// </summary>
-        void Adventure()
-        {
-            Debug.Log("ADV Start");
-        }
 
         /// <summary>
         /// リザルトパートの処理
         /// </summary>
-        void Result()
+        void Result(bool isClear)
         {
-            Debug.Log("Result Start");  
+            _resultView.SetResultUI(isClear, _playerCore.CurrentPlayerParameter.CurrentValue.LifePoint,0,_scoreManager.CurrentScore.Value,GetTotalScore());
+            _resultView.ShowUI();
+            
+            _inGameInput.OnSpecialButtonPushed
+                .Skip(1)
+                .Subscribe(_ =>
+                {
+                    SceneTransitionManager.Instance.LoadScene("OutGame",null,null);
+                });
         }
         
         /// <summary>
@@ -176,6 +182,12 @@ namespace StShoot.InGame.GameManagers
                 Player = _playerCore,
                 ScoreManager = _scoreManager
             };
+        }
+        
+        public int GetTotalScore()
+        {
+            var totalScore = _playerCore.CurrentPlayerParameter.CurrentValue.LifePoint * 30000 + 0/* スパちゃ */ +_scoreManager.CurrentScore.Value;
+            return (totalScore < 0) ? 0 : totalScore;
         }
     }
 }
