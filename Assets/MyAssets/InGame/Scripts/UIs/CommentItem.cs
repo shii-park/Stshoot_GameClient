@@ -10,7 +10,6 @@ namespace StShoot.InGame.UIs
 
         public void Set(string userName, string comment)
         {
-            Debug.Log(userName + ": " + comment);
             userNameText.text = userName;
             commentText.text = comment;
         }
