@@ -24,6 +24,9 @@ namespace StShoot.OutGame.UIs
         
         private GameSetting _gameSetting;
         
+        [SerializeField]
+        private GameRoom _gameRoom;
+        
         void Start()
         {
             _outGameInputEventProvider = GetComponent<IOutGameInputEventProvider>();
@@ -85,7 +88,18 @@ namespace StShoot.OutGame.UIs
         
         public void SetGameSetting()
         {
+            _gameSetting = new GameSetting(_menuManager.CurrentItem.Level, _gameRoom.RoomId);
             
+            OutGameInputEventProvider.OnDecideButtonPushed
+                .Where(_ => _canDecide)
+                .Skip(1)
+                .Take(1)
+                .Subscribe(_ =>
+                {
+                    Debug.Log("ゲームスタート");
+                    _canDecide = false;
+                    StartCoroutine(WaitForNextAction());
+                });
         }
         
         private IEnumerator WaitForNextAction()
