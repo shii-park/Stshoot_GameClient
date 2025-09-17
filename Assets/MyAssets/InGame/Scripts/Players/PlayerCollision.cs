@@ -6,6 +6,9 @@ namespace StShoot.InGame.Players
 {
     public class PlayerCollision : BasePlayerComponent
     {
+        [SerializeField]
+        private PlayerCore _playerCore;
+        
         protected override void OnInitialize()
         {
         }
@@ -17,6 +20,7 @@ namespace StShoot.InGame.Players
         
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if(_playerCore.IsDead.CurrentValue)return;
             collision.GetComponent<BaseItem>()?.ApplyEffect(MainGameManager.Instance.CreateItemEffectContext());
         }
     }

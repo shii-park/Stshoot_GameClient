@@ -1338,7 +1338,7 @@ GameObject:
   - component: {fileID: 992445891}
   - component: {fileID: 992445890}
   m_Layer: 5
-  m_Name: MaxPoint
+  m_Name: TopPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1554,8 +1554,10 @@ GameObject:
   - component: {fileID: 1084503008}
   - component: {fileID: 1084503007}
   - component: {fileID: 1084503006}
+  - component: {fileID: 1084503011}
+  - component: {fileID: 1084503010}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UICanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1650,6 +1652,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1084503010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084503005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6aadedcbd19b4651b85283005ef01d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _topScoreText: {fileID: 992445890}
+  _currentScoreText: {fileID: 283857186}
+--- !u!114 &1084503011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084503005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb6523e718264485ba1c1a144c06aac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _model: {fileID: 2122770389}
+  _view: {fileID: 1084503010}
 --- !u!1 &1115148631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,6 +1793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075202a82132348138b2e38c14c8e4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerCore: {fileID: 348633060}
 --- !u!1 &1502641079
 GameObject:
   m_ObjectHideFlags: 0
