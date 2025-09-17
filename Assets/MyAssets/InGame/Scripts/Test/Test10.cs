@@ -1,18 +1,21 @@
 using System.Collections;
+using StShoot.InGame.Common;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class Test10 : MonoBehaviour
 {
+    [SerializeField] private CommentReceiver _commentReceiver;
+    
     [System.Serializable]
-    public class UserData
+    public class RoomID
     {
         public string roomID;
     }
 
     void Start()
     {
-        StartCoroutine(GetRequest("http://xn--ip-573a5a0e5c/create"));
+        StartCoroutine(GetRequest("https://stshoot-backend.onrender.com/create"));
     }
 
     IEnumerator GetRequest(string uri)
@@ -28,11 +31,11 @@ public class Test10 : MonoBehaviour
             else
             {
                 string json = request.downloadHandler.text;
-                Debug.Log("Response: " + json);
 
                 // JSONをC#クラスに変換
-                UserData data = JsonUtility.FromJson<UserData>(json);
-                Debug.Log($"Name: {data.roomID}");
+                RoomID data = JsonUtility.FromJson<RoomID>(json);
+                Debug.Log("Received: " + data.roomID);
+                _commentReceiver.StartWebsocket($"wss://stshoot-backend.onrender.com/ws/receiver/{data.roomID}");
             }
         }
     }

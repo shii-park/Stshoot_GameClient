@@ -24,14 +24,14 @@ namespace StShoot
                     _enemies[0].name, 
                     new Vector3(-4.5f, 3.6f, 0f), new List<Waypoint>
                 {
-                    new Waypoint(new Vector3(4.5f, 3.6f, 0f), 3.5f, MoveType.Wave),
+                    new Waypoint(new Vector3(4.5f, 3.6f, 0f), 7f, MoveType.Wave),
                 });
                 
                 EnemyFactory.Instance.Create(
                     _enemies[1].name, 
                     new Vector3(4.5f, 1.8f, 0f), new List<Waypoint>
                     {
-                        new Waypoint(new Vector3(-4.5f, 1.8f, 0f), 7f, MoveType.Wave),
+                        new Waypoint(new Vector3(-4.5f, 1.8f, 0f), 7f, MoveType.Straight),
                     });
                 yield return new WaitForSeconds(1f);
             }
