@@ -73,7 +73,7 @@ namespace StShoot.InGame.UIs
         
         public void ShowPressSpaceKey()
         {
-            _pressSpaceKeyImage.DOFade(0.0f, 1f).SetLoops(-1, LoopType.Yoyo);
+            _pressSpaceKeyImage.DOFade(0.0f, 2f).SetLoops(-1, LoopType.Yoyo);
         }
     }
 }
