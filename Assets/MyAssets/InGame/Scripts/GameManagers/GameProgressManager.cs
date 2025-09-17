@@ -66,7 +66,7 @@ namespace StShoot.InGame.GameManagers
                 
                     EnemyFactory.Instance.Create(
                         _enemies[0].name, 
-                        new Vector3(4.5f, 1.8f, 0f), new List<Waypoint>
+                        new Vector3(4.5f, 1.8f, -1f), new List<Waypoint>
                         {
                             new Waypoint(new Vector3(-4.5f, 1.8f, 0f), 7f, MoveType.Straight),
                         });
@@ -99,6 +99,42 @@ namespace StShoot.InGame.GameManagers
                     yield return new WaitForSeconds(1f);
                 }
                 
+                for (int i = 0; i < 10; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(2.5f, 6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(2.5f, -6f, -1f), 2.5f, MoveType.WaveX),
+                        });
+                    yield return new WaitForSeconds(0.5f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                for (int i = 0; i < 10; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(-4.5f, 3.6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(4.5f, 3.6f, -1f), 2.5f, MoveType.WaveY),
+                        });
+                    yield return new WaitForSeconds(0.5f);
+                }
+                
+                for (int i = 0; i < 10; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(-2.5f, -6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(-2.5f, 6f, -1f), 2.5f, MoveType.WaveX),
+                        });
+                    yield return new WaitForSeconds(0.5f);
+                }
+                
+                yield return new WaitForSeconds(5f);
             }
         }
     }

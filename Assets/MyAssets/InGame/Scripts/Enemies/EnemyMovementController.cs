@@ -57,7 +57,6 @@ namespace StShoot.InGame.Enemies
                 while (t < 1f)
                 {
                     t += Time.deltaTime / wp.Duration;
-// EnemyMovementController.cs の MoveRoutine 内
                     switch (wp.MoveType)
                     {
                         case MoveType.Straight:
@@ -82,10 +81,15 @@ namespace StShoot.InGame.Enemies
                                                  2 * (1 - t) * t * control2 +
                                                  Mathf.Pow(t, 2) * to;
                             break;
-                        case MoveType.Wave:
+                        case MoveType.WaveX:
+                            Vector3 straightX = Vector3.Lerp(from, to, t);
+                            float waveX = Mathf.Sin(t * Mathf.PI * 4) * 0.5f;
+                            transform.position = straightX + Vector3.right * waveX;
+                            break;
+                        case MoveType.WaveY:
                             Vector3 straight = Vector3.Lerp(from, to, t);
-                            float wave = Mathf.Sin(t * Mathf.PI * 4) * 0.5f;
-                            transform.position = straight + Vector3.up * wave;
+                            float waveY = Mathf.Sin(t * Mathf.PI * 4) * 0.5f;
+                            transform.position = straight + Vector3.up * waveY;
                             break;
                     }
 

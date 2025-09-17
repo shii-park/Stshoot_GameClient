@@ -1,5 +1,6 @@
 using System;
 using R3;
+using StShoot.InGame.GameManagers;
 using StShoot.InGame.GameManagers.Interfaces;
 using StShoot.InGame.Players.Inputs;
 using UnityEngine;
@@ -56,6 +57,14 @@ namespace StShoot.InGame.Players
         /// 現在のSlimeのパラメータ
         /// </summary>
         public ReadOnlyReactiveProperty<PlayerParameter> CurrentPlayerParameter => _currentPlayerParameter;
+
+        private void Start()
+        {
+            if (MainGameManager.Instance.CurrentGameState.CurrentValue != GameState.Init)
+            {
+                MainGameManager.Instance.SetGameState(GameState.Init);
+            }
+        }
         
         /// <summary>
         /// プレイヤーのパラメータを規定値に戻すメソッド

@@ -11,7 +11,8 @@ namespace StShoot.InGame.Enemies
         Curve,
         CurveInner,
         CurveOuter,
-        Wave
+        WaveX,
+        WaveY
     }
 
     /// <summary>
