@@ -37,7 +37,6 @@ public class Test10 : MonoBehaviour
 
                 // JSONをC#クラスに変換
                 RoomID data = JsonUtility.FromJson<RoomID>(json);
-                Debug.Log("Received: " + data.roomID);
                 _roomIDView.SetRoomID(data.roomID);
                 _commentReceiver.StartWebsocket($"wss://stshoot-backend.onrender.com/ws/receiver/{data.roomID}");
             }
