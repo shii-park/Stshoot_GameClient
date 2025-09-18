@@ -21,7 +21,12 @@ namespace StShoot.InGame.Enemies.Bullets
             if (viewportPos.x < 0f || viewportPos.x > 1f || viewportPos.y < 0f || viewportPos.y > 1f)return;
             GameObject bullet = EnemyBulletFactory.Instance.Create(_enemyBullet.name, position);
             
-            bullet?.GetComponent<BaseEnemyBullet>().Move(direction.normalized);
+            if (bullet != null)
+            {
+                // 弾の向きを発射方向に合わせる
+                bullet.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x));
+                bullet.GetComponent<BaseEnemyBullet>().Move(direction.normalized);
+            }
         }
     }
 }

@@ -1,4 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using StShoot.InGame.Enemies;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace StShoot.InGame.GameManagers
 {
@@ -10,6 +14,8 @@ namespace StShoot.InGame.GameManagers
         public static GameProgressManager Instance { get; private set; }
 
         private MainGameManager _mainGameManager;
+        
+        [SerializeField] private List<GameObject> _enemies;
         
         /// <summary>
         /// 初期化メソッド
@@ -35,17 +41,161 @@ namespace StShoot.InGame.GameManagers
         /// <summary>
         /// 道中の敵の動きなどを処理するメソッド
         /// </summary>
-        private void ProgressStage()
+        public void ProgressStage()
         {
-            // 道中の敵の動きやイベントをここで処理
+            StartCoroutine(ProgressStageCoroutine());
         }
-        
+
         /// <summary>
-        /// ボス戦の進行を処理するメソッド
+        /// 敵の動きを作るコルーチン
         /// </summary>
-        private void ProgressBossStage()
+        /// <returns></returns>
+        private IEnumerator ProgressStageCoroutine()
         {
-            // ボス戦の進行をここで処理
+            yield return new WaitForSeconds(3f);
+            
+            while (_mainGameManager.CurrentGameState.CurrentValue == GameState.Game)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[0].name, 
+                        new Vector3(-4.5f, 3.6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(4.5f, 3.6f, -1f), 7f, MoveType.Straight),
+                        });
+                
+                    EnemyFactory.Instance.Create(
+                        _enemies[0].name, 
+                        new Vector3(4.5f, 1.8f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(-4.5f, 1.8f, 0f), 7f, MoveType.Straight),
+                        });
+                    yield return new WaitForSeconds(1f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                for (int i = 0; i < 5; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(-3f, 6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(5f, 0f, -1f), 4f, MoveType.CurveOuter),
+                        });
+                    yield return new WaitForSeconds(1f);
+                }
+                
+                yield return new WaitForSeconds(2f);
+                
+                for (int i = 0; i < 5; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(3f, 6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(-5f, 0f, -1f), 4f, MoveType.CurveInner),
+                        });
+                    yield return new WaitForSeconds(1f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                for (int i = 0; i < 10; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(2.5f, 6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(2.5f, -6f, -1f), 2.5f, MoveType.WaveX),
+                        });
+                    yield return new WaitForSeconds(0.5f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                for (int i = 0; i < 10; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(-4.5f, 3.6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(4.5f, 3.6f, -1f), 2.5f, MoveType.WaveY),
+                        });
+                    yield return new WaitForSeconds(0.5f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                for (int i = 0; i < 10; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[1].name, 
+                        new Vector3(-2.5f, -6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(-2.5f, 6f, -1f), 2.5f, MoveType.WaveX),
+                        });
+                    yield return new WaitForSeconds(0.5f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                EnemyFactory.Instance.Create(
+                    _enemies[2].name, 
+                    new Vector3(0f, 6f, -1f), new List<Waypoint>
+                    {
+                        new Waypoint(new Vector3(0f, 0f, -1f), 30f, MoveType.Straight),
+                    });
+                yield return new WaitForSeconds(30f);
+                
+                for (int i = 0; i < 150; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[3].name, 
+                        new Vector3(Random.Range(-2.5f, 2.5f), 6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(Random.Range(-3f, 3f), -7f, -1f), 2f, MoveType.Straight),
+                        });
+                    yield return new WaitForSeconds(0.1f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                for (int i = 0; i < 150; i++)
+                {
+                    EnemyFactory.Instance.Create(
+                        _enemies[3].name, 
+                        new Vector3(Random.Range(-2.5f, 2.5f), 6f, -1f), new List<Waypoint>
+                        {
+                            new Waypoint(new Vector3(Random.Range(-3f, 3f), -7f, -1f), 2f, MoveType.Straight),
+                        });
+
+                    if (i % 10 == 0)
+                    {
+                        EnemyFactory.Instance.Create(
+                            _enemies[4].name, 
+                            new Vector3(Random.Range(-2.5f, 2.5f), 6f, -1f), new List<Waypoint>
+                            {
+                                new Waypoint(new Vector3(Random.Range(-3f, 3f), -7f, -1f), 2f, MoveType.Straight),
+                            });
+                    }
+                    yield return new WaitForSeconds(0.1f);
+                }
+                
+                yield return new WaitForSeconds(3f);
+                
+                EnemyFactory.Instance.Create(
+                    _enemies[5].name, 
+                    new Vector3(0f, 6f, -1f), new List<Waypoint>
+                    {
+                        new Waypoint(new Vector3(0f, 0f, -1f), 30f, MoveType.Straight),
+                    });
+                
+                yield return new WaitForSeconds(30f);
+                
+                yield return new WaitForSeconds(5f);
+            }
         }
     }
 }

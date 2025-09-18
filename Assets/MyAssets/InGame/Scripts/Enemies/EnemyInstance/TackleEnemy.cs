@@ -8,7 +8,7 @@ namespace StShoot.InGame.Enemies.EnemyInstance
     /// <summary>
     /// 小型エネミーのクラス
     /// </summary>
-    public class SmallEnemy : BaseEnemy
+    public class TackleEnemy : BaseEnemy
     {
         public override void Init()
         {
@@ -25,17 +25,6 @@ namespace StShoot.InGame.Enemies.EnemyInstance
                     Die();
                 }
             });
-
-            StartCoroutine(ShotCoroutine());
-        }
-        
-        private IEnumerator ShotCoroutine()
-        {
-            while (true)
-            {
-                _enemyBulletGenerator.ShotEnemyBullet(this.transform.position, Vector3.down);
-                yield return new WaitForSeconds(0.5f);
-            }
         }
         
         /// <summary>

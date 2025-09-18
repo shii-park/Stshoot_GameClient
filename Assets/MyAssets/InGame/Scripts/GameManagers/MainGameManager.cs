@@ -164,7 +164,7 @@ namespace StShoot.InGame.GameManagers
         /// </summary>
         void Game()
         {
-            Debug.Log("Game Start");
+            _gameProgressManager.ProgressStage();
         }
 
         /// <summary>

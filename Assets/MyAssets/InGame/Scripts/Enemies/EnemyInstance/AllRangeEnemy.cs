@@ -6,9 +6,9 @@ using UnityEngine;
 namespace StShoot.InGame.Enemies.EnemyInstance
 {
     /// <summary>
-    /// 小型エネミーのクラス
+    /// 全方位攻撃のエネミークラス
     /// </summary>
-    public class SmallEnemy : BaseEnemy
+    public class AllRangeEnenmy : BaseEnemy
     {
         public override void Init()
         {
@@ -31,10 +31,18 @@ namespace StShoot.InGame.Enemies.EnemyInstance
         
         private IEnumerator ShotCoroutine()
         {
+            int bulletCount = 12;
+            float angleStep = 360f / bulletCount;
             while (true)
             {
-                _enemyBulletGenerator.ShotEnemyBullet(this.transform.position, Vector3.down);
-                yield return new WaitForSeconds(0.5f);
+                for (int i = 0; i < bulletCount; i++)
+                {
+                    float angle = i * angleStep * Mathf.Deg2Rad;
+                    Vector3 direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f);
+                    _enemyBulletGenerator.ShotEnemyBullet(this.transform.position, direction);
+                }
+                
+                yield return new WaitForSeconds(1f);
             }
         }
         

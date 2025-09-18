@@ -63,19 +63,36 @@ namespace StShoot.InGame.Enemies
                             transform.position = Vector3.Lerp(from, to, t);
                             break;
                         case MoveType.Curve:
-                            // ベジェ曲線（1点制御点）でカーブ
+                            // デフォルトのカーブ
                             Vector3 control = (from + to) / 2 + Vector3.up * 2f;
                             transform.position = Mathf.Pow(1 - t, 2) * from +
-                                2 * (1 - t) * t * control +
-                                Mathf.Pow(t, 2) * to;
+                                                 2 * (1 - t) * t * control +
+                                                 Mathf.Pow(t, 2) * to;
                             break;
-                        case MoveType.Wave:
-                            // 直線移動＋sin波
+                        case MoveType.CurveInner:
+                        case MoveType.CurveOuter:
+                            Vector3 mid = (from + to) / 2;
+                            Vector3 dir = (to - from).normalized;
+                            Vector3 normal = Vector3.Cross(dir, Vector3.forward);
+                            float sign = (wp.MoveType == MoveType.CurveInner) ? -1f : 1f;
+                            float offset = 5f;
+                            Vector3 control2 = mid + normal * offset * sign;
+                            transform.position = Mathf.Pow(1 - t, 2) * from +
+                                                 2 * (1 - t) * t * control2 +
+                                                 Mathf.Pow(t, 2) * to;
+                            break;
+                        case MoveType.WaveX:
+                            Vector3 straightX = Vector3.Lerp(from, to, t);
+                            float waveX = Mathf.Sin(t * Mathf.PI * 4) * 0.5f;
+                            transform.position = straightX + Vector3.right * waveX;
+                            break;
+                        case MoveType.WaveY:
                             Vector3 straight = Vector3.Lerp(from, to, t);
-                            float wave = Mathf.Sin(t * Mathf.PI * 4) * 0.5f;
-                            transform.position = straight + Vector3.up * wave;
+                            float waveY = Mathf.Sin(t * Mathf.PI * 4) * 0.5f;
+                            transform.position = straight + Vector3.up * waveY;
                             break;
                     }
+
                     yield return null;
                 }
                 transform.position = to;

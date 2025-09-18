@@ -6,13 +6,15 @@ using UnityEngine;
 namespace StShoot.InGame.Enemies.EnemyInstance
 {
     /// <summary>
-    /// 小型エネミーのクラス
+    /// ランダム方向モンスターのクラス
     /// </summary>
-    public class SmallEnemy : BaseEnemy
+    public class RandomEnemy : BaseEnemy
     {
+        [SerializeField]
+        private float _shotInterval = 0.01f;
         public override void Init()
         {
-            _hitPoint.Value = 1;
+            _hitPoint.Value = 200;
             _isAlive.Value = true;
             
             var disposable = new SingleAssignmentDisposable();
@@ -33,8 +35,8 @@ namespace StShoot.InGame.Enemies.EnemyInstance
         {
             while (true)
             {
-                _enemyBulletGenerator.ShotEnemyBullet(this.transform.position, Vector3.down);
-                yield return new WaitForSeconds(0.5f);
+                _enemyBulletGenerator.ShotEnemyBullet(this.transform.position, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized);
+                yield return new WaitForSeconds(_shotInterval);
             }
         }
         
