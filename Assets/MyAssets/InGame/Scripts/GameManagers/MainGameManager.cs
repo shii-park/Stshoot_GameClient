@@ -43,6 +43,9 @@ namespace StShoot.InGame.GameManagers
         [SerializeField]
         private Transform _playerDefaultTransform;
         
+        [SerializeField]
+        private MusicManager _musicManager;
+        
         private int _currentStageIndex = 0;
         /// <summary>
         /// 現在のステージのインデックス
@@ -135,6 +138,7 @@ namespace StShoot.InGame.GameManagers
             _timeManager.Init();
             _gameProgressManager.Init();
             _sceneReceiver.Init();
+            _musicManager.Init();
             
             _playerCore.Initialize(new PlayerParameter(), _playerDefaultTransform);
             
