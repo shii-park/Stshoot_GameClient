@@ -20,7 +20,6 @@ namespace StShoot.InGame.Players
                     }
                     else
                     {
-                        Debug.Log("hoge");
                         Show();
                     }
                 });
