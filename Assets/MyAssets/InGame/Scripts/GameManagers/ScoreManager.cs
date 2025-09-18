@@ -17,7 +17,7 @@ namespace StShoot.InGame.GameManagers
         /// </summary>
         public ReactiveProperty<int> CurrentScore => _currentScore;
 
-        private const int ExtraBonusIntervalPoint = 1000000;
+        private const int ExtraBonusIntervalPoint = 2000000;
         private int _curentExtraBonusPoint;
         
         private MainGameManager _mainGameManager;
@@ -34,8 +34,8 @@ namespace StShoot.InGame.GameManagers
             {
                 if (score >= _curentExtraBonusPoint)
                 {
-                    // 正式な実装ではここでボーナスを付与する処理を追加
                     _curentExtraBonusPoint += ExtraBonusIntervalPoint;
+                    _mainGameManager.PlayerCore.CurrentLifePoint.Value += 1;
                 }
             });
         }

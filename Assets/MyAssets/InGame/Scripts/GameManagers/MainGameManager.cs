@@ -38,6 +38,8 @@ namespace StShoot.InGame.GameManagers
         [SerializeField]
         private PlayerCore _playerCore;
         
+        public PlayerCore PlayerCore => _playerCore;
+        
         public Transform PlayerPosition => _playerCore.gameObject.transform;
         
         [SerializeField]
