@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using StShoot.InGame.Players;
+using StShoot.InGame.Players.Bullets;
 using StShoot.InGame.UIs;
 using UnityEngine;
 using WebSocketSharp;
@@ -74,6 +75,7 @@ namespace StShoot.InGame.Common
                 ws.OnMessage += (sender, e) =>
                 {
                     UserData data = JsonUtility.FromJson<UserData>(e.Data);
+                    if(data.price > 0)
                     _bullet.AddReadyComments(data.text);
 
                     if (data != null && !string.IsNullOrEmpty(data.username) && !string.IsNullOrEmpty(data.text))
