@@ -123,6 +123,8 @@ namespace StShoot.InGame.GameManagers
                     yield return new WaitForSeconds(0.5f);
                 }
                 
+                yield return new WaitForSeconds(3f);
+                
                 for (int i = 0; i < 10; i++)
                 {
                     EnemyFactory.Instance.Create(
