@@ -26,7 +26,6 @@ namespace StShoot.InGame.GameManagers
                     _audioSource.Stop();
                 }
             });
-            
         }
     }
 }
