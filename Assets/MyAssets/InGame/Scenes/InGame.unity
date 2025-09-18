@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 348633063}
   - component: {fileID: 348633064}
   - component: {fileID: 348633065}
+  - component: {fileID: 348633066}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1280,6 +1281,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 348633062}
   _commentUIView: {fileID: 469884180}
+--- !u!114 &348633066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348633056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264b4931b455841039b3c54679aa8e89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerCore: {fileID: 348633060}
+  _player: {fileID: 348633056}
 --- !u!1001 &354001900
 PrefabInstance:
   m_ObjectHideFlags: 0
