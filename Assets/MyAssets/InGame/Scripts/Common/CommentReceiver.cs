@@ -75,7 +75,6 @@ namespace StShoot.InGame.Common
                 ws.OnMessage += (sender, e) =>
                 {
                     UserData data = JsonUtility.FromJson<UserData>(e.Data);
-                    if(data.price > 0)
                     _bullet.AddReadyComments(data.text);
 
                     if (data != null && !string.IsNullOrEmpty(data.username) && !string.IsNullOrEmpty(data.text))
