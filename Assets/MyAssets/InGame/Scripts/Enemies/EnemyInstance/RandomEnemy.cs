@@ -14,7 +14,7 @@ namespace StShoot.InGame.Enemies.EnemyInstance
         private float _shotInterval = 0.01f;
         public override void Init()
         {
-            _hitPoint.Value = 200;
+            _hitPoint.Value = 500;
             _isAlive.Value = true;
             
             var disposable = new SingleAssignmentDisposable();

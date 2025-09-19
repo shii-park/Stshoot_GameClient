@@ -69,7 +69,7 @@ namespace StShoot.InGame.Players
         /// <summary>
         /// プレイヤーのパラメータを規定値に戻すメソッド
         /// </summary>
-        public void ResetSlimeParameter()
+        public void ResetPlayerParameter()
         {
             _currentPlayerParameter.Value = DefaultPLayerParameter;
             _currentPower.Value = DefaultPLayerParameter.PlayerPower;
@@ -79,7 +79,7 @@ namespace StShoot.InGame.Players
         /// <summary>
         /// プレイヤーのパラメータを変更するメソッド
         /// </summary>
-        public void SetSlimeParameter(PlayerParameter parameters)
+        public void SetPlayerParameter(PlayerParameter parameters)
         {
             _currentPlayerParameter.Value = parameters;
             _currentPower.Value = parameters.PlayerPower;

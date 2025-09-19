@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using StShoot.InGame.Players;
+using StShoot.InGame.Players.Bullets;
 using StShoot.InGame.UIs;
 using UnityEngine;
 using WebSocketSharp;
