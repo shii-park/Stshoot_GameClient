@@ -31,6 +31,10 @@ jobs:
       - name: Git LFS Pull
         run: git lfs pull
 
+      # ワークツリーをクリーンにする（dirty エラー防止）
+      - name: Ensure clean working tree
+        run: git reset --hard
+
       # 短いコミット SHA を出力
       - name: Set outputs
         id: vars
