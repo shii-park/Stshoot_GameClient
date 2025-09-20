@@ -11,21 +11,47 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Build project for Mac
-        uses: game-ci/unity-builder@v4
+      - name: Check out my unity project.
+        uses: actions/checkout@v4
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+        
+      - name: Restore LFS cache
+        uses: actions/cache@v3
+        id: lfs-cache
         with:
-          unityVersion: 6000.1.15f1
-          targetPlatform: StandaloneOSX
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-      - name: Zip the app
+      - name: Git LFS Pull
         run: |
-          cd build/StandaloneOSX
-          zip -r YourGame-mac.zip YourGame.app
+          git lfs pull
+          git add .
+          git reset --hard
+          
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Upload build
-        uses: actions/upload-artifact@v4
+      - uses: actions/cache@v3
         with:
-          name: MacBuild
-          path: build/StandaloneOSX/YourGame-mac.zip
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+            
+      - name: Run the Windows build
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: StandaloneWindows64
+          unityVersion: 6000.1.15f1
+
+      - name: Upload the Windows Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build-${{ steps.vars.outputs.sha_short }}
+          path: build
