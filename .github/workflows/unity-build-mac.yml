@@ -17,6 +17,7 @@ jobs:
         with:
           unityVersion: 6000.1.15f1
           targetPlatform: StandaloneOSX
+          activateLicense: true 
 
       - name: Zip the app
         run: |
