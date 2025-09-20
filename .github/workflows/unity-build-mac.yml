@@ -10,7 +10,7 @@ jobs:
   build-mac:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build project for Mac
         uses: game-ci/unity-builder@v4
@@ -24,7 +24,7 @@ jobs:
           zip -r YourGame-mac.zip YourGame.app
 
       - name: Upload build
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MacBuild
           path: build/StandaloneOSX/YourGame-mac.zip
