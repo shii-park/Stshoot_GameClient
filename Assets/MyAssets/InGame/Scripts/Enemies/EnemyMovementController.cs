@@ -16,7 +16,6 @@ namespace StShoot.InGame.Enemies
         EnemyPresenter _enemyPresenter;
 
         private int _currentIndex = 0;
-        private float _elapsed = 0f;
         private Vector3 _startPos;
 
         private void Start()
