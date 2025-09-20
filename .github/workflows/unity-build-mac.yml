@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-mac:
-    runs-on: macos-latest   # 将来署名対応を考えて macOS ランナー
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -17,18 +17,6 @@ jobs:
         with:
           unityVersion: 6000.1.15f1
           targetPlatform: StandaloneOSX
-
-      # 署名（Secretsが空ならスキップされる）
-      - name: (Optional) Code sign app
-        if: ${{ secrets.MAC_CERT_P12 != '' }}
-        run: |
-          echo "$MAC_CERT_P12" | base64 --decode > signing-cert.p12
-          security create-keychain -p actions temp.keychain
-          security import signing-cert.p12 -k ~/Library/Keychains/temp.keychain -P "$MAC_CERT_PASSWORD" -T /usr/bin/codesign
-          security unlock-keychain -p actions ~/Library/Keychains/temp.keychain
-          codesign --deep --force --options runtime \
-            --sign "Developer ID Application: Your Name (${APPLE_TEAM_ID})" \
-            build/StandaloneOSX/YourGame.app
 
       - name: Zip the app
         run: |
