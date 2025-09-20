@@ -1,68 +1,46 @@
-name: Unity Build Mac
-
+name: Windows Build
+# コードがmainにpushされた時とpullreqが飛んできた時に自動で実行し手動でも実行できるようにする
+  
 on:
   push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
+    branches: main
+  pull_request: 
+    branches: main
+  workflow_dispatch: {}
 
+# 連続して実行されたときに一つ前の実行中のジョブが停止されるようにする
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
 jobs:
-  build-mac:
-    runs-on: macos-latest
-
+  unity-Build:
+    name: Run the unity build steps
+    runs-on: ubuntu-latest
     steps:
-      # ソースコードチェックアウト
-      - name: Check out my Unity project
-        uses: actions/checkout@v4
-
-      # LFS ファイルリスト作成
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
-
-      # LFS キャッシュ
-      - name: Restore LFS cache
+      # Actionsがリポジトリにアクセスできるようにする
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      # LibraryをCacheしてBuildを高速化する
+      - name: Cache Library
         uses: actions/cache@v3
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
-
-      # Git LFS Pull
-      - name: Git LFS Pull
-        run: git lfs pull
-
-      # ワークツリーをクリーンにする（dirty エラー対策）
-      - name: Ensure clean working tree
-        run: git reset --hard
-
-      # 短いコミット SHA を出力
-      - name: Set outputs
-        id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
-      # Library キャッシュ
-      - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ runner.os }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}-6000.1.15f1
-          restore-keys: |
-            Library-
-
-      # Mac ビルド実行（FORCE_CLEAN_BUILD 追加）
-      - name: Run the Mac build
-        uses: game-ci/unity-builder@v4
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**','ProjectSettings/**') }}
+          restore-keys: Library-
+      # WindowsBuildする
+      - name: Run the Windows build
+        uses: game-ci/unity-builder@v2
         env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          FORCE_CLEAN_BUILD: true
         with:
-          targetPlatform: StandaloneOSX
-          unityVersion: 6000.1.15f1
-
-      # ビルド成果物アップロード
-      - name: Upload the Mac Build
+          targetPlatform: StandaloneWindows64
+          unityVersion: 6000.1.15f
+          buildName: GithubActionsBuildSample
+      # Build成果物をアップロードする
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Build-${{ steps.vars.outputs.sha_short }}
+          name: Build
           path: build
