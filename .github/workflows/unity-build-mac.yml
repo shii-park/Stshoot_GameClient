@@ -36,7 +36,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: StandaloneWindows64
-          unityVersion: 6000.1.15f
+          unityVersion: 6000.1.15f1
           buildName: GithubActionsBuildSample
       # Build成果物をアップロードする
       - name: Upload artifact
