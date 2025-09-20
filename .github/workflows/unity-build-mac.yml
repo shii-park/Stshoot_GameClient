@@ -31,7 +31,7 @@ jobs:
       - name: Git LFS Pull
         run: git lfs pull
 
-      # ワークツリーをクリーンにする（dirty エラー防止）
+      # ワークツリーをクリーンにする（dirty エラー対策）
       - name: Ensure clean working tree
         run: git reset --hard
 
@@ -48,13 +48,14 @@ jobs:
           restore-keys: |
             Library-
 
-      # Mac ビルド実行
+      # Mac ビルド実行（FORCE_CLEAN_BUILD 追加）
       - name: Run the Mac build
         uses: game-ci/unity-builder@v4
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          FORCE_CLEAN_BUILD: true
         with:
           targetPlatform: StandaloneOSX
           unityVersion: 6000.1.15f1
