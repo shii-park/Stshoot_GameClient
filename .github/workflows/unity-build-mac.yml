@@ -9,21 +9,25 @@ on:
 jobs:
   build-mac:
     runs-on: macos-latest
+
     steps:
+      # ソースコード取得
       - uses: actions/checkout@v4
 
+      # UnityでMacビルド
       - name: Build project for Mac
         uses: game-ci/unity-builder@v4
         with:
-          unityVersion: 6000.1.15f1
+          unityVersion: 6000.1.15f1   # プロジェクトのUnityバージョン
           targetPlatform: StandaloneOSX
-          activateLicense: true 
 
+      # アプリをzip圧縮
       - name: Zip the app
         run: |
           cd build/StandaloneOSX
           zip -r YourGame-mac.zip YourGame.app
 
+      # アーティファクトにアップロード
       - name: Upload build
         uses: actions/upload-artifact@v4
         with:
