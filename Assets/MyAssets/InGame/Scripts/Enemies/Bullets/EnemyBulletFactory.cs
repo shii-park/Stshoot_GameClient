@@ -25,7 +25,6 @@ namespace StShoot.InGame.Enemies.Bullets
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
             }
             else
             {

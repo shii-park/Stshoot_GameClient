@@ -23,7 +23,6 @@ namespace StShoot.InGame.Items
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
             }
             else
             {
