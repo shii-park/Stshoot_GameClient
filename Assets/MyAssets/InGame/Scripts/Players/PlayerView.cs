@@ -4,6 +4,7 @@ using DG.Tweening;
 
 namespace StShoot.InGame.Players
 {
+    /// <summary>
     public class PlayerView : MonoBehaviour
     {
         [SerializeField]private PlayerCore _playerCore;

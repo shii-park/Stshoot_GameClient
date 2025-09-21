@@ -23,7 +23,6 @@ namespace StShoot.InGame.Enemies
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
             }
             else
             {

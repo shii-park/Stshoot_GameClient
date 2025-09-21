@@ -47,7 +47,6 @@ namespace StShoot.InGame.GameManagers
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
             }
             else
             {
