@@ -1,3 +1,4 @@
+using System.Collections;
 using StShoot.InGame.Common.Interfaces;
 using StShoot.InGame.Enemys.Interfaces;
 using StShoot.InGame.Scripts.Walls.Interfaces;

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using NUnit.Framework;
 using StShoot.InGame.Players;
 using StShoot.InGame.Players.Bullets;
 using StShoot.InGame.UIs;
@@ -31,6 +33,9 @@ namespace StShoot.InGame.Common
         
         private string _wsUrl = "wss://stshoot-backend.onrender.com/ws/receiver/";
 
+        [SerializeField]
+        private bool _isDebug;
+        
         private void Awake()
         {
             _uiQueue = new ConcurrentQueue<UserData>();
@@ -47,8 +52,35 @@ namespace StShoot.InGame.Common
         public void StartWebsocket(string roomID)
         {
             var url = _wsUrl + roomID;
+# if UNITY_EDITOR
+            if (_isDebug)
+            {
+                StartCoroutine(DebugComment());
+            }
+            else
+            {
+                StartCoroutine(ConnectWhenServerReady(url));
+            }
+            return;
+# endif
             StartCoroutine(ConnectWhenServerReady(url));
         }
+        
+# if UNITY_EDITOR
+
+        private IEnumerator DebugComment()
+        {
+            string commentList = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
+
+            while (true)
+            {
+                yield return new WaitForSeconds(2.0f);
+                _bullet.AddReadyComments(commentList);
+            }
+            
+        }
+
+# endif
 
         private IEnumerator ConnectWhenServerReady(string url)
         {

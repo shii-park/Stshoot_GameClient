@@ -1298,6 +1298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bullet: {fileID: 348633062}
   _commentUIView: {fileID: 469884180}
+  _isDebug: 1
 --- !u!114 &348633066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4211,7 +4212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 222.75, y: -162}
+  m_AnchoredPosition: {x: 222.75, y: -161.99998}
   m_SizeDelta: {x: -493.09998, y: -381.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1652325950
