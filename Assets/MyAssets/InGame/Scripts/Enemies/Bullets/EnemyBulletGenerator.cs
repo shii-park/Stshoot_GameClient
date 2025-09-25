@@ -24,7 +24,9 @@ namespace StShoot.InGame.Enemies.Bullets
             if (bullet != null)
             {
                 // 弾の向きを発射方向に合わせる
-                bullet.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x));
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                bullet.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+
                 bullet.GetComponent<BaseEnemyBullet>().Move(direction.normalized);
             }
         }

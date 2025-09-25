@@ -32,6 +32,9 @@ namespace StShoot.InGame.Players
         /// プレイヤーが死亡しているか
         /// </summary>
         public ReadOnlyReactiveProperty<bool> IsDead => _isDead;
+
+        private ReactiveProperty<bool> _isInvincible = new ReactiveProperty<bool>();
+        public ReadOnlyReactiveProperty<bool> IsInvincible => _isInvincible;
         
         private ReactiveProperty<bool> _isGameOver = new ReactiveProperty<bool>(false);
         /// <summary>
@@ -91,7 +94,7 @@ namespace StShoot.InGame.Players
         /// </summary>
         public void Kill()
         {
-            if(_isDead.Value) return;
+            if(_isDead.CurrentValue || _isInvincible.CurrentValue) return;
 
             _currentPlayerParameter.Value.LifePoint--;
             _currentLifePoint.Value = _currentPlayerParameter.Value.LifePoint;
@@ -157,11 +160,15 @@ namespace StShoot.InGame.Players
             
             _currentLifePoint.Value = _currentPlayerParameter.Value.LifePoint;
             _currentPower.Value = _currentPlayerParameter.Value.PlayerPower;
+
+            _isInvincible.Value = false;
             
             _isDead
                 .Where(_ => _isDead.Value)
                 .Subscribe(_ =>
                 {
+                    _isInvincible.Value = true;
+                    
                     if (_currentPlayerParameter.Value.LifePoint <= -1)
                     {
                         _isGameOver.Value = true;
@@ -173,6 +180,12 @@ namespace StShoot.InGame.Players
                         {
                             transform.position = _playerDefaultTransform.position;
                             _isDead.Value = false;
+                        });
+                    
+                    Observable.Timer(TimeSpan.FromSeconds(2))
+                        .Subscribe(_ =>
+                        {
+                            _isInvincible.Value = false;
                         });
                 });
         }
