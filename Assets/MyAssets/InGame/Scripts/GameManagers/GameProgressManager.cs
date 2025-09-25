@@ -55,13 +55,23 @@ namespace StShoot.InGame.GameManagers
             
             while (_mainGameManager.CurrentGameState.CurrentValue == GameState.Game)
             {
+                EnemyFactory.Instance.Create(
+                    _enemies[2].name, 
+                    new Vector3(0f, 6f, -1f), new List<Waypoint>
+                    {
+                        new Waypoint(new Vector3(0f, 0f, -1f), 30f, MoveType.Straight),
+                    });
+                yield return new WaitForSeconds(30f);
+                
+                yield return new WaitForSeconds(5f);
+                
                 for (int i = 0; i < 150; i++)
                 {
                     EnemyFactory.Instance.Create(
                         _enemies[3].name, 
                         new Vector3(Random.Range(-2.5f, 2.5f), 6f, -1f), new List<Waypoint>
                         {
-                            new Waypoint(new Vector3(Random.Range(-4f, 4f), -7f, -1f), 2f, MoveType.Straight),
+                            new Waypoint(new Vector3(Random.Range(-5f, 5f), -7f, -1f), 2f, MoveType.Straight),
                         });
 
                     if (i % 10 == 0)
@@ -70,7 +80,7 @@ namespace StShoot.InGame.GameManagers
                             _enemies[4].name, 
                             new Vector3(Random.Range(-2.5f, 2.5f), 6f, -1f), new List<Waypoint>
                             {
-                                new Waypoint(new Vector3(Random.Range(-4f, 4f), -7f, -1f), 2f, MoveType.Straight),
+                                new Waypoint(new Vector3(Random.Range(-5f, 5f), -7f, -1f), 2f, MoveType.Straight),
                             });
                     }
                     yield return new WaitForSeconds(0.1f);
@@ -160,14 +170,6 @@ namespace StShoot.InGame.GameManagers
                 }
                 
                 yield return new WaitForSeconds(3f);
-                
-                EnemyFactory.Instance.Create(
-                    _enemies[2].name, 
-                    new Vector3(0f, 6f, -1f), new List<Waypoint>
-                    {
-                        new Waypoint(new Vector3(0f, 0f, -1f), 30f, MoveType.Straight),
-                    });
-                yield return new WaitForSeconds(30f);
                 
                 for (int i = 0; i < 150; i++)
                 {
