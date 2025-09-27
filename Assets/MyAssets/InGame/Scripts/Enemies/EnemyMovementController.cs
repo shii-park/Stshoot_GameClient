@@ -17,15 +17,6 @@ namespace StShoot.InGame.Enemies
 
         private int _currentIndex = 0;
         private Vector3 _startPos;
-
-        private void Start()
-        {
-            if (_waypoints.Count > 0)
-            {
-                _startPos = transform.position;
-                StartCoroutine(MoveRoutine());
-            }
-        }
         
         /// <summary>
         /// ウェイポイントを設定するメソッド
@@ -35,6 +26,7 @@ namespace StShoot.InGame.Enemies
             _waypoints = waypoints;
             _currentIndex = 0;
             StopAllCoroutines();
+            
             if (_waypoints.Count > 0)
             {
                 StartCoroutine(MoveRoutine());
@@ -94,6 +86,7 @@ namespace StShoot.InGame.Enemies
 
                     yield return null;
                 }
+
                 transform.position = to;
                 _currentIndex++;
             }
