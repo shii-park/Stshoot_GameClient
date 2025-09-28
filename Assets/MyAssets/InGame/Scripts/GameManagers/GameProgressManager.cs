@@ -59,7 +59,11 @@ namespace StShoot.InGame.GameManagers
                     _enemies[2].name, 
                     new Vector3(0f, 6f, -1f), new List<Waypoint>
                     {
-                        new Waypoint(new Vector3(0f, 0f, -1f), 30f, MoveType.Straight),
+                        new Waypoint(new Vector3(3f, 0f, -1f), 5f, MoveType.Straight),
+                        new Waypoint(new Vector3(-3f, 2f, -1f), 5f, MoveType.Straight),
+                        new Waypoint(new Vector3(-3f, -3f, -1f), 5f, MoveType.Straight),
+                        new Waypoint(new Vector3(3f, 3f, -1f), 5f, MoveType.Straight),
+                        new Waypoint(new Vector3(0f, 0f, -1f), 5f, MoveType.Straight),
                     });
                 yield return new WaitForSeconds(30f);
                 

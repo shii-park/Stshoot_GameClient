@@ -122,6 +122,9 @@ namespace StShoot.InGame.GameManagers
                 case GameState.Game:
                     Game();
                     break;
+                case GameState.Adventure:
+                    Adventure();
+                    break;
                 case GameState.Result:
                     Result(_playerCore.IsGameOver.CurrentValue == false);
                     break;
@@ -170,6 +173,14 @@ namespace StShoot.InGame.GameManagers
         void Game()
         {
             _gameProgressManager.ProgressStage();
+        }
+        
+        /// <summary>
+        /// アドベンチャーパートの処理
+        /// </summary>
+        void Adventure()
+        {
+            // 現在は未実装
         }
 
         /// <summary>
