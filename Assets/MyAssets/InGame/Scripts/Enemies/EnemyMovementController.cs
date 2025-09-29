@@ -66,7 +66,7 @@ namespace StShoot.InGame.Enemies
                             Vector3 dir = (to - from).normalized;
                             Vector3 normal = Vector3.Cross(dir, Vector3.forward);
                             float sign = (wp.MoveType == MoveType.CurveInner) ? -1f : 1f;
-                            float offset = 5f;
+                            float offset = 2f;
                             Vector3 control2 = mid + normal * offset * sign;
                             transform.position = Mathf.Pow(1 - t, 2) * from +
                                                  2 * (1 - t) * t * control2 +
