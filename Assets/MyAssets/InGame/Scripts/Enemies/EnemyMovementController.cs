@@ -47,7 +47,7 @@ namespace StShoot.InGame.Enemies
 
                 while (t < 1f)
                 {
-                    t += Time.deltaTime / wp.Duration;
+                    t += 0.01f / wp.Duration;
                     switch (wp.MoveType)
                     {
                         case MoveType.Straight:
@@ -84,7 +84,7 @@ namespace StShoot.InGame.Enemies
                             break;
                     }
 
-                    yield return null;
+                    yield return new WaitForSeconds(0.01f);
                 }
 
                 transform.position = to;
