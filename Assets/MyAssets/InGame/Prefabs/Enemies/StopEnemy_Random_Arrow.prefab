@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1e3db27f260460baab68140d118703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _model: {fileID: 1934513828045864539}
+  _presenter: {fileID: 5226422284385394818}
 --- !u!114 &5226422284385394818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyBulletGenerator: {fileID: 3523268491833708610}
+  _shotInterval: 0.01
 --- !u!114 &3523268491833708610
 MonoBehaviour:
   m_ObjectHideFlags: 0

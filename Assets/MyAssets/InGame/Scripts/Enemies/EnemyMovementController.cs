@@ -47,7 +47,7 @@ namespace StShoot.InGame.Enemies
 
                 while (t < 1f)
                 {
-                    t += Time.deltaTime / wp.Duration;
+                    t += 0.01f / wp.Duration;
                     switch (wp.MoveType)
                     {
                         case MoveType.Straight:
@@ -66,7 +66,7 @@ namespace StShoot.InGame.Enemies
                             Vector3 dir = (to - from).normalized;
                             Vector3 normal = Vector3.Cross(dir, Vector3.forward);
                             float sign = (wp.MoveType == MoveType.CurveInner) ? -1f : 1f;
-                            float offset = 5f;
+                            float offset = 2f;
                             Vector3 control2 = mid + normal * offset * sign;
                             transform.position = Mathf.Pow(1 - t, 2) * from +
                                                  2 * (1 - t) * t * control2 +
@@ -84,12 +84,14 @@ namespace StShoot.InGame.Enemies
                             break;
                     }
 
-                    yield return null;
+                    yield return new WaitForSeconds(0.01f);
                 }
 
                 transform.position = to;
                 _currentIndex++;
             }
+            
+            _enemyPresenter.Model.Die();
         }
     }
 }

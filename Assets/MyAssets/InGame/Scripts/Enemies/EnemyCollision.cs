@@ -11,15 +11,11 @@ namespace StShoot.InGame.Enemies
     {
 
         [SerializeField] 
-        private BaseEnemy _model;
+        private EnemyPresenter _presenter;
         
         private void OnTriggerEnter2D(Collider2D collision)
         {
             collision.gameObject.GetComponent<IKillable>()?.Kill();
-            if (collision.gameObject.GetComponent<IWall>() != null)
-            {
-                _model.Die();
-            }
         }
     }
 }
