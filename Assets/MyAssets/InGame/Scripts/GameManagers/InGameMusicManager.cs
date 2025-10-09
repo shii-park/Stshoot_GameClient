@@ -4,6 +4,9 @@ using StShoot.InGame.Players;
 
 namespace StShoot.InGame.GameManagers
 {
+    /// <summary>
+    /// 音楽のマネージャークラス
+    /// </summary>
     public class MusicManager : MonoBehaviour
     {
         [SerializeField]
